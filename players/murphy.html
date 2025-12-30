@@ -675,6 +675,13 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        /* КАРТИНКИ В КАРТОЧКАХ */
+.player-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;  /* Фокус на верхней части — на лице! */
+}
     </style>
 </head>
 <body class="lang-en">
@@ -727,7 +734,7 @@
 
             <!-- PLAYER IMAGE -->
             <div class="player-image">
-                <i class="fas fa-user"></i>
+                <img src="../images/murphy.png" alt="Caleb Murphy">
                 <span class="player-number-badge">35</span>
                 <span class="injury-badge">
                     <i class="fas fa-exclamation-triangle"></i>
