@@ -679,6 +679,13 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        /* КАРТИНКИ */
+.player-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
     </style>
 </head>
 <body class="lang-en">
@@ -731,9 +738,9 @@
 
             <!-- PLAYER IMAGE -->
             <div class="player-image">
-                <i class="fas fa-user"></i>
-                <span class="player-number-badge">19</span>
-            </div>
+    <img src="../images/sterling.png" alt="Chase Sterling">
+    <span class="player-number-badge">19</span>
+</div>
 
             <!-- PHYSICAL STATS -->
             <div class="physical-stats">
