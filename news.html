@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News | Denver Hellhounds</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap&subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -37,6 +37,10 @@
             min-height: 100vh;
             line-height: 1.6;
         }
+
+        /* LANGUAGE SWITCH */
+        body.lang-en .lang-ru { display: none; }
+        body.lang-ru .lang-en { display: none; }
 
         /* NAVIGATION */
         nav {
@@ -107,7 +111,25 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
+        }
+
+        .crystal-link {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .crystal-link:hover {
+            border-color: #6BB5CC;
+            color: #6BB5CC;
         }
 
         .lang-switch {
@@ -794,26 +816,9 @@
                 font-size: 1.6rem;
             }
         }
-       .crystal-link {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    padding: 6px 10px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-}
-
-.crystal-link:hover {
-    border-color: #6BB5CC;
-    color: #6BB5CC;
-}
     </style>
 </head>
-<body>
+<body class="lang-en">
 
     <!-- NAVIGATION -->
     <nav>
@@ -825,11 +830,26 @@
                 HELLHOUNDS
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Roster</a></li>
-                <li><a href="lore.html">World</a></li>
-                <li><a href="news.html" class="active">News</a></li>
+                <li>
+                    <a href="index.html">
+                        <span class="lang-en">Roster</span>
+                        <span class="lang-ru">Состав</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="lore.html">
+                        <span class="lang-en">World</span>
+                        <span class="lang-ru">Мир</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="news.html" class="active">
+                        <span class="lang-en">News</span>
+                        <span class="lang-ru">Новости</span>
+                    </a>
+                </li>
             </ul>
-           <div class="nav-right">
+            <div class="nav-right">
                 <a href="crystal.html" class="crystal-link">
                     <i class="fas fa-snowflake"></i> Crystal
                 </a>
@@ -842,45 +862,90 @@
     <div class="breaking-news">
         <div class="ticker-wrapper">
             <div class="ticker-item">
-                <span class="label">BREAKING</span>
-                Murphy undergoes shoulder surgery, out indefinitely
+                <span class="label">
+                    <span class="lang-en">BREAKING</span>
+                    <span class="lang-ru">СРОЧНО</span>
+                </span>
+                <span class="lang-en">Murphy undergoes shoulder surgery, out indefinitely</span>
+                <span class="lang-ru">Мёрфи перенёс операцию на плече, срок восстановления неизвестен</span>
             </div>
             <div class="ticker-item">
-                <span class="label">UPDATE</span>
-                Sterling named to All-Star roster for third consecutive year
+                <span class="label">
+                    <span class="lang-en">UPDATE</span>
+                    <span class="lang-ru">ОБНОВЛЕНИЕ</span>
+                </span>
+                <span class="lang-en">Sterling named to All-Star roster for third consecutive year</span>
+                <span class="lang-ru">Стерлинг попал в состав Матча всех звёзд третий год подряд</span>
             </div>
             <div class="ticker-item">
-                <span class="label">RUMOR</span>
-                Crystal Collective to share practice facility with Hellhounds?
+                <span class="label">
+                    <span class="lang-en">RUMOR</span>
+                    <span class="lang-ru">СЛУХИ</span>
+                </span>
+                <span class="lang-en">Crystal Collective to share practice facility with Hellhounds?</span>
+                <span class="lang-ru">Crystal Collective будет делить тренировочную базу с Hellhounds?</span>
             </div>
             <div class="ticker-item">
-                <span class="label">BREAKING</span>
-                Murphy undergoes shoulder surgery, out indefinitely
+                <span class="label">
+                    <span class="lang-en">BREAKING</span>
+                    <span class="lang-ru">СРОЧНО</span>
+                </span>
+                <span class="lang-en">Murphy undergoes shoulder surgery, out indefinitely</span>
+                <span class="lang-ru">Мёрфи перенёс операцию на плече, срок восстановления неизвестен</span>
             </div>
             <div class="ticker-item">
-                <span class="label">UPDATE</span>
-                Sterling named to All-Star roster for third consecutive year
+                <span class="label">
+                    <span class="lang-en">UPDATE</span>
+                    <span class="lang-ru">ОБНОВЛЕНИЕ</span>
+                </span>
+                <span class="lang-en">Sterling named to All-Star roster for third consecutive year</span>
+                <span class="lang-ru">Стерлинг попал в состав Матча всех звёзд третий год подряд</span>
             </div>
             <div class="ticker-item">
-                <span class="label">RUMOR</span>
-                Crystal Collective to share practice facility with Hellhounds?
+                <span class="label">
+                    <span class="lang-en">RUMOR</span>
+                    <span class="lang-ru">СЛУХИ</span>
+                </span>
+                <span class="lang-en">Crystal Collective to share practice facility with Hellhounds?</span>
+                <span class="lang-ru">Crystal Collective будет делить тренировочную базу с Hellhounds?</span>
             </div>
         </div>
     </div>
 
     <!-- PAGE HEADER -->
     <header class="page-header">
-        <p class="page-label">Latest Updates</p>
-        <h1 class="page-title">NEWS</h1>
-        <p class="page-subtitle">All the latest from the Denver Hellhounds, Ball Arena, and the Crystal Collective.</p>
+        <p class="page-label">
+            <span class="lang-en">Latest Updates</span>
+            <span class="lang-ru">Последние новости</span>
+        </p>
+        <h1 class="page-title">
+            <span class="lang-en">NEWS</span>
+            <span class="lang-ru">НОВОСТИ</span>
+        </h1>
+        <p class="page-subtitle">
+            <span class="lang-en">All the latest from the Denver Hellhounds, Ball Arena, and the Crystal Collective.</span>
+            <span class="lang-ru">Всё самое свежее о Denver Hellhounds, Болл Арене и Crystal Collective.</span>
+        </p>
     </header>
 
     <!-- FILTERS -->
     <div class="news-filters">
-        <button class="filter-btn active" onclick="filterNews('all')">All News</button>
-        <button class="filter-btn" onclick="filterNews('team')">Team News</button>
-        <button class="filter-btn" onclick="filterNews('injury')">Injury Reports</button>
-        <button class="filter-btn" onclick="filterNews('rumors')">Rumors</button>
+        <button class="filter-btn active" onclick="filterNews('all')">
+            <span class="lang-en">All News</span>
+            <span class="lang-ru">Все новости</span>
+        </button>
+        <button class="filter-btn" onclick="filterNews('team')">
+            <span class="lang-en">Team News</span>
+            <span class="lang-ru">Команда</span>
+        </button>
+        <button class="filter-btn" onclick="filterNews('injury')">
+            <span class="lang-en">Injury Reports</span>
+            <span class="lang-ru">Травмы</span>
+        </button>
+        <button class="filter-btn" onclick="filterNews('rumors')">
+            <span class="lang-en">Rumors</span>
+            <span class="lang-ru">Слухи</span>
+        </button>
         <button class="filter-btn crystal" onclick="filterNews('crystal')">Crystal Collective</button>
     </div>
 
@@ -892,20 +957,41 @@
             <article class="featured-main" onclick="openArticle('murphy-injury')">
                 <div class="featured-image">
                     <i class="fas fa-image"></i>
-                    <span class="featured-badge">Breaking</span>
+                    <span class="featured-badge">
+                        <span class="lang-en">Breaking</span>
+                        <span class="lang-ru">Срочно</span>
+                    </span>
                 </div>
                 <div class="featured-content">
                     <div class="news-source">
                         <div class="source-logo">DP</div>
                         <span class="source-name">Denver Post Sports</span>
-                        <span class="source-date">• 2 hours ago</span>
+                        <span class="source-date">
+                            <span class="lang-en">• 2 hours ago</span>
+                            <span class="lang-ru">• 2 часа назад</span>
+                        </span>
                     </div>
-                    <h2 class="news-title">Murphy's Season in Jeopardy: Hellhounds Goaltender Faces Long Recovery After Shoulder Surgery</h2>
-                    <p class="news-excerpt">Caleb Murphy, the backbone of Denver's defense, underwent successful surgery yesterday but faces months of rehabilitation. Team sources say the locker room is "devastated" by the news.</p>
+                    <h2 class="news-title">
+                        <span class="lang-en">Murphy's Season in Jeopardy: Hellhounds Goaltender Faces Long Recovery After Shoulder Surgery</span>
+                        <span class="lang-ru">Сезон Мёрфи под угрозой: вратарь Hellhounds столкнулся с долгим восстановлением после операции на плече</span>
+                    </h2>
+                    <p class="news-excerpt">
+                        <span class="lang-en">Caleb Murphy, the backbone of Denver's defense, underwent successful surgery yesterday but faces months of rehabilitation. Team sources say the locker room is "devastated" by the news.</span>
+                        <span class="lang-ru">Калеб Мёрфи, опора обороны Денвера, вчера успешно перенёс операцию, но впереди месяцы реабилитации. Источники в команде говорят, что раздевалка «опустошена» этой новостью.</span>
+                    </p>
                     <div class="news-tags">
-                        <span class="news-tag player">Caleb Murphy</span>
-                        <span class="news-tag">Injury</span>
-                        <span class="news-tag">Surgery</span>
+                        <span class="news-tag player">
+                            <span class="lang-en">Caleb Murphy</span>
+                            <span class="lang-ru">Калеб Мёрфи</span>
+                        </span>
+                        <span class="news-tag">
+                            <span class="lang-en">Injury</span>
+                            <span class="lang-ru">Травма</span>
+                        </span>
+                        <span class="news-tag">
+                            <span class="lang-en">Surgery</span>
+                            <span class="lang-ru">Операция</span>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -915,56 +1001,105 @@
                     <div class="news-source">
                         <div class="source-logo">HH</div>
                         <span class="source-name">Hockey Herald</span>
-                        <span class="source-date">• 5 hours ago</span>
+                        <span class="source-date">
+                            <span class="lang-en">• 5 hours ago</span>
+                            <span class="lang-ru">• 5 часов назад</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Sterling's All-Star Selection: Deserved Honor or Popularity Contest?</h3>
-                    <p class="news-excerpt">The "Golden Boy" earns his third consecutive nod, but critics question if his off-ice appeal outweighs his on-ice performance.</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Sterling's All-Star Selection: Deserved Honor or Popularity Contest?</span>
+                        <span class="lang-ru">Стерлинг в Матче звёзд: заслуженная честь или конкурс популярности?</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">The "Golden Boy" earns his third consecutive nod, but critics question if his off-ice appeal outweighs his on-ice performance.</span>
+                        <span class="lang-ru">«Золотой мальчик» получает приглашение третий год подряд, но критики сомневаются: его привлекательность вне льда важнее игры?</span>
+                    </p>
                 </article>
 
                 <article class="sidebar-card" onclick="openArticle('reed-pressure')">
                     <div class="news-source">
                         <div class="source-logo">MH</div>
                         <span class="source-name">Mile High Sports</span>
-                        <span class="source-date">• Yesterday</span>
+                        <span class="source-date">
+                            <span class="lang-en">• Yesterday</span>
+                            <span class="lang-ru">• Вчера</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Captain Under Pressure: Is Reed Losing His Grip on the Locker Room?</h3>
-                    <p class="news-excerpt">Anonymous sources describe tension between the veteran captain and younger players.</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Captain Under Pressure: Is Reed Losing His Grip on the Locker Room?</span>
+                        <span class="lang-ru">Капитан под давлением: Рид теряет контроль над раздевалкой?</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">Anonymous sources describe tension between the veteran captain and younger players.</span>
+                        <span class="lang-ru">Анонимные источники описывают напряжённость между опытным капитаном и молодыми игроками.</span>
+                    </p>
                 </article>
 
                 <article class="sidebar-card" onclick="openArticle('crystal-arena')">
                     <div class="news-source">
                         <div class="source-logo" style="color: var(--crystal-blue);">CC</div>
                         <span class="source-name">Crystal Collective</span>
-                        <span class="source-date">• Yesterday</span>
+                        <span class="source-date">
+                            <span class="lang-en">• Yesterday</span>
+                            <span class="lang-ru">• Вчера</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Ice Time Wars: Crystal Collective Demands More Practice Hours at Ball Arena</h3>
-                    <p class="news-excerpt">Figure skating team frustrated with "second-class treatment" at shared facility.</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Ice Time Wars: Crystal Collective Demands More Practice Hours at Ball Arena</span>
+                        <span class="lang-ru">Война за лёд: Crystal Collective требует больше тренировочного времени на Болл Арене</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">Figure skating team frustrated with "second-class treatment" at shared facility.</span>
+                        <span class="lang-ru">Команда фигуристов разочарована «второсортным отношением» на общем объекте.</span>
+                    </p>
                 </article>
             </div>
         </div>
 
         <!-- TEAM NEWS -->
         <div class="news-grid-header">
-            <h2 class="grid-title">TEAM NEWS</h2>
-            <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            <h2 class="grid-title">
+                <span class="lang-en">TEAM NEWS</span>
+                <span class="lang-ru">НОВОСТИ КОМАНДЫ</span>
+            </h2>
+            <a href="#" class="view-all">
+                <span class="lang-en">View All</span>
+                <span class="lang-ru">Все</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
 
         <div class="news-grid">
             <article class="news-card" onclick="openArticle('carter-spotlight')">
                 <div class="news-card-image">
                     <i class="fas fa-image"></i>
-                    <span class="card-badge interview">Interview</span>
+                    <span class="card-badge interview">
+                        <span class="lang-en">Interview</span>
+                        <span class="lang-ru">Интервью</span>
+                    </span>
                 </div>
                 <div class="news-card-content">
                     <div class="news-source">
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
-                        <span class="source-date">• 1 day ago</span>
+                        <span class="source-date">
+                            <span class="lang-en">• 1 day ago</span>
+                            <span class="lang-ru">• 1 день назад</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Rookie Sensation: Leo Carter Opens Up About Pressure and Expectations</h3>
-                    <p class="news-excerpt">In a rare interview, the 21-year-old discusses life in the NHL spotlight and the weight of being called "the future."</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Rookie Sensation: Leo Carter Opens Up About Pressure and Expectations</span>
+                        <span class="lang-ru">Сенсационный новичок: Лео Картер откровенно о давлении и ожиданиях</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">In a rare interview, the 21-year-old discusses life in the NHL spotlight and the weight of being called "the future."</span>
+                        <span class="lang-ru">В редком интервью 21-летний игрок рассказывает о жизни под прицелом НХЛ и тяжести звания «будущее команды».</span>
+                    </p>
                     <div class="news-tags">
-                        <span class="news-tag player">Leo Carter</span>
+                        <span class="news-tag player">
+                            <span class="lang-en">Leo Carter</span>
+                            <span class="lang-ru">Лео Картер</span>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -977,12 +1112,24 @@
                     <div class="news-source">
                         <div class="source-logo">HH</div>
                         <span class="source-name">Hockey Herald</span>
-                        <span class="source-date">• 2 days ago</span>
+                        <span class="source-date">
+                            <span class="lang-en">• 2 days ago</span>
+                            <span class="lang-ru">• 2 дня назад</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Shaw's Quiet Dominance: The Numbers Behind Denver's Shutdown Defenseman</h3>
-                    <p class="news-excerpt">Miles Shaw doesn't make headlines, but advanced stats show he's one of the league's most effective defenders.</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Shaw's Quiet Dominance: The Numbers Behind Denver's Shutdown Defenseman</span>
+                        <span class="lang-ru">Тихое доминирование Шоу: цифры за главным защитником Денвера</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">Miles Shaw doesn't make headlines, but advanced stats show he's one of the league's most effective defenders.</span>
+                        <span class="lang-ru">Майлз Шоу не попадает в заголовки, но продвинутая статистика показывает — он один из самых эффективных защитников лиги.</span>
+                    </p>
                     <div class="news-tags">
-                        <span class="news-tag player">Miles Shaw</span>
+                        <span class="news-tag player">
+                            <span class="lang-en">Miles Shaw</span>
+                            <span class="lang-ru">Майлз Шоу</span>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -990,16 +1137,28 @@
             <article class="news-card" onclick="openArticle('trade-rumors')">
                 <div class="news-card-image">
                     <i class="fas fa-image"></i>
-                    <span class="card-badge rumor">Rumor</span>
+                    <span class="card-badge rumor">
+                        <span class="lang-en">Rumor</span>
+                        <span class="lang-ru">Слухи</span>
+                    </span>
                 </div>
                 <div class="news-card-content">
                     <div class="news-source">
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
-                        <span class="source-date">• 3 days ago</span>
+                        <span class="source-date">
+                            <span class="lang-en">• 3 days ago</span>
+                            <span class="lang-ru">• 3 дня назад</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Trade Deadline Approaching: Which Hellhounds Are On the Block?</h3>
-                    <p class="news-excerpt">League insiders suggest Denver's front office is "listening to offers" on several roster players.</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Trade Deadline Approaching: Which Hellhounds Are On the Block?</span>
+                        <span class="lang-ru">Дедлайн обменов приближается: кого из Hellhounds могут обменять?</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">League insiders suggest Denver's front office is "listening to offers" on several roster players.</span>
+                        <span class="lang-ru">Инсайдеры лиги утверждают, что руководство Денвера «слушает предложения» по нескольким игрокам состава.</span>
+                    </p>
                 </div>
             </article>
         </div>
@@ -1010,26 +1169,45 @@
                 <i class="fas fa-snowflake" style="margin-right: 10px;"></i>
                 CRYSTAL COLLECTIVE
             </h2>
-            <a href="#" class="view-all" style="color: var(--crystal-light);">View All <i class="fas fa-arrow-right"></i></a>
+            <a href="#" class="view-all" style="color: var(--crystal-light);">
+                <span class="lang-en">View All</span>
+                <span class="lang-ru">Все</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
 
         <div class="news-grid">
             <article class="news-card crystal-news" onclick="openArticle('crystal-rivalry')">
                 <div class="news-card-image">
                     <i class="fas fa-image"></i>
-                    <span class="card-badge crystal">Feature</span>
+                    <span class="card-badge crystal">
+                        <span class="lang-en">Feature</span>
+                        <span class="lang-ru">Репортаж</span>
+                    </span>
                 </div>
                 <div class="news-card-content">
                     <div class="news-source">
                         <div class="source-logo" style="color: var(--crystal-blue);">DP</div>
                         <span class="source-name">Denver Post</span>
-                        <span class="source-date">• 4 days ago</span>
+                        <span class="source-date">
+                            <span class="lang-en">• 4 days ago</span>
+                            <span class="lang-ru">• 4 дня назад</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Fire and Ice: Inside the Tense Relationship Between Hellhounds and Crystal Collective</h3>
-                    <p class="news-excerpt">They share an arena but couldn't be more different. A deep dive into Ball Arena's unlikely cohabitants.</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Fire and Ice: Inside the Tense Relationship Between Hellhounds and Crystal Collective</span>
+                        <span class="lang-ru">Огонь и лёд: внутри напряжённых отношений между Hellhounds и Crystal Collective</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">They share an arena but couldn't be more different. A deep dive into Ball Arena's unlikely cohabitants.</span>
+                        <span class="lang-ru">Они делят арену, но не могут быть более разными. Глубокое погружение в жизнь неожиданных соседей Болл Арены.</span>
+                    </p>
                     <div class="news-tags">
                         <span class="news-tag crystal">Crystal Collective</span>
-                        <span class="news-tag">Feature</span>
+                        <span class="news-tag">
+                            <span class="lang-en">Feature</span>
+                            <span class="lang-ru">Репортаж</span>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -1037,18 +1215,33 @@
             <article class="news-card crystal-news" onclick="openArticle('crystal-gala')">
                 <div class="news-card-image">
                     <i class="fas fa-image"></i>
-                    <span class="card-badge drama">Drama</span>
+                    <span class="card-badge drama">
+                        <span class="lang-en">Drama</span>
+                        <span class="lang-ru">Драма</span>
+                    </span>
                 </div>
                 <div class="news-card-content">
                     <div class="news-source">
                         <div class="source-logo" style="color: var(--crystal-blue);">PD</div>
                         <span class="source-name">Puck Daily</span>
-                        <span class="source-date">• 5 days ago</span>
+                        <span class="source-date">
+                            <span class="lang-en">• 5 days ago</span>
+                            <span class="lang-ru">• 5 дней назад</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Awkward Encounter: Sterling and Crystal Collective Star Spotted in Heated Exchange at Charity Gala</h3>
-                    <p class="news-excerpt">Witnesses describe "tense words" between the hockey star and figure skating champion at Denver's annual sports gala.</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Awkward Encounter: Sterling and Crystal Collective Star Spotted in Heated Exchange at Charity Gala</span>
+                        <span class="lang-ru">Неловкая встреча: Стерлинга и звезду Crystal Collective заметили в горячем споре на благотворительном гала</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">Witnesses describe "tense words" between the hockey star and figure skating champion at Denver's annual sports gala.</span>
+                        <span class="lang-ru">Свидетели описывают «напряжённые слова» между хоккейной звездой и чемпионкой по фигурному катанию на ежегодном спортивном гала Денвера.</span>
+                    </p>
                     <div class="news-tags">
-                        <span class="news-tag player">Chase Sterling</span>
+                        <span class="news-tag player">
+                            <span class="lang-en">Chase Sterling</span>
+                            <span class="lang-ru">Чейз Стерлинг</span>
+                        </span>
                         <span class="news-tag crystal">Crystal Collective</span>
                     </div>
                 </div>
@@ -1062,13 +1255,25 @@
                     <div class="news-source">
                         <div class="source-logo" style="color: var(--crystal-blue);">MH</div>
                         <span class="source-name">Mile High Sports</span>
-                        <span class="source-date">• 1 week ago</span>
+                        <span class="source-date">
+                            <span class="lang-en">• 1 week ago</span>
+                            <span class="lang-ru">• 1 неделю назад</span>
+                        </span>
                     </div>
-                    <h3 class="news-title">Crystal Collective Announces Winter Showcase at Ball Arena</h3>
-                    <p class="news-excerpt">The figure skating team's biggest event of the year will take place during Hellhounds' road trip.</p>
+                    <h3 class="news-title">
+                        <span class="lang-en">Crystal Collective Announces Winter Showcase at Ball Arena</span>
+                        <span class="lang-ru">Crystal Collective объявляет о зимнем шоу на Болл Арене</span>
+                    </h3>
+                    <p class="news-excerpt">
+                        <span class="lang-en">The figure skating team's biggest event of the year will take place during Hellhounds' road trip.</span>
+                        <span class="lang-ru">Главное событие года для команды фигуристов пройдёт во время выездной серии Hellhounds.</span>
+                    </p>
                     <div class="news-tags">
                         <span class="news-tag crystal">Crystal Collective</span>
-                        <span class="news-tag">Event</span>
+                        <span class="news-tag">
+                            <span class="lang-en">Event</span>
+                            <span class="lang-ru">Событие</span>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -1076,34 +1281,49 @@
 
         <!-- NEWS SOURCES -->
         <div class="sources-section">
-            <h3 class="sources-title">Our Sources</h3>
+            <h3 class="sources-title">
+                <span class="lang-en">Our Sources</span>
+                <span class="lang-ru">Наши источники</span>
+            </h3>
             <div class="sources-grid">
                 <div class="source-item">
                     <div class="source-icon denver">DP</div>
                     <div class="source-details">
                         Denver Post Sports
-                        <span>Local Coverage</span>
+                        <span>
+                            <span class="lang-en">Local Coverage</span>
+                            <span class="lang-ru">Местные новости</span>
+                        </span>
                     </div>
                 </div>
                 <div class="source-item">
                     <div class="source-icon herald">HH</div>
                     <div class="source-details">
                         The Hockey Herald
-                        <span>NHL Analysis</span>
+                        <span>
+                            <span class="lang-en">NHL Analysis</span>
+                            <span class="lang-ru">Аналитика НХЛ</span>
+                        </span>
                     </div>
                 </div>
                 <div class="source-item">
                     <div class="source-icon puck">PD</div>
                     <div class="source-details">
                         Puck Daily
-                        <span>Rumors & Insider</span>
+                        <span>
+                            <span class="lang-en">Rumors & Insider</span>
+                            <span class="lang-ru">Слухи и инсайды</span>
+                        </span>
                     </div>
                 </div>
                 <div class="source-item">
                     <div class="source-icon mile">MH</div>
                     <div class="source-details">
                         Mile High Sports
-                        <span>Denver Sports</span>
+                        <span>
+                            <span class="lang-en">Denver Sports</span>
+                            <span class="lang-ru">Спорт Денвера</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -1128,25 +1348,58 @@
                         <div class="source-logo">DP</div>
                         <span class="source-name">Denver Post Sports</span>
                     </div>
-                    <span class="article-date">December 15, 2024 • 8 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 15, 2024 • 8 min read</span>
+                        <span class="lang-ru">15 декабря 2024 • 8 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Murphy's Season in Jeopardy: Hellhounds Goaltender Faces Long Recovery After Shoulder Surgery</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Murphy's Season in Jeopardy: Hellhounds Goaltender Faces Long Recovery After Shoulder Surgery</span>
+                    <span class="lang-ru">Сезон Мёрфи под угрозой: вратарь Hellhounds столкнулся с долгим восстановлением после операции на плече</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] Caleb Murphy, the 29-year-old goaltender who has anchored Denver's defense for the past five seasons, underwent successful surgery on his right shoulder yesterday at St. Catherine's Medical Center.</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] Caleb Murphy, the 29-year-old goaltender who has anchored Denver's defense for the past five seasons, underwent successful surgery on his right shoulder yesterday at St. Catherine's Medical Center.</span>
+                        <span class="lang-ru">[PLACEHOLDER] Калеб Мёрфи, 29-летний вратарь, который был опорой обороны Денвера последние пять сезонов, вчера успешно перенёс операцию на правом плече в Медицинском центре Св. Екатерины.</span>
+                    </p>
 
-                    <p>The procedure, performed by renowned sports surgeon Dr. Michael Chen, addressed a chronic instability issue that has plagued Murphy for years. Sources close to the team indicate the injury was more severe than initially reported.</p>
+                    <p>
+                        <span class="lang-en">The procedure, performed by renowned sports surgeon Dr. Michael Chen, addressed a chronic instability issue that has plagued Murphy for years. Sources close to the team indicate the injury was more severe than initially reported.</span>
+                        <span class="lang-ru">Процедуру провёл известный спортивный хирург доктор Майкл Чен. Операция была направлена на устранение хронической нестабильности, которая мучила Мёрфи годами. Источники, близкие к команде, сообщают, что травма была серьёзнее, чем сообщалось изначально.</span>
+                    </p>
 
-                    <blockquote>"Caleb is one of the toughest competitors I've ever been around. He's been playing through pain that would sideline most players. This surgery was necessary—his long-term health had to come first."<br>— Alexander Reed, Team Captain</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"Caleb is one of the toughest competitors I've ever been around. He's been playing through pain that would sideline most players. This surgery was necessary—his long-term health had to come first."<br>— Alexander Reed, Team Captain</span>
+                        <span class="lang-ru">«Калеб — один из самых стойких соперников, которых я встречал. Он играл через боль, которая вывела бы из строя большинство игроков. Эта операция была необходима — его долгосрочное здоровье должно быть на первом месте.»<br>— Александр Рид, капитан команды</span>
+                    </blockquote>
 
-                    <p>The timeline for Murphy's return remains uncertain, with team physicians estimating a minimum of 4-6 months of rehabilitation. This effectively rules him out for the remainder of the regular season and potentially the playoffs.</p>
+                    <p>
+                        <span class="lang-en">The timeline for Murphy's return remains uncertain, with team physicians estimating a minimum of 4-6 months of rehabilitation. This effectively rules him out for the remainder of the regular season and potentially the playoffs.</span>
+                        <span class="lang-ru">Сроки возвращения Мёрфи остаются неопределёнными: врачи команды оценивают минимальный срок реабилитации в 4-6 месяцев. Фактически это исключает его участие в оставшейся части регулярного сезона и, возможно, в плей-офф.</span>
+                    </p>
 
-                    <p>[PLACEHOLDER - Add more content about team reaction, backup goaltender situation, etc.]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add more content about team reaction, backup goaltender situation, etc.]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить больше о реакции команды, ситуации с запасным вратарём и т.д.]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">Caleb Murphy</span>
-                    <span class="news-tag">Injury</span>
-                    <span class="news-tag">Surgery</span>
-                    <span class="news-tag">Analysis</span>
+                    <span class="news-tag player">
+                        <span class="lang-en">Caleb Murphy</span>
+                        <span class="lang-ru">Калеб Мёрфи</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Injury</span>
+                        <span class="lang-ru">Травма</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Surgery</span>
+                        <span class="lang-ru">Операция</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Analysis</span>
+                        <span class="lang-ru">Анализ</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1167,22 +1420,46 @@
                         <div class="source-logo">HH</div>
                         <span class="source-name">The Hockey Herald</span>
                     </div>
-                    <span class="article-date">December 15, 2024 • 5 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 15, 2024 • 5 min read</span>
+                        <span class="lang-ru">15 декабря 2024 • 5 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Sterling's All-Star Selection: Deserved Honor or Popularity Contest?</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Sterling's All-Star Selection: Deserved Honor or Popularity Contest?</span>
+                    <span class="lang-ru">Стерлинг в Матче звёзд: заслуженная честь или конкурс популярности?</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] Chase Sterling has been named to the NHL All-Star Game for the third consecutive year, cementing his status as one of the league's most marketable stars. But is the "Golden Boy" truly among the game's elite, or is his selection driven by jersey sales and Instagram followers?</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] Chase Sterling has been named to the NHL All-Star Game for the third consecutive year, cementing his status as one of the league's most marketable stars. But is the "Golden Boy" truly among the game's elite, or is his selection driven by jersey sales and Instagram followers?</span>
+                        <span class="lang-ru">[PLACEHOLDER] Чейз Стерлинг был назван участником Матча всех звёзд НХЛ третий год подряд, укрепив свой статус одной из самых продаваемых звёзд лиги. Но действительно ли «Золотой мальчик» среди элиты, или его выбор обусловлен продажами футболок и подписчиками в Instagram?</span>
+                    </p>
 
-                    <p>Sterling's numbers this season—38 goals and 54 assists through 82 games—are undeniably impressive. But critics point to his defensive lapses and question whether his flashy style translates to playoff success.</p>
+                    <p>
+                        <span class="lang-en">Sterling's numbers this season—38 goals and 54 assists through 82 games—are undeniably impressive. But critics point to his defensive lapses and question whether his flashy style translates to playoff success.</span>
+                        <span class="lang-ru">Статистика Стерлинга в этом сезоне — 38 голов и 54 передачи за 82 игры — бесспорно впечатляет. Но критики указывают на его провалы в обороне и сомневаются, приведёт ли его яркий стиль к успеху в плей-офф.</span>
+                    </p>
 
-                    <blockquote>"Chase is a generational talent. The All-Star Game is about entertainment, and nobody entertains like he does."<br>— NHL Marketing Executive (anonymous)</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"Chase is a generational talent. The All-Star Game is about entertainment, and nobody entertains like he does."<br>— NHL Marketing Executive (anonymous)</span>
+                        <span class="lang-ru">«Чейз — талант поколения. Матч всех звёзд — это развлечение, и никто не развлекает так, как он.»<br>— Маркетинговый директор НХЛ (анонимно)</span>
+                    </blockquote>
 
-                    <p>[PLACEHOLDER - Add more analysis, quotes, debate about his selection]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add more analysis, quotes, debate about his selection]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить больше анализа, цитат, дебатов о его выборе]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">Chase Sterling</span>
+                    <span class="news-tag player">
+                        <span class="lang-en">Chase Sterling</span>
+                        <span class="lang-ru">Чейз Стерлинг</span>
+                    </span>
                     <span class="news-tag">All-Star</span>
-                    <span class="news-tag">Opinion</span>
+                    <span class="news-tag">
+                        <span class="lang-en">Opinion</span>
+                        <span class="lang-ru">Мнение</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1203,22 +1480,49 @@
                         <div class="source-logo">MH</div>
                         <span class="source-name">Mile High Sports</span>
                     </div>
-                    <span class="article-date">December 14, 2024 • 7 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 14, 2024 • 7 min read</span>
+                        <span class="lang-ru">14 декабря 2024 • 7 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Captain Under Pressure: Is Reed Losing His Grip on the Locker Room?</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Captain Under Pressure: Is Reed Losing His Grip on the Locker Room?</span>
+                    <span class="lang-ru">Капитан под давлением: Рид теряет контроль над раздевалкой?</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] Alexander Reed has worn the captain's "C" for five seasons, leading the Hellhounds with an iron fist and unwavering discipline. But cracks are beginning to show in the 31-year-old's leadership.</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] Alexander Reed has worn the captain's "C" for five seasons, leading the Hellhounds with an iron fist and unwavering discipline. But cracks are beginning to show in the 31-year-old's leadership.</span>
+                        <span class="lang-ru">[PLACEHOLDER] Александр Рид носит капитанскую «К» пять сезонов, ведя Hellhounds железной рукой и непоколебимой дисциплиной. Но в лидерстве 31-летнего начинают появляться трещины.</span>
+                    </p>
 
-                    <p>Multiple sources within the organization describe a growing disconnect between Reed and the team's younger players. His demanding style, once respected, is now seen by some as "outdated" and "inflexible."</p>
+                    <p>
+                        <span class="lang-en">Multiple sources within the organization describe a growing disconnect between Reed and the team's younger players. His demanding style, once respected, is now seen by some as "outdated" and "inflexible."</span>
+                        <span class="lang-ru">Несколько источников внутри организации описывают растущий разрыв между Ридом и молодыми игроками команды. Его требовательный стиль, когда-то уважаемый, теперь некоторые считают «устаревшим» и «негибким».</span>
+                    </p>
 
-                    <blockquote>"Duke expects everyone to be like him—100% hockey, all the time. But not everyone can live like that. Not everyone wants to."<br>— Anonymous Hellhounds player</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"Duke expects everyone to be like him—100% hockey, all the time. But not everyone can live like that. Not everyone wants to."<br>— Anonymous Hellhounds player</span>
+                        <span class="lang-ru">«Герцог ожидает, что все будут как он — 100% хоккей, всё время. Но не все могут так жить. Не все хотят.»<br>— Анонимный игрок Hellhounds</span>
+                    </blockquote>
 
-                    <p>[PLACEHOLDER - Add more about locker room dynamics, Reed's response, management's position]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add more about locker room dynamics, Reed's response, management's position]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить больше о динамике раздевалки, ответе Рида, позиции руководства]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">Alexander Reed</span>
-                    <span class="news-tag">Leadership</span>
-                    <span class="news-tag">Analysis</span>
+                    <span class="news-tag player">
+                        <span class="lang-en">Alexander Reed</span>
+                        <span class="lang-ru">Александр Рид</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Leadership</span>
+                        <span class="lang-ru">Лидерство</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Analysis</span>
+                        <span class="lang-ru">Анализ</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1239,22 +1543,43 @@
                         <div class="source-logo" style="color: var(--crystal-blue);">CC</div>
                         <span class="source-name">Crystal Collective Press</span>
                     </div>
-                    <span class="article-date">December 14, 2024 • 4 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 14, 2024 • 4 min read</span>
+                        <span class="lang-ru">14 декабря 2024 • 4 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Ice Time Wars: Crystal Collective Demands More Practice Hours at Ball Arena</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Ice Time Wars: Crystal Collective Demands More Practice Hours at Ball Arena</span>
+                    <span class="lang-ru">Война за лёд: Crystal Collective требует больше тренировочного времени на Болл Арене</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] The Crystal Collective, Denver's premier figure skating ensemble, has formally requested additional practice time at Ball Arena, citing "inadequate access" to the facility they share with the Hellhounds.</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] The Crystal Collective, Denver's premier figure skating ensemble, has formally requested additional practice time at Ball Arena, citing "inadequate access" to the facility they share with the Hellhounds.</span>
+                        <span class="lang-ru">[PLACEHOLDER] Crystal Collective, ведущий ансамбль фигурного катания Денвера, официально запросил дополнительное тренировочное время на Болл Арене, ссылаясь на «недостаточный доступ» к объекту, который они делят с Hellhounds.</span>
+                    </p>
 
-                    <p>In a statement released today, Crystal Collective management expressed frustration with the current scheduling arrangement, which prioritizes hockey operations.</p>
+                    <p>
+                        <span class="lang-en">In a statement released today, Crystal Collective management expressed frustration with the current scheduling arrangement, which prioritizes hockey operations.</span>
+                        <span class="lang-ru">В заявлении, опубликованном сегодня, руководство Crystal Collective выразило разочарование текущим расписанием, которое отдаёт приоритет хоккейным операциям.</span>
+                    </p>
 
-                    <blockquote>"We are world-class athletes who deserve world-class treatment. Being relegated to 6 AM practice slots while the hockey team gets prime evening hours is unacceptable."<br>— Crystal Collective Management</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"We are world-class athletes who deserve world-class treatment. Being relegated to 6 AM practice slots while the hockey team gets prime evening hours is unacceptable."<br>— Crystal Collective Management</span>
+                        <span class="lang-ru">«Мы — спортсмены мирового класса, которые заслуживают соответствующего отношения. То, что нас отправляют на тренировки в 6 утра, пока хоккейная команда получает лучшие вечерние часы — неприемлемо.»<br>— Руководство Crystal Collective</span>
+                    </blockquote>
 
-                    <p>[PLACEHOLDER - Add arena response, Hellhounds' position, scheduling details]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add arena response, Hellhounds' position, scheduling details]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить ответ арены, позицию Hellhounds, детали расписания]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
                     <span class="news-tag crystal">Crystal Collective</span>
                     <span class="news-tag">Ball Arena</span>
-                    <span class="news-tag">Scheduling</span>
+                    <span class="news-tag">
+                        <span class="lang-en">Scheduling</span>
+                        <span class="lang-ru">Расписание</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1275,65 +1600,54 @@
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
                     </div>
-                    <span class="article-date">December 13, 2024 • 10 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 13, 2024 • 10 min read</span>
+                        <span class="lang-ru">13 декабря 2024 • 10 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Rookie Sensation: Leo Carter Opens Up About Pressure and Expectations</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Rookie Sensation: Leo Carter Opens Up About Pressure and Expectations</span>
+                    <span class="lang-ru">Сенсационный новичок: Лео Картер откровенно о давлении и ожиданиях</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] At 21 years old, Leo Carter is already being called "the future of the franchise." But behind the highlight-reel goals and electric speed lies a young man still figuring out who he is.</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] At 21 years old, Leo Carter is already being called "the future of the franchise." But behind the highlight-reel goals and electric speed lies a young man still figuring out who he is.</span>
+                        <span class="lang-ru">[PLACEHOLDER] В 21 год Лео Картера уже называют «будущим франшизы». Но за яркими голами и электрической скоростью скрывается молодой человек, который всё ещё пытается понять, кто он.</span>
+                    </p>
 
-                    <p>In this exclusive interview, Carter speaks candidly about the weight of expectations, his relationship with teammates, and the challenges of living in the spotlight.</p>
+                    <p>
+                        <span class="lang-en">In this exclusive interview, Carter speaks candidly about the weight of expectations, his relationship with teammates, and the challenges of living in the spotlight.</span>
+                        <span class="lang-ru">В этом эксклюзивном интервью Картер откровенно говорит о тяжести ожиданий, отношениях с товарищами по команде и сложностях жизни под прицелом камер.</span>
+                    </p>
 
-                    <blockquote>"Some days I feel like I'm living someone else's dream. Like I'm playing a character called 'Leo Carter, NHL Star.' The real me? I'm still figuring that out."<br>— Leo Carter</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"Some days I feel like I'm living someone else's dream. Like I'm playing a character called 'Leo Carter, NHL Star.' The real me? I'm still figuring that out."<br>— Leo Carter</span>
+                        <span class="lang-ru">«Иногда мне кажется, что я живу чужой мечтой. Будто играю персонажа по имени "Лео Картер, звезда НХЛ". Настоящий я? Я всё ещё пытаюсь это понять.»<br>— Лео Картер</span>
+                    </blockquote>
 
-                    <p>[PLACEHOLDER - Add interview content, quotes about teammates, his journey]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add interview content, quotes about teammates, his journey]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить содержание интервью, цитаты о товарищах по команде, его путь]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">Leo Carter</span>
-                    <span class="news-tag">Interview</span>
-                    <span class="news-tag">Feature</span>
+                    <span class="news-tag player">
+                        <span class="lang-en">Leo Carter</span>
+                        <span class="lang-ru">Лео Картер</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Interview</span>
+                        <span class="lang-ru">Интервью</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Feature</span>
+                        <span class="lang-ru">Репортаж</span>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CRYSTAL RIVALRY ARTICLE -->
-    <div class="article-overlay" id="article-crystal-rivalry">
-        <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('crystal-rivalry')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
-            <div class="article-content">
-                <div class="article-meta">
-                    <div class="article-source">
-                        <div class="source-logo">DP</div>
-                        <span class="source-name">Denver Post</span>
-                    </div>
-                    <span class="article-date">December 10, 2024 • 12 min read</span>
-                </div>
-                <h1 class="article-title">Fire and Ice: Inside the Tense Relationship Between Hellhounds and Crystal Collective</h1>
-                <div class="article-body">
-                    <p>[PLACEHOLDER] They share the same arena, the same ice, and the same city. But the Denver Hellhounds and the Crystal Collective couldn't be more different—and their relationship reflects that divide.</p>
-
-                    <p>Hockey players and figure skaters have coexisted at Ball Arena for three years now, but tensions have escalated recently. Scheduling conflicts, equipment disputes, and cultural clashes have created an atmosphere one insider describes as "a cold war on ice."</p>
-
-                    <blockquote>"They look at us like we're not real athletes. Like what we do is just... pretty. They have no idea how hard we work."<br>— Crystal Collective skater (anonymous)</blockquote>
-
-                    <blockquote>"I've got nothing against them. But this is a hockey arena. We were here first."<br>— Hellhounds player (anonymous)</blockquote>
-
-                    <p>[PLACEHOLDER - Add more about the history, specific incidents, both perspectives]</p>
-                </div>
-                <div class="article-tags">
-                    <span class="news-tag crystal">Crystal Collective</span>
-                    <span class="news-tag">Hellhounds</span>
-                    <span class="news-tag">Feature</span>
-                    <span class="news-tag">Ball Arena</span>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- SHAW DEFENSE ARTICLE -->
     <div class="article-overlay" id="article-shaw-defense">
         <div class="article-modal">
@@ -1349,24 +1663,49 @@
                         <div class="source-logo">HH</div>
                         <span class="source-name">The Hockey Herald</span>
                     </div>
-                    <span class="article-date">December 12, 2024 • 6 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 12, 2024 • 6 min read</span>
+                        <span class="lang-ru">12 декабря 2024 • 6 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Shaw's Quiet Dominance: The Numbers Behind Denver's Shutdown Defenseman</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Shaw's Quiet Dominance: The Numbers Behind Denver's Shutdown Defenseman</span>
+                    <span class="lang-ru">Тихое доминирование Шоу: цифры за главным защитником Денвера</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] Miles Shaw doesn't give interviews. He doesn't have a social media presence. He barely celebrates his goals. But the 27-year-old defenseman might be the most valuable player on the Hellhounds roster—and the numbers prove it.</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] Miles Shaw doesn't give interviews. He doesn't have a social media presence. He barely celebrates his goals. But the 27-year-old defenseman might be the most valuable player on the Hellhounds roster—and the numbers prove it.</span>
+                        <span class="lang-ru">[PLACEHOLDER] Майлз Шоу не даёт интервью. У него нет соцсетей. Он едва празднует свои голы. Но 27-летний защитник может быть самым ценным игроком в составе Hellhounds — и цифры это доказывают.</span>
+                    </p>
 
-                    <p>Advanced analytics paint a picture of a player who does everything right, even when no one is watching. Shaw leads the team in blocked shots, ranks second in ice time, and has the best plus-minus among defensemen.</p>
+                    <p>
+                        <span class="lang-en">Advanced analytics paint a picture of a player who does everything right, even when no one is watching. Shaw leads the team in blocked shots, ranks second in ice time, and has the best plus-minus among defensemen.</span>
+                        <span class="lang-ru">Продвинутая аналитика рисует картину игрока, который делает всё правильно, даже когда никто не смотрит. Шоу лидирует в команде по заблокированным броскам, занимает второе место по времени на льду и имеет лучший показатель плюс-минус среди защитников.</span>
+                    </p>
 
-                    <blockquote>"Milo is the guy you don't notice until he's not there. And when he's not there, everything falls apart."<br>— Hellhounds Assistant Coach</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"Milo is the guy you don't notice until he's not there. And when he's not there, everything falls apart."<br>— Hellhounds Assistant Coach</span>
+                        <span class="lang-ru">«Майло — тот парень, которого не замечаешь, пока он есть. А когда его нет — всё рушится.»<br>— Ассистент тренера Hellhounds</span>
+                    </blockquote>
 
-                    <p>His partnership with the team's other defensemen has been crucial to Denver's success. But it's his quiet leadership—leading by example rather than words—that teammates value most.</p>
-
-                    <p>[PLACEHOLDER - Add more stats, teammate quotes, analysis of his playing style]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add more stats, teammate quotes, analysis of his playing style]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить больше статистики, цитат товарищей по команде, анализ его стиля игры]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">Miles Shaw</span>
-                    <span class="news-tag">Analysis</span>
-                    <span class="news-tag">Defense</span>
+                    <span class="news-tag player">
+                        <span class="lang-en">Miles Shaw</span>
+                        <span class="lang-ru">Майлз Шоу</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Analysis</span>
+                        <span class="lang-ru">Анализ</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Defense</span>
+                        <span class="lang-ru">Защита</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1387,24 +1726,117 @@
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
                     </div>
-                    <span class="article-date">December 11, 2024 • 5 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 11, 2024 • 5 min read</span>
+                        <span class="lang-ru">11 декабря 2024 • 5 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Trade Deadline Approaching: Which Hellhounds Are On the Block?</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Trade Deadline Approaching: Which Hellhounds Are On the Block?</span>
+                    <span class="lang-ru">Дедлайн обменов приближается: кого из Hellhounds могут обменять?</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] With the trade deadline looming, league insiders suggest the Denver Hellhounds front office is "open for business." But who might be on the move?</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] With the trade deadline looming, league insiders suggest the Denver Hellhounds front office is "open for business." But who might be on the move?</span>
+                        <span class="lang-ru">[PLACEHOLDER] С приближением дедлайна обменов инсайдеры лиги утверждают, что руководство Denver Hellhounds «открыто для бизнеса». Но кого могут обменять?</span>
+                    </p>
 
-                    <p>Sources indicate that while the core players—Sterling, Reed, Shaw—are considered untouchable, several depth pieces could be available for the right price.</p>
+                    <p>
+                        <span class="lang-en">Sources indicate that while the core players—Sterling, Reed, Shaw—are considered untouchable, several depth pieces could be available for the right price.</span>
+                        <span class="lang-ru">Источники указывают, что хотя основные игроки — Стерлинг, Рид, Шоу — считаются неприкосновенными, несколько игроков глубины состава могут быть доступны за правильную цену.</span>
+                    </p>
 
-                    <blockquote>"Denver is looking to add, not subtract. But they're willing to move pieces to make a bigger splash. They want to win now."<br>— NHL Insider</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"Denver is looking to add, not subtract. But they're willing to move pieces to make a bigger splash. They want to win now."<br>— NHL Insider</span>
+                        <span class="lang-ru">«Денвер хочет усилиться, а не ослабнуть. Но они готовы двигать фигуры ради большего приобретения. Они хотят победить сейчас.»<br>— Инсайдер НХЛ</span>
+                    </blockquote>
 
-                    <p>The Murphy injury has complicated matters. With their starting goaltender out indefinitely, the Hellhounds may need to acquire netminding help—and that could require sacrificing future assets.</p>
+                    <p>
+                        <span class="lang-en">The Murphy injury has complicated matters. With their starting goaltender out indefinitely, the Hellhounds may need to acquire netminding help—and that could require sacrificing future assets.</span>
+                        <span class="lang-ru">Травма Мёрфи усложнила ситуацию. С основным вратарём вне игры на неопределённый срок, Hellhounds, возможно, придётся приобрести помощь в воротах — а это может потребовать жертвы будущих активов.</span>
+                    </p>
 
-                    <p>[PLACEHOLDER - Add specific trade targets, salary cap implications, GM quotes]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add specific trade targets, salary cap implications, GM quotes]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить конкретные цели обменов, последствия для потолка зарплат, цитаты генменеджера]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag">Trade Rumors</span>
-                    <span class="news-tag">Deadline</span>
-                    <span class="news-tag">Insider</span>
+                    <span class="news-tag">
+                        <span class="lang-en">Trade Rumors</span>
+                        <span class="lang-ru">Слухи об обменах</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Deadline</span>
+                        <span class="lang-ru">Дедлайн</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Insider</span>
+                        <span class="lang-ru">Инсайд</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRYSTAL RIVALRY ARTICLE -->
+    <div class="article-overlay" id="article-crystal-rivalry">
+        <div class="article-modal">
+            <button class="article-close" onclick="closeArticle('crystal-rivalry')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-hero">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <div class="article-source">
+                        <div class="source-logo">DP</div>
+                        <span class="source-name">Denver Post</span>
+                    </div>
+                    <span class="article-date">
+                        <span class="lang-en">December 10, 2024 • 12 min read</span>
+                        <span class="lang-ru">10 декабря 2024 • 12 мин. чтения</span>
+                    </span>
+                </div>
+                <h1 class="article-title">
+                    <span class="lang-en">Fire and Ice: Inside the Tense Relationship Between Hellhounds and Crystal Collective</span>
+                    <span class="lang-ru">Огонь и лёд: внутри напряжённых отношений между Hellhounds и Crystal Collective</span>
+                </h1>
+                <div class="article-body">
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] They share the same arena, the same ice, and the same city. But the Denver Hellhounds and the Crystal Collective couldn't be more different—and their relationship reflects that divide.</span>
+                        <span class="lang-ru">[PLACEHOLDER] Они делят одну арену, один лёд и один город. Но Denver Hellhounds и Crystal Collective не могут быть более разными — и их отношения отражают этот раскол.</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">Hockey players and figure skaters have coexisted at Ball Arena for three years now, but tensions have escalated recently. Scheduling conflicts, equipment disputes, and cultural clashes have created an atmosphere one insider describes as "a cold war on ice."</span>
+                        <span class="lang-ru">Хоккеисты и фигуристы сосуществуют на Болл Арене уже три года, но напряжённость недавно обострилась. Конфликты расписания, споры об оборудовании и культурные столкновения создали атмосферу, которую один инсайдер описывает как «холодную войну на льду».</span>
+                    </p>
+
+                    <blockquote>
+                        <span class="lang-en">"They look at us like we're not real athletes. Like what we do is just... pretty. They have no idea how hard we work."<br>— Crystal Collective skater (anonymous)</span>
+                        <span class="lang-ru">«Они смотрят на нас, будто мы не настоящие спортсмены. Будто то, что мы делаем — просто... красиво. Они понятия не имеют, как тяжело мы работаем.»<br>— Фигуристка Crystal Collective (анонимно)</span>
+                    </blockquote>
+
+                    <blockquote>
+                        <span class="lang-en">"I've got nothing against them. But this is a hockey arena. We were here first."<br>— Hellhounds player (anonymous)</span>
+                        <span class="lang-ru">«Я ничего не имею против них. Но это хоккейная арена. Мы были здесь первыми.»<br>— Игрок Hellhounds (анонимно)</span>
+                    </blockquote>
+
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add more about the history, specific incidents, both perspectives]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить больше об истории, конкретных инцидентах, обеих точках зрения]</span>
+                    </p>
+                </div>
+                <div class="article-tags">
+                    <span class="news-tag crystal">Crystal Collective</span>
+                    <span class="news-tag">Hellhounds</span>
+                    <span class="news-tag">
+                        <span class="lang-en">Feature</span>
+                        <span class="lang-ru">Репортаж</span>
+                    </span>
+                    <span class="news-tag">Ball Arena</span>
                 </div>
             </div>
         </div>
@@ -1425,25 +1857,55 @@
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
                     </div>
-                    <span class="article-date">December 9, 2024 • 4 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 9, 2024 • 4 min read</span>
+                        <span class="lang-ru">9 декабря 2024 • 4 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Awkward Encounter: Sterling and Crystal Collective Star Spotted in Heated Exchange at Charity Gala</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Awkward Encounter: Sterling and Crystal Collective Star Spotted in Heated Exchange at Charity Gala</span>
+                    <span class="lang-ru">Неловкая встреча: Стерлинга и звезду Crystal Collective заметили в горячем споре на благотворительном гала</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] The Denver Sports Foundation's annual charity gala is usually a night of smiles, handshakes, and oversized donation checks. But this year's event will be remembered for a very different reason.</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] The Denver Sports Foundation's annual charity gala is usually a night of smiles, handshakes, and oversized donation checks. But this year's event will be remembered for a very different reason.</span>
+                        <span class="lang-ru">[PLACEHOLDER] Ежегодный благотворительный гала Спортивного фонда Денвера обычно — вечер улыбок, рукопожатий и огромных чеков на пожертвования. Но этот год запомнится совсем по другой причине.</span>
+                    </p>
 
-                    <p>Multiple witnesses report that Chase Sterling and a prominent Crystal Collective skater were seen in what one attendee described as "a very intense conversation" near the venue's bar area.</p>
+                    <p>
+                        <span class="lang-en">Multiple witnesses report that Chase Sterling and a prominent Crystal Collective skater were seen in what one attendee described as "a very intense conversation" near the venue's bar area.</span>
+                        <span class="lang-ru">Несколько свидетелей сообщают, что Чейза Стерлинга и известную фигуристку Crystal Collective видели в том, что один из присутствующих описал как «очень напряжённый разговор» возле бара.</span>
+                    </p>
 
-                    <blockquote>"It didn't look friendly. There was finger-pointing. She looked upset. He looked... I don't know, defensive? It went on for maybe five minutes before someone pulled him away."<br>— Gala Attendee</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"It didn't look friendly. There was finger-pointing. She looked upset. He looked... I don't know, defensive? It went on for maybe five minutes before someone pulled him away."<br>— Gala Attendee</span>
+                        <span class="lang-ru">«Это не выглядело дружелюбно. Были указывающие жесты. Она выглядела расстроенной. Он выглядел... не знаю, защищающимся? Это продолжалось минут пять, прежде чем кто-то увёл его.»<br>— Гость гала</span>
+                    </blockquote>
 
-                    <p>Neither Sterling nor the Crystal Collective have commented on the incident. The Hellhounds' PR team declined to address the matter, calling it "a private conversation at a social event."</p>
+                    <p>
+                        <span class="lang-en">Neither Sterling nor the Crystal Collective have commented on the incident. The Hellhounds' PR team declined to address the matter, calling it "a private conversation at a social event."</span>
+                        <span class="lang-ru">Ни Стерлинг, ни Crystal Collective не прокомментировали инцидент. PR-команда Hellhounds отказалась обсуждать этот вопрос, назвав его «частным разговором на светском мероприятии».</span>
+                    </p>
 
-                    <p>[PLACEHOLDER - Add more details, speculation about what was discussed, history between them]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add more details, speculation about what was discussed, history between them]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить больше деталей, предположения о теме разговора, историю между ними]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">Chase Sterling</span>
+                    <span class="news-tag player">
+                        <span class="lang-en">Chase Sterling</span>
+                        <span class="lang-ru">Чейз Стерлинг</span>
+                    </span>
                     <span class="news-tag crystal">Crystal Collective</span>
-                    <span class="news-tag">Drama</span>
-                    <span class="news-tag">Gossip</span>
+                    <span class="news-tag">
+                        <span class="lang-en">Drama</span>
+                        <span class="lang-ru">Драма</span>
+                    </span>
+                    <span class="news-tag">
+                        <span class="lang-en">Gossip</span>
+                        <span class="lang-ru">Сплетни</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1464,45 +1926,69 @@
                         <div class="source-logo" style="color: var(--crystal-blue);">MH</div>
                         <span class="source-name">Mile High Sports</span>
                     </div>
-                    <span class="article-date">December 7, 2024 • 3 min read</span>
+                    <span class="article-date">
+                        <span class="lang-en">December 7, 2024 • 3 min read</span>
+                        <span class="lang-ru">7 декабря 2024 • 3 мин. чтения</span>
+                    </span>
                 </div>
-                <h1 class="article-title">Crystal Collective Announces Winter Showcase at Ball Arena</h1>
+                <h1 class="article-title">
+                    <span class="lang-en">Crystal Collective Announces Winter Showcase at Ball Arena</span>
+                    <span class="lang-ru">Crystal Collective объявляет о зимнем шоу на Болл Арене</span>
+                </h1>
                 <div class="article-body">
-                    <p>[PLACEHOLDER] The Crystal Collective has officially announced dates for their highly anticipated Winter Showcase, set to take place at Ball Arena during the Hellhounds' extended road trip in January.</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER] The Crystal Collective has officially announced dates for their highly anticipated Winter Showcase, set to take place at Ball Arena during the Hellhounds' extended road trip in January.</span>
+                        <span class="lang-ru">[PLACEHOLDER] Crystal Collective официально объявил даты долгожданного зимнего шоу, которое пройдёт на Болл Арене во время длительной выездной серии Hellhounds в январе.</span>
+                    </p>
 
-                    <p>The three-night event will feature the ensemble's full roster performing both classic and contemporary routines, including several world premieres choreographed specifically for the Denver audience.</p>
+                    <p>
+                        <span class="lang-en">The three-night event will feature the ensemble's full roster performing both classic and contemporary routines, including several world premieres choreographed specifically for the Denver audience.</span>
+                        <span class="lang-ru">Трёхдневное мероприятие представит полный состав ансамбля с классическими и современными номерами, включая несколько мировых премьер, поставленных специально для денверской публики.</span>
+                    </p>
 
-                    <blockquote>"This is our chance to show Denver what we're capable of when we have the arena to ourselves. No compromises, no shortened practice times. Just pure artistry on ice."<br>— Crystal Collective Artistic Director</blockquote>
+                    <blockquote>
+                        <span class="lang-en">"This is our chance to show Denver what we're capable of when we have the arena to ourselves. No compromises, no shortened practice times. Just pure artistry on ice."<br>— Crystal Collective Artistic Director</span>
+                        <span class="lang-ru">«Это наш шанс показать Денверу, на что мы способны, когда арена в нашем распоряжении. Никаких компромиссов, никаких сокращённых тренировок. Чистое искусство на льду.»<br>— Художественный руководитель Crystal Collective</span>
+                    </blockquote>
 
-                    <p>Tickets go on sale next Monday and are expected to sell out quickly. VIP packages include a post-show meet-and-greet with the skaters.</p>
+                    <p>
+                        <span class="lang-en">Tickets go on sale next Monday and are expected to sell out quickly. VIP packages include a post-show meet-and-greet with the skaters.</span>
+                        <span class="lang-ru">Билеты поступят в продажу в следующий понедельник и, как ожидается, быстро раскупят. VIP-пакеты включают встречу с фигуристами после шоу.</span>
+                    </p>
 
-                    <p>[PLACEHOLDER - Add performance details, ticket prices, featured skaters]</p>
+                    <p>
+                        <span class="lang-en">[PLACEHOLDER - Add performance details, ticket prices, featured skaters]</span>
+                        <span class="lang-ru">[PLACEHOLDER - Добавить детали выступлений, цены на билеты, главных фигуристов]</span>
+                    </p>
                 </div>
                 <div class="article-tags">
                     <span class="news-tag crystal">Crystal Collective</span>
-                    <span class="news-tag">Event</span>
+                    <span class="news-tag">
+                        <span class="lang-en">Event</span>
+                        <span class="lang-ru">Событие</span>
+                    </span>
                     <span class="news-tag">Winter Showcase</span>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- FOOTER -->
     <footer>
         <p class="footer-logo">DENVER HELLHOUNDS</p>
-        <p class="footer-text">Cards for SillyTavern • Est. 2024</p>
+        <p class="footer-text">
+            <span class="lang-en">Cards for SillyTavern • Est. 2024</span>
+            <span class="lang-ru">Карточки для SillyTavern • 2024</span>
+        </p>
     </footer>
 
     <script>
         // Filter functionality
         function filterNews(category) {
-            // Update active button
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
-
-            // TODO: Actually filter the news cards
             console.log('Filtering by:', category);
         }
 
@@ -1537,9 +2023,28 @@
             }
         });
 
+        // Language toggle
         function toggleLanguage() {
-            alert('Language switch coming in Part 4!');
+            const body = document.body;
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-ru');
+                localStorage.setItem('hellhounds-lang', 'ru');
+            } else {
+                body.classList.remove('lang-ru');
+                body.classList.add('lang-en');
+                localStorage.setItem('hellhounds-lang', 'en');
+            }
         }
+
+        // Load saved language
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('hellhounds-lang');
+            if (savedLang === 'ru') {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-ru');
+            }
+        });
     </script>
 
 </body>
