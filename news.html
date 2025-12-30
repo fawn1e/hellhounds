@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News | Denver Hellhounds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-hover: #1a1a1a;
+            --accent: #722F37;
+            --accent-light: #8B3D48;
+            --accent-glow: rgba(114, 47, 55, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #5a5a5a;
+            --border: #2a2a2a;
+            --gold: #C9A962;
+            --crystal-blue: #4A90A4;
+            --crystal-light: #6BB5CC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .lang-switch {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 140px 40px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center top, var(--accent-glow) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .page-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+        }
+
+        .page-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            margin-top: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* NEWS FILTERS */
+        .news-filters {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.crystal {
+            border-color: var(--crystal-blue);
+        }
+
+        .filter-btn.crystal:hover,
+        .filter-btn.crystal.active {
+            background: var(--crystal-blue);
+            border-color: var(--crystal-blue);
+        }
+
+        /* BREAKING NEWS TICKER */
+        .breaking-news {
+            background: var(--accent);
+            padding: 12px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-item {
+            white-space: nowrap;
+            padding: 0 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ticker-item .label {
+            background: rgba(0,0,0,0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* NEWS SECTION */
+        .news-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* FEATURED NEWS */
+        .featured-news {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .featured-main {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .featured-main:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .featured-image {
+            height: 300px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .featured-image i {
+            font-size: 4rem;
+            color: var(--text-muted);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .featured-content {
+            padding: 30px;
+        }
+
+        .news-source {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .source-logo {
+            width: 24px;
+            height: 24px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        .source-name {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .source-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .news-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .news-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .news-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .news-tag {
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            color: var(--text-muted);
+        }
+
+        .news-tag.player {
+            color: var(--accent-light);
+            border: 1px solid var(--accent);
+        }
+
+        .news-tag.crystal {
+            color: var(--crystal-light);
+            border: 1px solid var(--crystal-blue);
+        }
+
+        /* FEATURED SIDEBAR */
+        .featured-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-card:hover {
+            border-color: var(--accent);
+        }
+
+        .sidebar-card .news-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-card .news-excerpt {
+            font-size: 0.85rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* NEWS GRID */
+        .news-grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .grid-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .view-all {
+            font-size: 0.8rem;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .view-all:hover {
+            color: var(--text-primary);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .news-card.crystal-news:hover {
+            border-color: var(--crystal-blue);
+        }
+
+        .news-card-image {
+            height: 160px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .news-card-image i {
+            font-size: 2.5rem;
+            color: var(--text-muted);
+        }
+
+        .news-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-badge.injury {
+            background: #8B0000;
+        }
+
+        .card-badge.trade {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .card-badge.interview {
+            background: #2E5A3A;
+        }
+
+        .card-badge.rumor {
+            background: #4A4A4A;
+        }
+
+        .card-badge.crystal {
+            background: var(--crystal-blue);
+        }
+
+        .card-badge.drama {
+            background: #6B2D5C;
+        }
+
+        .news-card-content {
+            padding: 20px;
+        }
+
+        .news-card .news-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .news-card .news-excerpt {
+            font-size: 0.85rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        /* SOURCES SECTION */
+        .sources-section {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .sources-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sources-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .source-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .source-item:hover {
+            opacity: 1;
+        }
+
+        .source-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .source-icon.denver { color: #C8102E; }
+        .source-icon.herald { color: #1E3A5F; }
+        .source-icon.puck { color: #FF6B35; }
+        .source-icon.mile { color: #00A651; }
+
+        .source-details {
+            font-size: 0.85rem;
+        }
+
+        .source-details span {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* ARTICLE MODAL */
+        .article-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-y: auto;
+        }
+
+        .article-overlay.active {
+            display: flex;
+        }
+
+        .article-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .article-close:hover {
+            background: var(--accent);
+        }
+
+        .article-hero {
+            height: 300px;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article-hero i {
+            font-size: 5rem;
+            color: var(--text-muted);
+        }
+
+        .article-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 40px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .article-source {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        .article-body {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .article-body p {
+            margin-bottom: 20px;
+        }
+
+        .article-body blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 25px 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .featured-news {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-sidebar {
+                flex-direction: row;
+                overflow-x: auto;
+            }
+
+            .sidebar-card {
+                min-width: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .news-filters {
+                padding: 0 20px 20px;
+            }
+
+            .news-section {
+                padding: 20px;
+            }
+
+            .article-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hockey-puck"></i>
+                </div>
+                HELLHOUNDS
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Roster</a></li>
+                <li><a href="lore.html">World</a></li>
+                <li><a href="news.html" class="active">News</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="lang-switch" onclick="toggleLanguage()">EN / RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREAKING NEWS TICKER -->
+    <div class="breaking-news">
+        <div class="ticker-wrapper">
+            <div class="ticker-item">
+                <span class="label">BREAKING</span>
+                Murphy undergoes shoulder surgery, out indefinitely
+            </div>
+            <div class="ticker-item">
+                <span class="label">UPDATE</span>
+                Sterling named to All-Star roster for third consecutive year
+            </div>
+            <div class="ticker-item">
+                <span class="label">RUMOR</span>
+                Crystal Collective to share practice facility with Hellhounds?
+            </div>
+            <div class="ticker-item">
+                <span class="label">BREAKING</span>
+                Murphy undergoes shoulder surgery, out indefinitely
+            </div>
+            <div class="ticker-item">
+                <span class="label">UPDATE</span>
+                Sterling named to All-Star roster for third consecutive year
+            </div>
+            <div class="ticker-item">
+                <span class="label">RUMOR</span>
+                Crystal Collective to share practice facility with Hellhounds?
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <p class="page-label">Latest Updates</p>
+        <h1 class="page-title">NEWS</h1>
+        <p class="page-subtitle">All the latest from the Denver Hellhounds, Ball Arena, and the Crystal Collective.</p>
+    </header>
+
+    <!-- FILTERS -->
+    <div class="news-filters">
+        <button class="filter-btn active" onclick="filterNews('all')">All News</button>
+        <button class="filter-btn" onclick="filterNews('team')">Team News</button>
+        <button class="filter-btn" onclick="filterNews('injury')">Injury Reports</button>
+        <button class="filter-btn" onclick="filterNews('rumors')">Rumors</button>
+        <button class="filter-btn crystal" onclick="filterNews('crystal')">Crystal Collective</button>
+    </div>
+
+    <!-- NEWS SECTION -->
+    <section class="news-section">
+
+        <!-- FEATURED NEWS -->
+        <div class="featured-news">
+            <article class="featured-main" onclick="openArticle('murphy-injury')">
+                <div class="featured-image">
+                    <i class="fas fa-image"></i>
+                    <span class="featured-badge">Breaking</span>
+                </div>
+                <div class="featured-content">
+                    <div class="news-source">
+                        <div class="source-logo">DP</div>
+                        <span class="source-name">Denver Post Sports</span>
+                        <span class="source-date">• 2 hours ago</span>
+                    </div>
+                    <h2 class="news-title">Murphy's Season in Jeopardy: Hellhounds Goaltender Faces Long Recovery After Shoulder Surgery</h2>
+                    <p class="news-excerpt">Caleb Murphy, the backbone of Denver's defense, underwent successful surgery yesterday but faces months of rehabilitation. Team sources say the locker room is "devastated" by the news.</p>
+                    <div class="news-tags">
+                        <span class="news-tag player">Caleb Murphy</span>
+                        <span class="news-tag">Injury</span>
+                        <span class="news-tag">Surgery</span>
+                    </div>
+                </div>
+            </article>
+
+            <div class="featured-sidebar">
+                <article class="sidebar-card" onclick="openArticle('sterling-allstar')">
+                    <div class="news-source">
+                        <div class="source-logo">HH</div>
+                        <span class="source-name">Hockey Herald</span>
+                        <span class="source-date">• 5 hours ago</span>
+                    </div>
+                    <h3 class="news-title">Sterling's All-Star Selection: Deserved Honor or Popularity Contest?</h3>
+                    <p class="news-excerpt">The "Golden Boy" earns his third consecutive nod, but critics question if his off-ice appeal outweighs his on-ice performance.</p>
+                </article>
+
+                <article class="sidebar-card" onclick="openArticle('reed-pressure')">
+                    <div class="news-source">
+                        <div class="source-logo">MH</div>
+                        <span class="source-name">Mile High Sports</span>
+                        <span class="source-date">• Yesterday</span>
+                    </div>
+                    <h3 class="news-title">Captain Under Pressure: Is Reed Losing His Grip on the Locker Room?</h3>
+                    <p class="news-excerpt">Anonymous sources describe tension between the veteran captain and younger players.</p>
+                </article>
+
+                <article class="sidebar-card" onclick="openArticle('crystal-arena')">
+                    <div class="news-source">
+                        <div class="source-logo" style="color: var(--crystal-blue);">CC</div>
+                        <span class="source-name">Crystal Collective</span>
+                        <span class="source-date">• Yesterday</span>
+                    </div>
+                    <h3 class="news-title">Ice Time Wars: Crystal Collective Demands More Practice Hours at Ball Arena</h3>
+                    <p class="news-excerpt">Figure skating team frustrated with "second-class treatment" at shared facility.</p>
+                </article>
+            </div>
+        </div>
+
+        <!-- TEAM NEWS -->
+        <div class="news-grid-header">
+            <h2 class="grid-title">TEAM NEWS</h2>
+            <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="news-grid">
+            <article class="news-card" onclick="openArticle('carter-spotlight')">
+                <div class="news-card-image">
+                    <i class="fas fa-image"></i>
+                    <span class="card-badge interview">Interview</span>
+                </div>
+                <div class="news-card-content">
+                    <div class="news-source">
+                        <div class="source-logo">PD</div>
+                        <span class="source-name">Puck Daily</span>
+                        <span class="source-date">• 1 day ago</span>
+                    </div>
+                    <h3 class="news-title">Rookie Sensation: Leo Carter Opens Up About Pressure and Expectations</h3>
+                    <p class="news-excerpt">In a rare interview, the 21-year-old discusses life in the NHL spotlight and the weight of being called "the future."</p>
+                    <div class="news-tags">
+                        <span class="news-tag player">Leo Carter</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card" onclick="openArticle('shaw-defense')">
+                <div class="news-card-image">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="news-card-content">
+                    <div class="news-source">
+                        <div class="source-logo">HH</div>
+                        <span class="source-name">Hockey Herald</span>
+                        <span class="source-date">• 2 days ago</span>
+                    </div>
+                    <h3 class="news-title">Shaw's Quiet Dominance: The Numbers Behind Denver's Shutdown Defenseman</h3>
+                    <p class="news-excerpt">Miles Shaw doesn't make headlines, but advanced stats show he's one of the league's most effective defenders.</p>
+                    <div class="news-tags">
+                        <span class="news-tag player">Miles Shaw</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card" onclick="openArticle('trade-rumors')">
+                <div class="news-card-image">
+                    <i class="fas fa-image"></i>
+                    <span class="card-badge rumor">Rumor</span>
+                </div>
+                <div class="news-card-content">
+                    <div class="news-source">
+                        <div class="source-logo">PD</div>
+                        <span class="source-name">Puck Daily</span>
+                        <span class="source-date">• 3 days ago</span>
+                    </div>
+                    <h3 class="news-title">Trade Deadline Approaching: Which Hellhounds Are On the Block?</h3>
+                    <p class="news-excerpt">League insiders suggest Denver's front office is "listening to offers" on several roster players.</p>
+                </div>
+            </article>
+        </div>
+
+        <!-- CRYSTAL COLLECTIVE NEWS -->
+        <div class="news-grid-header">
+            <h2 class="grid-title" style="color: var(--crystal-light);">
+                <i class="fas fa-snowflake" style="margin-right: 10px;"></i>
+                CRYSTAL COLLECTIVE
+            </h2>
+            <a href="#" class="view-all" style="color: var(--crystal-light);">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="news-grid">
+            <article class="news-card crystal-news" onclick="openArticle('crystal-rivalry')">
+                <div class="news-card-image">
+                    <i class="fas fa-image"></i>
+                    <span class="card-badge crystal">Feature</span>
+                </div>
+                <div class="news-card-content">
+                    <div class="news-source">
+                        <div class="source-logo" style="color: var(--crystal-blue);">DP</div>
+                        <span class="source-name">Denver Post</span>
+                        <span class="source-date">• 4 days ago</span>
+                    </div>
+                    <h3 class="news-title">Fire and Ice: Inside the Tense Relationship Between Hellhounds and Crystal Collective</h3>
+                    <p class="news-excerpt">They share an arena but couldn't be more different. A deep dive into Ball Arena's unlikely cohabitants.</p>
+                    <div class="news-tags">
+                        <span class="news-tag crystal">Crystal Collective</span>
+                        <span class="news-tag">Feature</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card crystal-news" onclick="openArticle('crystal-gala')">
+                <div class="news-card-image">
+                    <i class="fas fa-image"></i>
+                    <span class="card-badge drama">Drama</span>
+                </div>
+                <div class="news-card-content">
+                    <div class="news-source">
+                        <div class="source-logo" style="color: var(--crystal-blue);">PD</div>
+                        <span class="source-name">Puck Daily</span>
+                        <span class="source-date">• 5 days ago</span>
+                    </div>
+                    <h3 class="news-title">Awkward Encounter: Sterling and Crystal Collective Star Spotted in Heated Exchange at Charity Gala</h3>
+                    <p class="news-excerpt">Witnesses describe "tense words" between the hockey star and figure skating champion at Denver's annual sports gala.</p>
+                    <div class="news-tags">
+                        <span class="news-tag player">Chase Sterling</span>
+                        <span class="news-tag crystal">Crystal Collective</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card crystal-news" onclick="openArticle('crystal-schedule')">
+                <div class="news-card-image">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="news-card-content">
+                    <div class="news-source">
+                        <div class="source-logo" style="color: var(--crystal-blue);">MH</div>
+                        <span class="source-name">Mile High Sports</span>
+                        <span class="source-date">• 1 week ago</span>
+                    </div>
+                    <h3 class="news-title">Crystal Collective Announces Winter Showcase at Ball Arena</h3>
+                    <p class="news-excerpt">The figure skating team's biggest event of the year will take place during Hellhounds' road trip.</p>
+                    <div class="news-tags">
+                        <span class="news-tag crystal">Crystal Collective</span>
+                        <span class="news-tag">Event</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- NEWS SOURCES -->
+        <div class="sources-section">
+            <h3 class="sources-title">Our Sources</h3>
+            <div class="sources-grid">
+                <div class="source-item">
+                    <div class="source-icon denver">DP</div>
+                    <div class="source-details">
+                        Denver Post Sports
+                        <span>Local Coverage</span>
+                    </div>
+                </div>
+                <div class="source-item">
+                    <div class="source-icon herald">HH</div>
+                    <div class="source-details">
+                        The Hockey Herald
+                        <span>NHL Analysis</span>
+                    </div>
+                </div>
+                <div class="source-item">
+                    <div class="source-icon puck">PD</div>
+                    <div class="source-details">
+                        Puck Daily
+                        <span>Rumors & Insider</span>
+                    </div>
+                </div>
+                <div class="source-item">
+                    <div class="source-icon mile">MH</div>
+                    <div class="source-details">
+                        Mile High Sports
+                        <span>Denver Sports</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ARTICLE MODALS -->
+
+    <!-- MURPHY INJURY ARTICLE -->
+    <div class="article-overlay" id="article-murphy-injury">
+        <div class="article-modal">
+            <button class="article-close" onclick="closeArticle('murphy-injury')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-hero">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <div class="article-source">
+                        <div class="source-logo">DP</div>
+                        <span class="source-name">Denver Post Sports</span>
+                    </div>
+                    <span class="article-date">December 15, 2024 • 8 min read</span>
+                </div>
+                <h1 class="article-title">Murphy's Season in Jeopardy: Hellhounds Goaltender Faces Long Recovery After Shoulder Surgery</h1>
+                <div class="article-body">
+                    <p>[PLACEHOLDER] Caleb Murphy, the 29-year-old goaltender who has anchored Denver's defense for the past five seasons, underwent successful surgery on his right shoulder yesterday at St. Catherine's Medical Center.</p>
+
+                    <p>The procedure, performed by renowned sports surgeon Dr. Michael Chen, addressed a chronic instability issue that has plagued Murphy for years. Sources close to the team indicate the injury was more severe than initially reported.</p>
+
+                    <blockquote>"Caleb is one of the toughest competitors I've ever been around. He's been playing through pain that would sideline most players. This surgery was necessary—his long-term health had to come first."<br>— Alexander Reed, Team Captain</blockquote>
+
+                    <p>The timeline for Murphy's return remains uncertain, with team physicians estimating a minimum of 4-6 months of rehabilitation. This effectively rules him out for the remainder of the regular season and potentially the playoffs.</p>
+
+                    <p>[PLACEHOLDER - Add more content about team reaction, backup goaltender situation, etc.]</p>
+                </div>
+                <div class="article-tags">
+                    <span class="news-tag player">Caleb Murphy</span>
+                    <span class="news-tag">Injury</span>
+                    <span class="news-tag">Surgery</span>
+                    <span class="news-tag">Analysis</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STERLING ALL-STAR ARTICLE -->
+    <div class="article-overlay" id="article-sterling-allstar">
+        <div class="article-modal">
+            <button class="article-close" onclick="closeArticle('sterling-allstar')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-hero">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <div class="article-source">
+                        <div class="source-logo">HH</div>
+                        <span class="source-name">The Hockey Herald</span>
+                    </div>
+                    <span class="article-date">December 15, 2024 • 5 min read</span>
+                </div>
+                <h1 class="article-title">Sterling's All-Star Selection: Deserved Honor or Popularity Contest?</h1>
+                <div class="article-body">
+                    <p>[PLACEHOLDER] Chase Sterling has been named to the NHL All-Star Game for the third consecutive year, cementing his status as one of the league's most marketable stars. But is the "Golden Boy" truly among the game's elite, or is his selection driven by jersey sales and Instagram followers?</p>
+
+                    <p>Sterling's numbers this season—38 goals and 54 assists through 82 games—are undeniably impressive. But critics point to his defensive lapses and question whether his flashy style translates to playoff success.</p>
+
+                    <blockquote>"Chase is a generational talent. The All-Star Game is about entertainment, and nobody entertains like he does."<br>— NHL Marketing Executive (anonymous)</blockquote>
+
+                    <p>[PLACEHOLDER - Add more analysis, quotes, debate about his selection]</p>
+                </div>
+                <div class="article-tags">
+                    <span class="news-tag player">Chase Sterling</span>
+                    <span class="news-tag">All-Star</span>
+                    <span class="news-tag">Opinion</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REED PRESSURE ARTICLE -->
+    <div class="article-overlay" id="article-reed-pressure">
+        <div class="article-modal">
+            <button class="article-close" onclick="closeArticle('reed-pressure')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-hero">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <div class="article-source">
+                        <div class="source-logo">MH</div>
+                        <span class="source-name">Mile High Sports</span>
+                    </div>
+                    <span class="article-date">December 14, 2024 • 7 min read</span>
+                </div>
+                <h1 class="article-title">Captain Under Pressure: Is Reed Losing His Grip on the Locker Room?</h1>
+                <div class="article-body">
+                    <p>[PLACEHOLDER] Alexander Reed has worn the captain's "C" for five seasons, leading the Hellhounds with an iron fist and unwavering discipline. But cracks are beginning to show in the 31-year-old's leadership.</p>
+
+                    <p>Multiple sources within the organization describe a growing disconnect between Reed and the team's younger players. His demanding style, once respected, is now seen by some as "outdated" and "inflexible."</p>
+
+                    <blockquote>"Duke expects everyone to be like him—100% hockey, all the time. But not everyone can live like that. Not everyone wants to."<br>— Anonymous Hellhounds player</blockquote>
+
+                    <p>[PLACEHOLDER - Add more about locker room dynamics, Reed's response, management's position]</p>
+                </div>
+                <div class="article-tags">
+                    <span class="news-tag player">Alexander Reed</span>
+                    <span class="news-tag">Leadership</span>
+                    <span class="news-tag">Analysis</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRYSTAL ARENA ARTICLE -->
+    <div class="article-overlay" id="article-crystal-arena">
+        <div class="article-modal">
+            <button class="article-close" onclick="closeArticle('crystal-arena')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-hero">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <div class="article-source">
+                        <div class="source-logo" style="color: var(--crystal-blue);">CC</div>
+                        <span class="source-name">Crystal Collective Press</span>
+                    </div>
+                    <span class="article-date">December 14, 2024 • 4 min read</span>
+                </div>
+                <h1 class="article-title">Ice Time Wars: Crystal Collective Demands More Practice Hours at Ball Arena</h1>
+                <div class="article-body">
+                    <p>[PLACEHOLDER] The Crystal Collective, Denver's premier figure skating ensemble, has formally requested additional practice time at Ball Arena, citing "inadequate access" to the facility they share with the Hellhounds.</p>
+
+                    <p>In a statement released today, Crystal Collective management expressed frustration with the current scheduling arrangement, which prioritizes hockey operations.</p>
+
+                    <blockquote>"We are world-class athletes who deserve world-class treatment. Being relegated to 6 AM practice slots while the hockey team gets prime evening hours is unacceptable."<br>— Crystal Collective Management</blockquote>
+
+                    <p>[PLACEHOLDER - Add arena response, Hellhounds' position, scheduling details]</p>
+                </div>
+                <div class="article-tags">
+                    <span class="news-tag crystal">Crystal Collective</span>
+                    <span class="news-tag">Ball Arena</span>
+                    <span class="news-tag">Scheduling</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARTER SPOTLIGHT ARTICLE -->
+    <div class="article-overlay" id="article-carter-spotlight">
+        <div class="article-modal">
+            <button class="article-close" onclick="closeArticle('carter-spotlight')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-hero">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <div class="article-source">
+                        <div class="source-logo">PD</div>
+                        <span class="source-name">Puck Daily</span>
+                    </div>
+                    <span class="article-date">December 13, 2024 • 10 min read</span>
+                </div>
+                <h1 class="article-title">Rookie Sensation: Leo Carter Opens Up About Pressure and Expectations</h1>
+                <div class="article-body">
+                    <p>[PLACEHOLDER] At 21 years old, Leo Carter is already being called "the future of the franchise." But behind the highlight-reel goals and electric speed lies a young man still figuring out who he is.</p>
+
+                    <p>In this exclusive interview, Carter speaks candidly about the weight of expectations, his relationship with teammates, and the challenges of living in the spotlight.</p>
+
+                    <blockquote>"Some days I feel like I'm living someone else's dream. Like I'm playing a character called 'Leo Carter, NHL Star.' The real me? I'm still figuring that out."<br>— Leo Carter</blockquote>
+
+                    <p>[PLACEHOLDER - Add interview content, quotes about teammates, his journey]</p>
+                </div>
+                <div class="article-tags">
+                    <span class="news-tag player">Leo Carter</span>
+                    <span class="news-tag">Interview</span>
+                    <span class="news-tag">Feature</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRYSTAL RIVALRY ARTICLE -->
+    <div class="article-overlay" id="article-crystal-rivalry">
+        <div class="article-modal">
+            <button class="article-close" onclick="closeArticle('crystal-rivalry')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-hero">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <div class="article-source">
+                        <div class="source-logo">DP</div>
+                        <span class="source-name">Denver Post</span>
+                    </div>
+                    <span class="article-date">December 10, 2024 • 12 min read</span>
+                </div>
+                <h1 class="article-title">Fire and Ice: Inside the Tense Relationship Between Hellhounds and Crystal Collective</h1>
+                <div class="article-body">
+                    <p>[PLACEHOLDER] They share the same arena, the same ice, and the same city. But the Denver Hellhounds and the Crystal Collective couldn't be more different—and their relationship reflects that divide.</p>
+
+                    <p>Hockey players and figure skaters have coexisted at Ball Arena for three years now, but tensions have escalated recently. Scheduling conflicts, equipment disputes, and cultural clashes have created an atmosphere one insider describes as "a cold war on ice."</p>
+
+                    <blockquote>"They look at us like we're not real athletes. Like what we do is just... pretty. They have no idea how hard we work."<br>— Crystal Collective skater (anonymous)</blockquote>
+
+                    <blockquote>"I've got nothing against them. But this is a hockey arena. We were here first."<br>— Hellhounds player (anonymous)</blockquote>
+
+                    <p>[PLACEHOLDER - Add more about the history, specific incidents, both perspectives]</p>
+                </div>
+                <div class="article-tags">
+                    <span class="news-tag crystal">Crystal Collective</span>
+                    <span class="news-tag">Hellhounds</span>
+                    <span class="news-tag">Feature</span>
+                    <span class="news-tag">Ball Arena</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="footer-logo">DENVER HELLHOUNDS</p>
+        <p class="footer-text">Cards for SillyTavern • Est. 2024</p>
+    </footer>
+
+    <script>
+        // Filter functionality
+        function filterNews(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // TODO: Actually filter the news cards
+            console.log('Filtering by:', category);
+        }
+
+        // Article modal functions
+        function openArticle(articleId) {
+            document.getElementById('article-' + articleId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticle(articleId) {
+            document.getElementById('article-' + articleId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on overlay click
+        document.querySelectorAll('.article-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.article-overlay').forEach(overlay => {
+                    overlay.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        function toggleLanguage() {
+            alert('Language switch coming in Part 4!');
+        }
+    </script>
+
+</body>
+</html>
