@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World | Denver Hellhounds</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -37,6 +37,10 @@
             min-height: 100vh;
             line-height: 1.6;
         }
+
+        /* LANGUAGE SWITCH */
+        body.lang-en .lang-ru { display: none; }
+        body.lang-ru .lang-en { display: none; }
 
         /* NAVIGATION */
         nav {
@@ -107,7 +111,25 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
+        }
+
+        .crystal-link {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .crystal-link:hover {
+            border-color: #6BB5CC;
+            color: #6BB5CC;
         }
 
         .lang-switch {
@@ -171,6 +193,7 @@
         /* MAP SECTION */
         .map-section {
             padding: 20px 40px 40px;
+            position: relative;
         }
 
         .map-wrapper {
@@ -213,61 +236,28 @@
             color: var(--accent-light);
         }
 
-        .marker-label {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-            letter-spacing: 0.5px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .custom-marker-wrapper {
+            background: transparent !important;
+            border: none !important;
         }
 
-        .custom-marker:hover .marker-label {
-            opacity: 1;
-        }
-
-        /* Leaflet popup override */
-        .leaflet-popup-content-wrapper {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .leaflet-popup-content {
-            margin: 15px;
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .leaflet-popup-tip {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-        }
-
-        .popup-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .popup-type {
-            font-size: 0.75rem;
-            color: var(--accent-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Custom tooltip style */
+        .custom-tooltip {
+            background: #161616 !important;
+            border: 1px solid #2a2a2a !important;
+            color: #ffffff !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.8rem !important;
+            padding: 8px 12px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
         }
 
         /* MAP LEGEND */
         .map-legend {
             position: absolute;
-            bottom: 30px;
-            left: 30px;
+            bottom: 60px;
+            left: 60px;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border);
@@ -640,6 +630,17 @@
             color: var(--text-muted);
         }
 
+        /* Leaflet overrides */
+        .leaflet-control-attribution {
+            background: rgba(10, 10, 10, 0.8) !important;
+            color: #5a5a5a !important;
+            font-size: 0.65rem !important;
+        }
+
+        .leaflet-control-attribution a {
+            color: #722F37 !important;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-links {
@@ -655,9 +656,9 @@
             }
 
             .map-legend {
-                bottom: 10px;
-                left: 10px;
-                padding: 10px 15px;
+                bottom: 60px;
+                left: 20px;
+                right: 20px;
             }
 
             .legend-items {
@@ -665,26 +666,9 @@
                 flex-wrap: wrap;
             }
         }
-        .crystal-link {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    padding: 6px 10px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-}
-
-.crystal-link:hover {
-    border-color: #6BB5CC;
-    color: #6BB5CC;
-}
     </style>
 </head>
-<body>
+<body class="lang-en">
 
     <!-- NAVIGATION -->
     <nav>
@@ -696,9 +680,24 @@
                 HELLHOUNDS
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Roster</a></li>
-                <li><a href="lore.html" class="active">World</a></li>
-                <li><a href="news.html">News</a></li>
+                <li>
+                    <a href="index.html">
+                        <span class="lang-en">Roster</span>
+                        <span class="lang-ru">Состав</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="lore.html" class="active">
+                        <span class="lang-en">World</span>
+                        <span class="lang-ru">Мир</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="news.html">
+                        <span class="lang-en">News</span>
+                        <span class="lang-ru">Новости</span>
+                    </a>
+                </li>
             </ul>
             <div class="nav-right">
                 <a href="crystal.html" class="crystal-link">
@@ -711,9 +710,18 @@
 
     <!-- PAGE HEADER -->
     <header class="page-header">
-        <p class="page-label">Explore Denver</p>
-        <h1 class="page-title">THE WORLD</h1>
-        <p class="page-subtitle">Discover the city where the Hellhounds live, train, and play. Click on any location to learn more.</p>
+        <p class="page-label">
+            <span class="lang-en">Explore Denver</span>
+            <span class="lang-ru">Исследуй Денвер</span>
+        </p>
+        <h1 class="page-title">
+            <span class="lang-en">THE WORLD</span>
+            <span class="lang-ru">МИР</span>
+        </h1>
+        <p class="page-subtitle">
+            <span class="lang-en">Discover the city where the Hellhounds live, train, and play. Click on any location to learn more.</span>
+            <span class="lang-ru">Исследуй город, где Hellhounds живут, тренируются и играют. Нажми на любую локацию, чтобы узнать больше.</span>
+        </p>
     </header>
 
     <!-- MAP -->
@@ -724,23 +732,30 @@
 
         <!-- LEGEND -->
         <div class="map-legend">
-            <p class="legend-title">Legend</p>
+            <p class="legend-title">
+                <span class="lang-en">Legend</span>
+                <span class="lang-ru">Легенда</span>
+            </p>
             <div class="legend-items">
                 <div class="legend-item">
                     <div class="legend-icon"><i class="fas fa-hockey-puck"></i></div>
-                    Arena
+                    <span class="lang-en">Arena</span>
+                    <span class="lang-ru">Арена</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-icon"><i class="fas fa-utensils"></i></div>
-                    Dining
+                    <span class="lang-en">Dining</span>
+                    <span class="lang-ru">Рестораны</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-icon"><i class="fas fa-home"></i></div>
-                    Residence
+                    <span class="lang-en">Residence</span>
+                    <span class="lang-ru">Жильё</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-icon"><i class="fas fa-hospital"></i></div>
-                    Medical
+                    <span class="lang-en">Medical</span>
+                    <span class="lang-ru">Медицина</span>
                 </div>
             </div>
         </div>
@@ -748,128 +763,230 @@
 
     <!-- LOCATIONS LIST -->
     <section class="locations-list">
-        <h2>ALL LOCATIONS</h2>
+        <h2>
+            <span class="lang-en">ALL LOCATIONS</span>
+            <span class="lang-ru">ВСЕ ЛОКАЦИИ</span>
+        </h2>
         <div class="locations-grid">
 
             <div class="location-card" onclick="openLocation('arena')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-hockey-puck"></i></div>
                     <div>
-                        <h3 class="location-card-title">Ball Arena</h3>
-                        <p class="location-card-type">Home Arena</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Ball Arena</span>
+                            <span class="lang-ru">Болл Арена</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Home Arena</span>
+                            <span class="lang-ru">Домашняя арена</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">The fortress where the Hellhounds unleash hell.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">The fortress where the Hellhounds unleash hell.</span>
+                    <span class="lang-ru">Крепость, где Hellhounds устраивают ад.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('ember')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-mug-hot"></i></div>
                     <div>
-                        <h3 class="location-card-title">Ember & Brew</h3>
-                        <p class="location-card-type">Coffee Shop</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Ember & Brew</span>
+                            <span class="lang-ru">Эмбер энд Брю</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Coffee Shop</span>
+                            <span class="lang-ru">Кофейня</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Cozy spot for morning fuel.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Cozy spot for morning fuel.</span>
+                    <span class="lang-ru">Уютное место для утренней заправки.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('crumb')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-cookie"></i></div>
                     <div>
-                        <h3 class="location-card-title">Crumb & Comfort</h3>
-                        <p class="location-card-type">Bakery</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Crumb & Comfort</span>
+                            <span class="lang-ru">Крамб энд Комфорт</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Bakery</span>
+                            <span class="lang-ru">Пекарня</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Fresh pastries and warm vibes.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Fresh pastries and warm vibes.</span>
+                    <span class="lang-ru">Свежая выпечка и тёплая атмосфера.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('pit')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-glass-martini-alt"></i></div>
                     <div>
-                        <h3 class="location-card-title">The Pit</h3>
-                        <p class="location-card-type">Nightclub</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">The Pit</span>
+                            <span class="lang-ru">Яма</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Nightclub</span>
+                            <span class="lang-ru">Ночной клуб</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Where secrets are made and kept.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Where secrets are made and kept.</span>
+                    <span class="lang-ru">Где секреты создаются и хранятся.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('prime')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-utensils"></i></div>
                     <div>
-                        <h3 class="location-card-title">Prime Cut</h3>
-                        <p class="location-card-type">Steakhouse</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Prime Cut</span>
+                            <span class="lang-ru">Прайм Кат</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Steakhouse</span>
+                            <span class="lang-ru">Стейкхаус</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Classic American steakhouse.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Classic American steakhouse.</span>
+                    <span class="lang-ru">Классический американский стейкхаус.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('altitude')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-star"></i></div>
                     <div>
-                        <h3 class="location-card-title">Altitude</h3>
-                        <p class="location-card-type">Fine Dining</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Altitude</span>
+                            <span class="lang-ru">Альтитьюд</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Fine Dining</span>
+                            <span class="lang-ru">Высокая кухня</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Denver's most exclusive restaurant.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Denver's most exclusive restaurant.</span>
+                    <span class="lang-ru">Самый эксклюзивный ресторан Денвера.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('hospital')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-hospital"></i></div>
                     <div>
-                        <h3 class="location-card-title">St. Catherine's</h3>
-                        <p class="location-card-type">Hospital & Physio</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">St. Catherine's</span>
+                            <span class="lang-ru">Госпиталь Св. Екатерины</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Hospital & Physio</span>
+                            <span class="lang-ru">Больница и физиотерапия</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Where broken bodies get fixed.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Where broken bodies get fixed.</span>
+                    <span class="lang-ru">Где чинят сломанные тела.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('reed-home')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-building"></i></div>
                     <div>
-                        <h3 class="location-card-title">Reed's Penthouse</h3>
-                        <p class="location-card-type">Residence</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Reed's Penthouse</span>
+                            <span class="lang-ru">Пентхаус Рида</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Residence</span>
+                            <span class="lang-ru">Резиденция</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">The Captain's cold fortress.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">The Captain's cold fortress.</span>
+                    <span class="lang-ru">Холодная крепость Капитана.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('sterling-home')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-building"></i></div>
                     <div>
-                        <h3 class="location-card-title">Sterling's Penthouse</h3>
-                        <p class="location-card-type">Residence</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Sterling's Penthouse</span>
+                            <span class="lang-ru">Пентхаус Стерлинга</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Residence</span>
+                            <span class="lang-ru">Резиденция</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Flashy and Instagram-ready.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Flashy and Instagram-ready.</span>
+                    <span class="lang-ru">Яркий и готовый для Instagram.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('murphy-home')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-home"></i></div>
                     <div>
-                        <h3 class="location-card-title">Murphy's House</h3>
-                        <p class="location-card-type">Residence</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Murphy's House</span>
+                            <span class="lang-ru">Дом Мёрфи</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Residence</span>
+                            <span class="lang-ru">Резиденция</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Isolated. Quiet. Healing.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Isolated. Quiet. Healing.</span>
+                    <span class="lang-ru">Изолированный. Тихий. Исцеляющий.</span>
+                </p>
             </div>
 
             <div class="location-card" onclick="openLocation('shaw-home')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-home"></i></div>
                     <div>
-                        <h3 class="location-card-title">Shaw & Carter's</h3>
-                        <p class="location-card-type">Shared Apartment</p>
+                        <h3 class="location-card-title">
+                            <span class="lang-en">Shaw & Carter's</span>
+                            <span class="lang-ru">Квартира Шоу и Картера</span>
+                        </h3>
+                        <p class="location-card-type">
+                            <span class="lang-en">Shared Apartment</span>
+                            <span class="lang-ru">Общая квартира</span>
+                        </p>
                     </div>
                 </div>
-                <p class="location-card-desc">Home is where your roommate is.</p>
+                <p class="location-card-desc">
+                    <span class="lang-en">Home is where your roommate is.</span>
+                    <span class="lang-ru">Дом там, где твой сосед.</span>
+                </p>
             </div>
 
         </div>
@@ -884,7 +1001,6 @@
     <div class="location-panel" id="panel-arena">
         <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
         <div class="panel-image">
-            <!-- ЗАМЕНИ НА СВОЮ КАРТИНКУ: <img src="images/arena.jpg" alt="Ball Arena"> -->
             <div class="panel-image-placeholder">
                 <i class="fas fa-image"></i>
                 <span>Add image: images/arena.jpg</span>
@@ -892,21 +1008,48 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-hockey-puck"></i></div>
-            <h2 class="panel-title">Ball Arena</h2>
-            <p class="panel-type">Home Arena • Downtown Denver</p>
+            <h2 class="panel-title">
+                <span class="lang-en">Ball Arena</span>
+                <span class="lang-ru">Болл Арена</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Home Arena • Downtown Denver</span>
+                <span class="lang-ru">Домашняя арена • Центр Денвера</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] The home fortress of the Denver Hellhounds. With a capacity of 18,007 for hockey, the arena becomes a sea of red and black on game nights. The crowd's roar is legendary.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] The home fortress of the Denver Hellhounds. With a capacity of 18,007 for hockey, the arena becomes a sea of red and black on game nights. The crowd's roar is legendary.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Домашняя крепость Denver Hellhounds. С вместимостью 18,007 для хоккея, арена превращается в море красного и чёрного в дни матчей. Рёв толпы легендарен.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Features</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Features</span>
+                    <span class="lang-ru">Особенности</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">18,007 Capacity</span>
-                    <span class="panel-tag">Team Locker Room</span>
-                    <span class="panel-tag">Training Facility</span>
-                    <span class="panel-tag">Press Room</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">18,007 Capacity</span>
+                        <span class="lang-ru">18,007 мест</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Team Locker Room</span>
+                        <span class="lang-ru">Раздевалка команды</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Training Facility</span>
+                        <span class="lang-ru">Тренировочная база</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Press Room</span>
+                        <span class="lang-ru">Пресс-зал</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -923,31 +1066,67 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-mug-hot"></i></div>
-            <h2 class="panel-title">Ember & Brew</h2>
-            <p class="panel-type">Coffee Shop • Midtown</p>
+            <h2 class="panel-title">
+                <span class="lang-en">Ember & Brew</span>
+                <span class="lang-ru">Эмбер энд Брю</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Coffee Shop • Midtown</span>
+                <span class="lang-ru">Кофейня • Мидтаун</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] A cozy coffee shop with exposed brick walls and the smell of fresh roasted beans. The baristas know the players by name.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] A cozy coffee shop with exposed brick walls and the smell of fresh roasted beans. The baristas know the players by name.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Уютная кофейня с кирпичными стенами и ароматом свежеобжаренных зёрен. Бариста знают игроков по именам.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Cozy</span>
-                    <span class="panel-tag">Warm Lighting</span>
-                    <span class="panel-tag">Fireplace</span>
-                    <span class="panel-tag">Quiet Corners</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Cozy</span>
+                        <span class="lang-ru">Уютно</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Warm Lighting</span>
+                        <span class="lang-ru">Тёплый свет</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Fireplace</span>
+                        <span class="lang-ru">Камин</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Quiet Corners</span>
+                        <span class="lang-ru">Тихие уголки</span>
+                    </span>
                 </div>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Regulars</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Regulars</span>
+                    <span class="lang-ru">Завсегдатаи</span>
+                </h3>
                 <div class="panel-residents">
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Miles Shaw</p>
-                            <p class="resident-role">Orders: Black coffee, no sugar</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Miles Shaw</span>
+                                <span class="lang-ru">Майлз Шоу</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">Orders: Black coffee, no sugar</span>
+                                <span class="lang-ru">Заказ: Чёрный кофе, без сахара</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -966,21 +1145,48 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-cookie"></i></div>
-            <h2 class="panel-title">Crumb & Comfort</h2>
-            <p class="panel-type">Bakery • East Side</p>
+            <h2 class="panel-title">
+                <span class="lang-en">Crumb & Comfort</span>
+                <span class="lang-ru">Крамб энд Комфорт</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Bakery • East Side</span>
+                <span class="lang-ru">Пекарня • Ист-Сайд</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] Fresh croissants, homemade pies, and the best cinnamon rolls in Denver. A cheerful spot that feels like a warm hug.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] Fresh croissants, homemade pies, and the best cinnamon rolls in Denver. A cheerful spot that feels like a warm hug.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Свежие круассаны, домашние пироги и лучшие булочки с корицей в Денвере. Жизнерадостное место, как тёплые объятия.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Bright</span>
-                    <span class="panel-tag">Homey</span>
-                    <span class="panel-tag">Sweet Aromas</span>
-                    <span class="panel-tag">Friendly Staff</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Bright</span>
+                        <span class="lang-ru">Светло</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Homey</span>
+                        <span class="lang-ru">По-домашнему</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Sweet Aromas</span>
+                        <span class="lang-ru">Сладкие ароматы</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Friendly Staff</span>
+                        <span class="lang-ru">Дружелюбный персонал</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -997,31 +1203,67 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-glass-martini-alt"></i></div>
-            <h2 class="panel-title">The Pit</h2>
-            <p class="panel-type">Nightclub • Downtown</p>
+            <h2 class="panel-title">
+                <span class="lang-en">The Pit</span>
+                <span class="lang-ru">Яма</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Nightclub • Downtown</span>
+                <span class="lang-ru">Ночной клуб • Центр</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] Dark, loud, and exclusive. The Pit is where Denver's elite come to lose themselves. VIP section in the back. What happens here, stays here.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] Dark, loud, and exclusive. The Pit is where Denver's elite come to lose themselves. VIP section in the back. What happens here, stays here.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Тёмный, громкий и эксклюзивный. Яма — место, где элита Денвера приходит забыться. VIP-зона в глубине. Что здесь происходит — остаётся здесь.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Dark</span>
-                    <span class="panel-tag">Exclusive</span>
-                    <span class="panel-tag">VIP Access</span>
-                    <span class="panel-tag">No Photos</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Dark</span>
+                        <span class="lang-ru">Темно</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Exclusive</span>
+                        <span class="lang-ru">Эксклюзивно</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">VIP Access</span>
+                        <span class="lang-ru">VIP-доступ</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">No Photos</span>
+                        <span class="lang-ru">Без фото</span>
+                    </span>
                 </div>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Regulars</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Regulars</span>
+                    <span class="lang-ru">Завсегдатаи</span>
+                </h3>
                 <div class="panel-residents">
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Chase Sterling</p>
-                            <p class="resident-role">VIP Regular</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Chase Sterling</span>
+                                <span class="lang-ru">Чейз Стерлинг</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">VIP Regular</span>
+                                <span class="lang-ru">VIP-завсегдатай</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1040,21 +1282,48 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-utensils"></i></div>
-            <h2 class="panel-title">Prime Cut</h2>
-            <p class="panel-type">Steakhouse • Business District</p>
+            <h2 class="panel-title">
+                <span class="lang-en">Prime Cut</span>
+                <span class="lang-ru">Прайм Кат</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Steakhouse • Business District</span>
+                <span class="lang-ru">Стейкхаус • Деловой район</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] Classic American steakhouse with dark wood interiors and leather booths. Where the team celebrates wins—and drowns losses.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] Classic American steakhouse with dark wood interiors and leather booths. Where the team celebrates wins—and drowns losses.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Классический американский стейкхаус с тёмным деревом и кожаными кабинками. Здесь команда празднует победы — и топит поражения.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Classic</span>
-                    <span class="panel-tag">Masculine</span>
-                    <span class="panel-tag">Private Booths</span>
-                    <span class="panel-tag">Expensive</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Classic</span>
+                        <span class="lang-ru">Классика</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Masculine</span>
+                        <span class="lang-ru">Мужественно</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Private Booths</span>
+                        <span class="lang-ru">Приватные кабинки</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Expensive</span>
+                        <span class="lang-ru">Дорого</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1071,31 +1340,64 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-star"></i></div>
-            <h2 class="panel-title">Altitude</h2>
-            <p class="panel-type">Fine Dining • Rooftop</p>
+            <h2 class="panel-title">
+                <span class="lang-en">Altitude</span>
+                <span class="lang-ru">Альтитьюд</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Fine Dining • Rooftop</span>
+                <span class="lang-ru">Высокая кухня • Крыша</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] Denver's most exclusive restaurant, perched on the 40th floor with panoramic mountain views. Three-month waitlist—unless you know someone.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] Denver's most exclusive restaurant, perched on the 40th floor with panoramic mountain views. Three-month waitlist—unless you know someone.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Самый эксклюзивный ресторан Денвера, на 40-м этаже с панорамным видом на горы. Лист ожидания — три месяца. Если ты не знаешь нужных людей.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Ultra Exclusive</span>
-                    <span class="panel-tag">Mountain Views</span>
-                    <span class="panel-tag">Dress Code</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Ultra Exclusive</span>
+                        <span class="lang-ru">Ультра-эксклюзив</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Mountain Views</span>
+                        <span class="lang-ru">Вид на горы</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Dress Code</span>
+                        <span class="lang-ru">Дресс-код</span>
+                    </span>
                     <span class="panel-tag">$$$$$</span>
                 </div>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Spotted Here</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Spotted Here</span>
+                    <span class="lang-ru">Замечены здесь</span>
+                </h3>
                 <div class="panel-residents">
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Alexander Reed</p>
-                            <p class="resident-role">Business dinners</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Alexander Reed</span>
+                                <span class="lang-ru">Александр Рид</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">Business dinners</span>
+                                <span class="lang-ru">Деловые ужины</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1114,31 +1416,67 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-hospital"></i></div>
-            <h2 class="panel-title">St. Catherine's Medical</h2>
-            <p class="panel-type">Hospital & Physio Center</p>
+            <h2 class="panel-title">
+                <span class="lang-en">St. Catherine's Medical</span>
+                <span class="lang-ru">Госпиталь Св. Екатерины</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Hospital & Physio Center</span>
+                <span class="lang-ru">Больница и физиотерапия</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] The team's official medical partner. State-of-the-art physiotherapy center on the third floor. The players know these halls too well.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] The team's official medical partner. State-of-the-art physiotherapy center on the third floor. The players know these halls too well.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Официальный медицинский партнёр команды. Современный центр физиотерапии на третьем этаже. Игроки знают эти коридоры слишком хорошо.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Facilities</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Facilities</span>
+                    <span class="lang-ru">Услуги</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Emergency Room</span>
-                    <span class="panel-tag">Physio Center</span>
-                    <span class="panel-tag">Sports Medicine</span>
-                    <span class="panel-tag">Rehabilitation</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Emergency Room</span>
+                        <span class="lang-ru">Скорая помощь</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Physio Center</span>
+                        <span class="lang-ru">Физиотерапия</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Sports Medicine</span>
+                        <span class="lang-ru">Спортивная медицина</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Rehabilitation</span>
+                        <span class="lang-ru">Реабилитация</span>
+                    </span>
                 </div>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Current Patients</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Current Patients</span>
+                    <span class="lang-ru">Текущие пациенты</span>
+                </h3>
                 <div class="panel-residents">
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Caleb Murphy</p>
-                            <p class="resident-role">Shoulder rehabilitation</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Caleb Murphy</span>
+                                <span class="lang-ru">Калеб Мёрфи</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">Shoulder rehabilitation</span>
+                                <span class="lang-ru">Реабилитация плеча</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1157,31 +1495,67 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-building"></i></div>
-            <h2 class="panel-title">The Monarch Residences</h2>
-            <p class="panel-type">Penthouse • Downtown</p>
+            <h2 class="panel-title">
+                <span class="lang-en">The Monarch Residences</span>
+                <span class="lang-ru">Резиденция «Монарх»</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Penthouse • Downtown</span>
+                <span class="lang-ru">Пентхаус • Центр</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] A sleek, minimalist penthouse on the 35th floor. Floor-to-ceiling windows, cold marble floors, and not a single photo on the walls.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] A sleek, minimalist penthouse on the 35th floor. Floor-to-ceiling windows, cold marble floors, and not a single photo on the walls.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Элегантный минималистичный пентхаус на 35-м этаже. Окна от пола до потолка, холодный мраморный пол и ни одной фотографии на стенах.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Minimalist</span>
-                    <span class="panel-tag">Cold</span>
-                    <span class="panel-tag">Immaculate</span>
-                    <span class="panel-tag">Lonely</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Minimalist</span>
+                        <span class="lang-ru">Минимализм</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Cold</span>
+                        <span class="lang-ru">Холодно</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Immaculate</span>
+                        <span class="lang-ru">Безупречно</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Lonely</span>
+                        <span class="lang-ru">Одиноко</span>
+                    </span>
                 </div>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Resident</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Resident</span>
+                    <span class="lang-ru">Жилец</span>
+                </h3>
                 <div class="panel-residents">
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Alexander Reed</p>
-                            <p class="resident-role">Team Captain</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Alexander Reed</span>
+                                <span class="lang-ru">Александр Рид</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">Team Captain</span>
+                                <span class="lang-ru">Капитан команды</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1200,31 +1574,64 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-building"></i></div>
-            <h2 class="panel-title">The Apex Tower</h2>
-            <p class="panel-type">Penthouse • Uptown</p>
+            <h2 class="panel-title">
+                <span class="lang-en">The Apex Tower</span>
+                <span class="lang-ru">Башня «Апекс»</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Penthouse • Uptown</span>
+                <span class="lang-ru">Пентхаус • Аптаун</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] Flashy, modern, and very Chase. Designer furniture, a bar that's always stocked, and a view that screams "I made it."</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] Flashy, modern, and very Chase. Designer furniture, a bar that's always stocked, and a view that screams "I made it."</span>
+                    <span class="lang-ru">[PLACEHOLDER] Яркий, современный и очень в стиле Чейза. Дизайнерская мебель, бар, который всегда полон, и вид, который кричит «Я добился успеха».</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Flashy</span>
-                    <span class="panel-tag">Modern</span>
-                    <span class="panel-tag">Party-Ready</span>
-                    <span class="panel-tag">Instagram-Worthy</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Flashy</span>
+                        <span class="lang-ru">Яркий</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Modern</span>
+                        <span class="lang-ru">Современный</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Party-Ready</span>
+                        <span class="lang-ru">Готов к вечеринке</span>
+                    </span>
+                    <span class="panel-tag">Instagram</span>
                 </div>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Resident</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Resident</span>
+                    <span class="lang-ru">Жилец</span>
+                </h3>
                 <div class="panel-residents">
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Chase Sterling</p>
-                            <p class="resident-role">"Golden Boy"</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Chase Sterling</span>
+                                <span class="lang-ru">Чейз Стерлинг</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">"Golden Boy"</span>
+                                <span class="lang-ru">«Золотой мальчик»</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1243,31 +1650,67 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-home"></i></div>
-            <h2 class="panel-title">Murphy's Place</h2>
-            <p class="panel-type">House • Outside City Limits</p>
+            <h2 class="panel-title">
+                <span class="lang-en">Murphy's Place</span>
+                <span class="lang-ru">Дом Мёрфи</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">House • Outside City Limits</span>
+                <span class="lang-ru">Дом • За городом</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] A modest house on a few acres, far from the city lights. Caleb bought it for the silence. No neighbors, no noise, just him and the mountains.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] A modest house on a few acres, far from the city lights. Caleb bought it for the silence. No neighbors, no noise, just him and the mountains.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Скромный дом на нескольких акрах, вдали от городских огней. Калеб купил его ради тишины. Никаких соседей, никакого шума — только он и горы.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Isolated</span>
-                    <span class="panel-tag">Quiet</span>
-                    <span class="panel-tag">Rustic</span>
-                    <span class="panel-tag">Healing</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Isolated</span>
+                        <span class="lang-ru">Изолированно</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Quiet</span>
+                        <span class="lang-ru">Тихо</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Rustic</span>
+                        <span class="lang-ru">Деревенский стиль</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Healing</span>
+                        <span class="lang-ru">Исцеляющий</span>
+                    </span>
                 </div>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Resident</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Resident</span>
+                    <span class="lang-ru">Жилец</span>
+                </h3>
                 <div class="panel-residents">
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Caleb Murphy</p>
-                            <p class="resident-role">"Doctor Doom"</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Caleb Murphy</span>
+                                <span class="lang-ru">Калеб Мёрфи</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">"Doctor Doom"</span>
+                                <span class="lang-ru">«Доктор Дум»</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1286,38 +1729,80 @@
         </div>
         <div class="panel-header">
             <div class="panel-icon"><i class="fas fa-home"></i></div>
-            <h2 class="panel-title">The Apartment</h2>
-            <p class="panel-type">Shared Apartment • Midtown</p>
+            <h2 class="panel-title">
+                <span class="lang-en">The Apartment</span>
+                <span class="lang-ru">Квартира</span>
+            </h2>
+            <p class="panel-type">
+                <span class="lang-en">Shared Apartment • Midtown</span>
+                <span class="lang-ru">Общая квартира • Мидтаун</span>
+            </p>
         </div>
         <div class="panel-body">
             <div class="panel-section">
-                <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] A comfortable two-bedroom that somehow feels like home. Miles keeps it clean; Leo fills it with life. There's always music playing.</p>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ru">О месте</span>
+                </h3>
+                <p class="panel-description">
+                    <span class="lang-en">[PLACEHOLDER] A comfortable two-bedroom that somehow feels like home. Miles keeps it clean; Leo fills it with life. There's always music playing.</span>
+                    <span class="lang-ru">[PLACEHOLDER] Уютная двухкомнатная квартира, которая как-то ощущается как дом. Майлз поддерживает чистоту; Лео наполняет её жизнью. Здесь всегда играет музыка.</span>
+                </p>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Vibe</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Vibe</span>
+                    <span class="lang-ru">Атмосфера</span>
+                </h3>
                 <div class="panel-tags">
-                    <span class="panel-tag">Comfortable</span>
-                    <span class="panel-tag">Lived-In</span>
-                    <span class="panel-tag">Warm</span>
-                    <span class="panel-tag">Safe</span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Comfortable</span>
+                        <span class="lang-ru">Комфортно</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Lived-In</span>
+                        <span class="lang-ru">Жилой</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Warm</span>
+                        <span class="lang-ru">Тепло</span>
+                    </span>
+                    <span class="panel-tag">
+                        <span class="lang-en">Safe</span>
+                        <span class="lang-ru">Безопасно</span>
+                    </span>
                 </div>
             </div>
             <div class="panel-section">
-                <h3 class="panel-section-title">Residents</h3>
+                <h3 class="panel-section-title">
+                    <span class="lang-en">Residents</span>
+                    <span class="lang-ru">Жильцы</span>
+                </h3>
                 <div class="panel-residents">
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Miles Shaw</p>
-                            <p class="resident-role">"Milo"</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Miles Shaw</span>
+                                <span class="lang-ru">Майлз Шоу</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">"Milo"</span>
+                                <span class="lang-ru">«Майло»</span>
+                            </p>
                         </div>
                     </div>
                     <div class="resident-item">
                         <div class="resident-avatar"><i class="fas fa-user"></i></div>
                         <div class="resident-info">
-                            <p class="resident-name">Leo Carter</p>
-                            <p class="resident-role">"Rookie"</p>
+                            <p class="resident-name">
+                                <span class="lang-en">Leo Carter</span>
+                                <span class="lang-ru">Лео Картер</span>
+                            </p>
+                            <p class="resident-role">
+                                <span class="lang-en">"Rookie"</span>
+                                <span class="lang-ru">«Новичок»</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1328,7 +1813,10 @@
     <!-- FOOTER -->
     <footer>
         <p class="footer-logo">DENVER HELLHOUNDS</p>
-        <p class="footer-text">Cards for SillyTavern • Est. 2024</p>
+        <p class="footer-text">
+            <span class="lang-en">Cards for SillyTavern • Est. 2024</span>
+            <span class="lang-ru">Карточки для SillyTavern • 2024</span>
+        </p>
     </footer>
 
     <!-- Leaflet JS -->
@@ -1349,7 +1837,7 @@
         }).addTo(map);
 
         // Custom marker icon function
-        function createMarker(iconClass, color) {
+        function createMarker(iconClass) {
             return L.divIcon({
                 className: 'custom-marker-wrapper',
                 html: `<div class="custom-marker"><i class="fas ${iconClass}"></i></div>`,
@@ -1360,18 +1848,21 @@
 
         // Location data with real Denver coordinates
         const locations = [
-            { id: 'arena', name: 'Ball Arena', lat: 39.7487, lng: -105.0077, icon: 'fa-hockey-puck' },
-            { id: 'ember', name: 'Ember & Brew', lat: 39.7502, lng: -104.9892, icon: 'fa-mug-hot' },
-            { id: 'crumb', name: 'Crumb & Comfort', lat: 39.7445, lng: -104.9785, icon: 'fa-cookie' },
-            { id: 'pit', name: 'The Pit', lat: 39.7478, lng: -104.9998, icon: 'fa-glass-martini-alt' },
-            { id: 'prime', name: 'Prime Cut', lat: 39.7512, lng: -104.9956, icon: 'fa-utensils' },
-            { id: 'altitude', name: 'Altitude', lat: 39.7535, lng: -104.9875, icon: 'fa-star' },
-            { id: 'hospital', name: "St. Catherine's", lat: 39.7398, lng: -104.9723, icon: 'fa-hospital' },
-            { id: 'reed-home', name: "Reed's Penthouse", lat: 39.7525, lng: -104.9912, icon: 'fa-building' },
-            { id: 'sterling-home', name: "Sterling's Penthouse", lat: 39.7548, lng: -104.9798, icon: 'fa-building' },
-            { id: 'murphy-home', name: "Murphy's House", lat: 39.7650, lng: -105.0250, icon: 'fa-home' },
-            { id: 'shaw-home', name: "Shaw & Carter's", lat: 39.7465, lng: -104.9845, icon: 'fa-home' }
+            { id: 'arena', nameEn: 'Ball Arena', nameRu: 'Болл Арена', lat: 39.7487, lng: -105.0077, icon: 'fa-hockey-puck' },
+            { id: 'ember', nameEn: 'Ember & Brew', nameRu: 'Эмбер энд Брю', lat: 39.7502, lng: -104.9892, icon: 'fa-mug-hot' },
+            { id: 'crumb', nameEn: 'Crumb & Comfort', nameRu: 'Крамб энд Комфорт', lat: 39.7445, lng: -104.9785, icon: 'fa-cookie' },
+            { id: 'pit', nameEn: 'The Pit', nameRu: 'Яма', lat: 39.7478, lng: -104.9998, icon: 'fa-glass-martini-alt' },
+            { id: 'prime', nameEn: 'Prime Cut', nameRu: 'Прайм Кат', lat: 39.7512, lng: -104.9956, icon: 'fa-utensils' },
+            { id: 'altitude', nameEn: 'Altitude', nameRu: 'Альтитьюд', lat: 39.7535, lng: -104.9875, icon: 'fa-star' },
+            { id: 'hospital', nameEn: "St. Catherine's", nameRu: 'Госпиталь Св. Екатерины', lat: 39.7398, lng: -104.9723, icon: 'fa-hospital' },
+            { id: 'reed-home', nameEn: "Reed's Penthouse", nameRu: 'Пентхаус Рида', lat: 39.7525, lng: -104.9912, icon: 'fa-building' },
+            { id: 'sterling-home', nameEn: "Sterling's Penthouse", nameRu: 'Пентхаус Стерлинга', lat: 39.7548, lng: -104.9798, icon: 'fa-building' },
+            { id: 'murphy-home', nameEn: "Murphy's House", nameRu: 'Дом Мёрфи', lat: 39.7650, lng: -105.0250, icon: 'fa-home' },
+            { id: 'shaw-home', nameEn: "Shaw & Carter's", nameRu: 'Квартира Шоу и Картера', lat: 39.7465, lng: -104.9845, icon: 'fa-home' }
         ];
+
+        // Store markers for language update
+        const markers = [];
 
         // Add markers to map
         locations.forEach(loc => {
@@ -1381,14 +1872,30 @@
 
             marker.on('click', () => openLocation(loc.id));
 
-            // Popup on hover
-            marker.bindTooltip(loc.name, {
+            // Store reference
+            markers.push({ marker, loc });
+
+            // Set initial tooltip
+            updateMarkerTooltip(marker, loc);
+        });
+
+        function updateMarkerTooltip(marker, loc) {
+            const isRussian = document.body.classList.contains('lang-ru');
+            const name = isRussian ? loc.nameRu : loc.nameEn;
+            marker.unbindTooltip();
+            marker.bindTooltip(name, {
                 permanent: false,
                 direction: 'top',
                 className: 'custom-tooltip',
                 offset: [0, -25]
             });
-        });
+        }
+
+        function updateAllMarkerTooltips() {
+            markers.forEach(({ marker, loc }) => {
+                updateMarkerTooltip(marker, loc);
+            });
+        }
 
         // Panel functions
         let currentPanel = null;
@@ -1416,69 +1923,31 @@
             if (e.key === 'Escape') closeLocation();
         });
 
+        // Language toggle
         function toggleLanguage() {
-            alert('Language switch coming in Part 4!');
+            const body = document.body;
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-ru');
+                localStorage.setItem('hellhounds-lang', 'ru');
+            } else {
+                body.classList.remove('lang-ru');
+                body.classList.add('lang-en');
+                localStorage.setItem('hellhounds-lang', 'en');
+            }
+            updateAllMarkerTooltips();
         }
+
+        // Load saved language
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('hellhounds-lang');
+            if (savedLang === 'ru') {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-ru');
+                updateAllMarkerTooltips();
+            }
+        });
     </script>
-
-    <style>
-        /* Custom tooltip style */
-        .custom-tooltip {
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border) !important;
-            color: var(--text-primary) !important;
-            font-family: 'Inter', sans-serif !important;
-            font-size: 0.8rem !important;
-            padding: 8px 12px !important;
-            border-radius: 8px !important;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
-        }
-
-        .custom-tooltip::before {
-            border-top-color: var(--border) !important;
-        }
-
-        .custom-marker-wrapper {
-            background: transparent !important;
-            border: none !important;
-        }
-
-        .custom-marker {
-            width: 44px;
-            height: 44px;
-            background: #161616;
-            border: 2px solid #722F37;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .custom-marker:hover {
-            transform: scale(1.2);
-            border-color: #8B3D48;
-            box-shadow: 0 0 25px rgba(114, 47, 55, 0.4);
-        }
-
-        .custom-marker i {
-            font-size: 1rem;
-            color: #8B3D48;
-        }
-
-        /* Hide default Leaflet attribution styling */
-        .leaflet-control-attribution {
-            background: rgba(10, 10, 10, 0.8) !important;
-            color: #5a5a5a !important;
-            font-size: 0.65rem !important;
-        }
-
-        .leaflet-control-attribution a {
-            color: #722F37 !important;
-        }
-    </style>
 
 </body>
 </html>
