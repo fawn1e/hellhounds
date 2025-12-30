@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcus Thornton | Denver Hellhounds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --accent: #722F37;
+            --accent-light: #8B3D48;
+            --accent-glow: rgba(114, 47, 55, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #5a5a5a;
+            --border: #2a2a2a;
+            --gold: #C9A962;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        body.lang-en .lang-ru { display: none; }
+        body.lang-ru .lang-en { display: none; }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-switch {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .player-page {
+            display: flex;
+            padding-top: 60px;
+            min-height: 100vh;
+        }
+
+        .player-sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            padding: 25px;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            height: calc(100vh - 60px);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .player-image i {
+            font-size: 3.5rem;
+            color: var(--text-muted);
+        }
+
+        .player-number-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .physical-stats {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        .physical-stats-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .appearance-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .appearance-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .appearance-item i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+
+        .coach-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .coach-tag {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, var(--gold), #A8893A);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #0a0a0a;
+        }
+
+        .coach-tag i {
+            font-size: 0.6rem;
+        }
+
+        .player-content {
+            flex: 1;
+            padding: 30px 50px;
+            margin-left: 340px;
+            max-width: calc(100% - 340px);
+        }
+
+        .player-header {
+            margin-bottom: 40px;
+        }
+
+        .player-position {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .player-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .player-nickname {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-title i {
+            font-size: 0.9rem;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .section-text p {
+            margin-bottom: 12px;
+        }
+
+        .section-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .trait-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trait-item i {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        .trait-text {
+            font-size: 0.85rem;
+        }
+
+        /* PLAYER RELATIONSHIPS */
+        .relationships-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .relationship-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .relationship-card:hover {
+            border-color: var(--gold);
+        }
+
+        .relationship-player {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+
+        .relationship-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .relationship-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .relationship-role {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .relationship-content {
+            flex: 1;
+        }
+
+        .relationship-status {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+
+        .status-pride {
+            background: rgba(201, 169, 98, 0.2);
+            color: var(--gold);
+        }
+
+        .status-concern {
+            background: rgba(114, 47, 55, 0.3);
+            color: var(--accent-light);
+        }
+
+        .status-protective {
+            background: rgba(100, 149, 237, 0.2);
+            color: #6495ED;
+        }
+
+        .status-complicated {
+            background: rgba(255, 165, 0, 0.2);
+            color: #FFA500;
+        }
+
+        .status-fatherly {
+            background: rgba(144, 238, 144, 0.2);
+            color: #90EE90;
+        }
+
+        .relationship-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* CAREER STATS */
+        .career-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .career-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .career-stat:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .career-stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .career-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        /* FAMILY BOX */
+        .family-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .family-members {
+            display: flex;
+            gap: 30px;
+        }
+
+        .family-member {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .family-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .family-icon i {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .family-info h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .family-info span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1100px) {
+            .player-sidebar {
+                width: 300px;
+                padding: 20px;
+            }
+
+            .player-content {
+                margin-left: 300px;
+                max-width: calc(100% - 300px);
+                padding: 25px 35px;
+            }
+
+            .player-name {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .player-page {
+                flex-direction: column;
+            }
+
+            .player-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .player-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 25px 20px;
+            }
+
+            .career-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .traits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .relationship-card {
+                flex-direction: column;
+            }
+
+            .family-members {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .player-name {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="lang-en">
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hockey-puck"></i>
+                </div>
+                HELLHOUNDS
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html">
+                        <span class="lang-en">Roster</span>
+                        <span class="lang-ru">Состав</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../lore.html">
+                        <span class="lang-en">World</span>
+                        <span class="lang-ru">Мир</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../news.html">
+                        <span class="lang-en">News</span>
+                        <span class="lang-ru">Новости</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <button class="lang-switch" onclick="toggleLanguage()">EN / RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="player-page">
+
+        <!-- LEFT SIDEBAR - FIXED -->
+        <aside class="player-sidebar">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span class="lang-en">Back to Roster</span>
+                <span class="lang-ru">Назад к составу</span>
+            </a>
+
+            <!-- COACH IMAGE -->
+            <div class="player-image">
+                <i class="fas fa-user"></i>
+                <span class="player-number-badge">HC</span>
+            </div>
+
+            <!-- STATS -->
+            <div class="physical-stats">
+                <h3 class="physical-stats-title">
+                    <span class="lang-en">Profile</span>
+                    <span class="lang-ru">Профиль</span>
+                </h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Age</span>
+                            <span class="lang-ru">Возраст</span>
+                        </span>
+                        <span class="stat-value">54</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Height</span>
+                            <span class="lang-ru">Рост</span>
+                        </span>
+                        <span class="stat-value">6'1"</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">From</span>
+                            <span class="lang-ru">Откуда</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Chicago</span>
+                            <span class="lang-ru">Чикаго</span>
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">NHL Years</span>
+                            <span class="lang-ru">Лет в NHL</span>
+                        </span>
+                        <span class="stat-value">12</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Cups</span>
+                            <span class="lang-ru">Кубков</span>
+                        </span>
+                        <span class="stat-value">2x</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">With Team</span>
+                            <span class="lang-ru">В команде</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">5 yrs</span>
+                            <span class="lang-ru">5 лет</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- APPEARANCE -->
+                <div class="appearance-row">
+                    <div class="appearance-item">
+                        <i class="fas fa-eye"></i>
+                        <span class="lang-en">Brown eyes</span>
+                        <span class="lang-ru">Карие глаза</span>
+                    </div>
+                    <div class="appearance-item">
+                        <i class="fas fa-user"></i>
+                        <span class="lang-en">Salt & pepper hair</span>
+                        <span class="lang-ru">Седеющие волосы</span>
+                    </div>
+                    <div class="appearance-item">
+                        <i class="fas fa-beard"></i>
+                        <span class="lang-en">Thick beard</span>
+                        <span class="lang-ru">Густая борода</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COACH TAGS -->
+            <div class="coach-tags">
+                <div class="coach-tag">
+                    <i class="fas fa-trophy"></i>
+                    2x Stanley Cup
+                </div>
+                <div class="coach-tag">
+                    <i class="fas fa-medal"></i>
+                    <span class="lang-en">NHL Legend</span>
+                    <span class="lang-ru">Легенда NHL</span>
+                </div>
+                <div class="coach-tag">
+                    <i class="fas fa-heart"></i>
+                    <span class="lang-en">Team Dad</span>
+                    <span class="lang-ru">Папа команды</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <div class="player-content">
+
+            <!-- HEADER -->
+            <header class="player-header">
+                <p class="player-position">
+                    <span class="lang-en">Head Coach</span>
+                    <span class="lang-ru">Главный тренер</span>
+                </p>
+                <h1 class="player-name">
+                    <span class="lang-en">Marcus Thornton</span>
+                    <span class="lang-ru">Маркус Торнтон</span>
+                </h1>
+                <p class="player-nickname">
+                    <span class="lang-en">"Iron Mike"</span>
+                    <span class="lang-ru">«Железный Майк»</span>
+                </p>
+            </header>
+
+            <!-- BIOGRAPHY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-book"></i>
+                    <span class="lang-en">Biography</span>
+                    <span class="lang-ru">Биография</span>
+                </h2>
+                <div class="section-text">
+                    <p>
+                        <span class="lang-en">Marcus Thornton is a grizzly bear in a suit. Fourteen years as an NHL center, two Stanley Cups, and a reputation for being the toughest son of a bitch on the ice. When his knees gave out at 38, everyone assumed he'd disappear into retirement. Instead, he picked up a clipboard and became one of the most respected coaches in the league.</span>
+                        <span class="lang-ru">Маркус Торнтон — медведь гризли в костюме. Четырнадцать лет в качестве центрального в NHL, два Кубка Стэнли и репутация самого жёсткого сукина сына на льду. Когда его колени сдали в 38, все думали, что он исчезнет на пенсии. Вместо этого он взял планшет и стал одним из самых уважаемых тренеров лиги.</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">He's been with the Hellhounds for five years now. Took them from a struggling franchise to playoff contenders. His methods are old school—early mornings, bag skates, and a glare that can make a grown man cry. But his players would run through walls for him, because they know one thing: Iron Mike would do the same for them.</span>
+                        <span class="lang-ru">Он с Hellhounds уже пять лет. Превратил их из борющейся франшизы в претендентов на плей-офф. Его методы старой школы — ранние утра, штрафные катания и взгляд, от которого взрослый мужик может заплакать. Но его игроки пойдут за него сквозь стены, потому что знают одно: Железный Майк сделал бы то же самое для них.</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">Off the ice, he's a family man. Married to his college sweetheart, father to a daughter he adores more than any trophy. He keeps a photo of her on his desk and threatens to bench anyone who looks at it too long.</span>
+                        <span class="lang-ru">Вне льда он семьянин. Женат на своей любви с колледжа, отец дочери, которую обожает больше любого трофея. Он держит её фото на столе и угрожает посадить на скамейку любого, кто смотрит на него слишком долго.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- PERSONALITY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Personality</span>
+                    <span class="lang-ru">Характер</span>
+                </h2>
+                <div class="section-text">
+                    <p>
+                        <span class="lang-en">Marcus Thornton doesn't yell. He doesn't need to. One look from those eyes and you know exactly how badly you've screwed up. He demands excellence, accepts nothing less, and somehow makes you want to be better—not because you're scared of him, but because you don't want to disappoint him. He's the father half these boys never had, and he takes that responsibility seriously.</span>
+                        <span class="lang-ru">Маркус Торнтон не кричит. Ему не нужно. Один взгляд этих глаз — и ты точно знаешь, как сильно облажался. Он требует совершенства, не принимает ничего меньшего, и каким-то образом заставляет тебя хотеть быть лучше — не потому что ты его боишься, а потому что не хочешь его разочаровать. Он отец, которого у половины этих парней никогда не было, и он серьёзно относится к этой ответственности.</span>
+                    </p>
+                </div>
+                <div class="traits-grid">
+                    <div class="trait-item">
+                        <i class="fas fa-mountain"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Tough but Fair</span>
+                            <span class="lang-ru">Жёсткий, но справедливый</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-chess"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Strategic Mind</span>
+                            <span class="lang-ru">Стратегический ум</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Protective of His Boys</span>
+                            <span class="lang-ru">Защищает своих парней</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-heart"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Devoted Family Man</span>
+                            <span class="lang-ru">Преданный семьянин</span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAMILY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-home"></i>
+                    <span class="lang-en">Family</span>
+                    <span class="lang-ru">Семья</span>
+                </h2>
+                <div class="family-box">
+                    <div class="family-members">
+                        <div class="family-member">
+                            <div class="family-icon">
+                                <i class="fas fa-ring"></i>
+                            </div>
+                            <div class="family-info">
+                                <h4>
+                                    <span class="lang-en">Wife</span>
+                                    <span class="lang-ru">Жена</span>
+                                </h4>
+                                <span>
+                                    <span class="lang-en">Married 28 years</span>
+                                    <span class="lang-ru">В браке 28 лет</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="family-member">
+                            <div class="family-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="family-info">
+                                <h4>
+                                    <span class="lang-en">Daughter</span>
+                                    <span class="lang-ru">Дочь</span>
+                                </h4>
+                                <span>
+                                    <span class="lang-en">His whole world</span>
+                                    <span class="lang-ru">Весь его мир</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CAREER STATS -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="lang-en">Career Achievements</span>
+                    <span class="lang-ru">Достижения карьеры</span>
+                </h2>
+                <div class="career-stats">
+                    <div class="career-stat">
+                        <div class="career-stat-value">14</div>
+                        <div class="career-stat-label">
+                            <span class="lang-en">NHL Seasons</span>
+                            <span class="lang-ru">Сезонов NHL</span>
+                        </div>
+                    </div>
+                    <div class="career-stat">
+                        <div class="career-stat-value">2x</div>
+                        <div class="career-stat-label">
+                            <span class="lang-en">Stanley Cups</span>
+                            <span class="lang-ru">Кубков Стэнли</span>
+                        </div>
+                    </div>
+                    <div class="career-stat">
+                        <div class="career-stat-value">12</div>
+                        <div class="career-stat-label">
+                            <span class="lang-en">Coaching Years</span>
+                            <span class="lang-ru">Лет тренером</span>
+                        </div>
+                    </div>
+                    <div class="career-stat">
+                        <div class="career-stat-value">3x</div>
+                        <div class="career-stat-label">
+                            <span class="lang-en">Playoffs</span>
+                            <span class="lang-ru">Плей-офф</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RELATIONSHIPS WITH PLAYERS -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-users"></i>
+                    <span class="lang-en">His Players</span>
+                    <span class="lang-ru">Его игроки</span>
+                </h2>
+                <div class="relationships-grid">
+
+                    <!-- REED -->
+                    <div class="relationship-card">
+                        <div class="relationship-player">
+                            <div class="relationship-number">91</div>
+                            <span class="relationship-name">
+                                <span class="lang-en">Reed</span>
+                                <span class="lang-ru">Рид</span>
+                            </span>
+                            <span class="relationship-role">
+                                <span class="lang-en">Captain</span>
+                                <span class="lang-ru">Капитан</span>
+                            </span>
+                        </div>
+                        <div class="relationship-content">
+                            <span class="relationship-status status-pride">
+                                <span class="lang-en">Pride & Trust</span>
+                                <span class="lang-ru">Гордость и доверие</span>
+                            </span>
+                            <p class="relationship-text">
+                                <span class="lang-en">Alexander Reed is everything Marcus hoped for in a captain. Disciplined, driven, leads by example. They don't talk much—don't need to. A nod across the locker room says everything. Marcus gave him the "C" three years ago and has never regretted it. Reed is the son he never had, not that either of them would ever say it out loud.</span>
+                                <span class="lang-ru">Александр Рид — всё, на что Маркус надеялся в капитане. Дисциплинированный, целеустремлённый, ведёт за собой примером. Они мало разговаривают — не нужно. Кивок через раздевалку говорит всё. Маркус дал ему «C» три года назад и ни разу не пожалел. Рид — сын, которого у него никогда не было, не то чтобы кто-то из них сказал бы это вслух.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- STERLING -->
+                    <div class="relationship-card">
+                        <div class="relationship-player">
+                            <div class="relationship-number">19</div>
+                            <span class="relationship-name">
+                                <span class="lang-en">Sterling</span>
+                                <span class="lang-ru">Стерлинг</span>
+                            </span>
+                            <span class="relationship-role">
+                                <span class="lang-en">Right Wing</span>
+                                <span class="lang-ru">Прав. крайний</span>
+                            </span>
+                        </div>
+                        <div class="relationship-content">
+                            <span class="relationship-status status-concern">
+                                <span class="lang-en">Concern & Frustration</span>
+                                <span class="lang-ru">Беспокойство и раздражение</span>
+                            </span>
+                            <p class="relationship-text">
+                                <span class="lang-en">Chase Sterling has more talent in his pinky than most players have in their entire body. He's also an absolute headache. The partying, the women, the tabloid drama—Marcus has lost count of how many times he's had to clean up Sterling's messes. But beneath all that flash, there's a kid who's desperate to prove he belongs. Marcus sees it. He just wishes Chase would see it too.</span>
+                                <span class="lang-ru">У Чейза Стерлинга в мизинце больше таланта, чем у большинства игроков во всём теле. Он также абсолютная головная боль. Вечеринки, женщины, драмы в таблоидах — Маркус потерял счёт, сколько раз ему приходилось разгребать бардак Стерлинга. Но под всем этим блеском скрывается парень, который отчаянно хочет доказать, что заслуживает здесь быть. Маркус это видит. Он просто хотел бы, чтобы Чейз тоже это увидел.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SHAW -->
+                    <div class="relationship-card">
+                        <div class="relationship-player">
+                            <div class="relationship-number">4</div>
+                            <span class="relationship-name">
+                                <span class="lang-en">Shaw</span>
+                                <span class="lang-ru">Шоу</span>
+                            </span>
+                            <span class="relationship-role">
+                                <span class="lang-en">Defenseman</span>
+                                <span class="lang-ru">Защитник</span>
+                            </span>
+                        </div>
+                        <div class="relationship-content">
+                            <span class="relationship-status status-fatherly">
+                                <span class="lang-en">Fatherly Affection</span>
+                                <span class="lang-ru">Отеческая привязанность</span>
+                            </span>
+                            <p class="relationship-text">
+                                <span class="lang-en">Miles Shaw reminds Marcus of himself at that age—quiet, hardworking, overlooked. The kid doesn't demand attention, just puts his head down and does the work. Marcus makes a point to praise him when others are watching, because Shaw deserves to know he's seen. Also, the boy brings the best tea to morning meetings. Marcus will never admit he looks forward to it.</span>
+                                <span class="lang-ru">Майлз Шоу напоминает Маркусу себя в том возрасте — тихий, трудолюбивый, незамеченный. Парень не требует внимания, просто опускает голову и делает работу. Маркус намеренно хвалит его, когда другие смотрят, потому что Шоу заслуживает знать, что его видят. А ещё парень приносит лучший чай на утренние собрания. Маркус никогда не признается, что ждёт этого.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CARTER -->
+                    <div class="relationship-card">
+                        <div class="relationship-player">
+                            <div class="relationship-number">87</div>
+                            <span class="relationship-name">
+                                <span class="lang-en">Carter</span>
+                                <span class="lang-ru">Картер</span>
+                            </span>
+                            <span class="relationship-role">
+                                <span class="lang-en">Center</span>
+                                <span class="lang-ru">Центральный</span>
+                            </span>
+                        </div>
+                        <div class="relationship-content">
+                            <span class="relationship-status status-complicated">
+                                <span class="lang-en">It's Complicated</span>
+                                <span class="lang-ru">Всё сложно</span>
+                            </span>
+                            <p class="relationship-text">
+                                <span class="lang-en">Leo Carter is a talented rookie with a bright future. Marcus respects his game, appreciates his energy, and genuinely likes the kid. Or at least, he did. Until New Year's Eve. Until that little punk showed up at his house with champagne and flowers. For his DAUGHTER. Marcus is still deciding whether to trade him to Alaska or just murder him directly. The jury's out.</span>
+                                <span class="lang-ru">Лео Картер — талантливый новичок с ярким будущим. Маркус уважает его игру, ценит его энергию и искренне симпатизирует парню. Или, по крайней мере, симпатизировал. До Нового года. До того, как этот мелкий паршивец появился у него дома с шампанским и цветами. К его ДОЧЕРИ. Маркус всё ещё решает, обменять его на Аляску или просто убить напрямую. Присяжные совещаются.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- MURPHY -->
+                    <div class="relationship-card">
+                        <div class="relationship-player">
+                            <div class="relationship-number">35</div>
+                            <span class="relationship-name">
+                                <span class="lang-en">Murphy</span>
+                                <span class="lang-ru">Мёрфи</span>
+                            </span>
+                            <span class="relationship-role">
+                                <span class="lang-en">Goaltender</span>
+                                <span class="lang-ru">Вратарь</span>
+                            </span>
+                        </div>
+                        <div class="relationship-content">
+                            <span class="relationship-status status-protective">
+                                <span class="lang-en">Protective Worry</span>
+                                <span class="lang-ru">Защитное беспокойство</span>
+                            </span>
+                            <p class="relationship-text">
+                                <span class="lang-en">Caleb Murphy breaks Marcus's heart. He's watched this kid go from one of the best goalies in the league to a shell of himself, angry and scared and pushing everyone away. Marcus doesn't push back. He just shows up. Sits with him sometimes after practice, doesn't say anything. He knows Murphy needs to heal on his own terms. He just hopes the new therapist can reach him, because Marcus is running out of ways to help.</span>
+                                <span class="lang-ru">Калеб Мёрфи разбивает Маркусу сердце. Он смотрел, как этот парень превратился из одного из лучших вратарей лиги в тень самого себя — злой, напуганный, отталкивающий всех. Маркус не давит в ответ. Он просто приходит. Иногда сидит с ним после тренировки, ничего не говорит. Он знает, что Мёрфи нужно исцелиться на своих условиях. Он просто надеется, что новый терапевт сможет до него достучаться, потому что у Маркуса заканчиваются способы помочь.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-ru');
+                localStorage.setItem('hellhounds-lang', 'ru');
+            } else {
+                body.classList.remove('lang-ru');
+                body.classList.add('lang-en');
+                localStorage.setItem('hellhounds-lang', 'en');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('hellhounds-lang');
+            if (savedLang === 'ru') {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-ru');
+            }
+        });
+    </script>
+
+</body>
+</html>
