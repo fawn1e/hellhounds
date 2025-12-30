@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Carter | Denver Hellhounds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --accent: #722F37;
+            --accent-light: #8B3D48;
+            --accent-glow: rgba(114, 47, 55, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #5a5a5a;
+            --border: #2a2a2a;
+            --gold: #C9A962;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        body.lang-en .lang-ru { display: none; }
+        body.lang-ru .lang-en { display: none; }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-switch {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .player-page {
+            display: flex;
+            padding-top: 60px;
+            min-height: 100vh;
+        }
+
+        .player-sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            padding: 25px;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            height: calc(100vh - 60px);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .player-image i {
+            font-size: 3.5rem;
+            color: var(--text-muted);
+        }
+
+        .player-number-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .physical-stats {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        .physical-stats-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .appearance-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .appearance-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .appearance-item i {
+            color: var(--accent-light);
+            font-size: 0.7rem;
+        }
+
+        .rp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .rp-tag {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rp-tag i {
+            font-size: 0.6rem;
+        }
+
+        .player-content {
+            flex: 1;
+            padding: 30px 50px;
+            margin-left: 340px;
+            max-width: calc(100% - 340px);
+        }
+
+        .player-header {
+            margin-bottom: 40px;
+        }
+
+        .player-position {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 8px;
+        }
+
+        .player-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .player-nickname {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-title i {
+            font-size: 0.9rem;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .section-text p {
+            margin-bottom: 12px;
+        }
+
+        .section-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .trait-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trait-item i {
+            color: var(--accent-light);
+            font-size: 1rem;
+        }
+
+        .trait-text {
+            font-size: 0.85rem;
+        }
+
+        .hockey-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .hockey-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .hockey-stat:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hockey-stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        .hockey-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .place-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .place-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .place-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .place-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .place-icon i {
+            color: var(--accent-light);
+            font-size: 1rem;
+        }
+
+        .place-icon.home {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        }
+
+        .place-icon.home i {
+            color: white;
+        }
+
+        .place-info h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .place-type {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .place-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .scenario-box {
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(114, 47, 55, 0.05));
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+
+        .scenario-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scenario-title i {
+            color: var(--accent-light);
+        }
+
+        .scenario-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        .role-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+
+        .role-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .role-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .role-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        .role-note {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border-left: 3px solid var(--gold);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .role-note i {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+
+        .download-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--accent);
+            border: none;
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .download-note {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1100px) {
+            .player-sidebar {
+                width: 300px;
+                padding: 20px;
+            }
+
+            .player-content {
+                margin-left: 300px;
+                max-width: calc(100% - 300px);
+                padding: 25px 35px;
+            }
+
+            .player-name {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .player-page {
+                flex-direction: column;
+            }
+
+            .player-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .player-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 25px 20px;
+            }
+
+            .hockey-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .traits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .player-name {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="lang-en">
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hockey-puck"></i>
+                </div>
+                HELLHOUNDS
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html">
+                        <span class="lang-en">Roster</span>
+                        <span class="lang-ru">Состав</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../lore.html">
+                        <span class="lang-en">World</span>
+                        <span class="lang-ru">Мир</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../news.html">
+                        <span class="lang-en">News</span>
+                        <span class="lang-ru">Новости</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <button class="lang-switch" onclick="toggleLanguage()">EN / RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="player-page">
+
+        <!-- LEFT SIDEBAR - FIXED -->
+        <aside class="player-sidebar">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span class="lang-en">Back to Roster</span>
+                <span class="lang-ru">Назад к составу</span>
+            </a>
+
+            <!-- PLAYER IMAGE -->
+            <div class="player-image">
+                <i class="fas fa-user"></i>
+                <span class="player-number-badge">87</span>
+            </div>
+
+            <!-- PHYSICAL STATS -->
+            <div class="physical-stats">
+                <h3 class="physical-stats-title">
+                    <span class="lang-en">Physical</span>
+                    <span class="lang-ru">Физические данные</span>
+                </h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Age</span>
+                            <span class="lang-ru">Возраст</span>
+                        </span>
+                        <span class="stat-value">21</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Height</span>
+                            <span class="lang-ru">Рост</span>
+                        </span>
+                        <span class="stat-value">5'11"</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Weight</span>
+                            <span class="lang-ru">Вес</span>
+                        </span>
+                        <span class="stat-value">180 lbs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Born</span>
+                            <span class="lang-ru">Родился</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Feb 14</span>
+                            <span class="lang-ru">14 фев</span>
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">From</span>
+                            <span class="lang-ru">Откуда</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Ohio</span>
+                            <span class="lang-ru">Огайо</span>
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Shoots</span>
+                            <span class="lang-ru">Хват</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Right</span>
+                            <span class="lang-ru">Правый</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- APPEARANCE -->
+                <div class="appearance-row">
+                    <div class="appearance-item">
+                        <i class="fas fa-eye"></i>
+                        <span class="lang-en">Blue eyes</span>
+                        <span class="lang-ru">Голубые глаза</span>
+                    </div>
+                    <div class="appearance-item">
+                        <i class="fas fa-user"></i>
+                        <span class="lang-en">Sandy hair</span>
+                        <span class="lang-ru">Русые волосы</span>
+                    </div>
+                    <div class="appearance-item">
+                        <i class="fas fa-pen"></i>
+                        <span class="lang-en">Full back tattoo</span>
+                        <span class="lang-ru">Тату на всю спину</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RP TAGS -->
+            <div class="rp-tags">
+                <div class="rp-tag">
+                    <i class="fas fa-heart"></i>
+                    Highschool Sweethearts
+                </div>
+                <div class="rp-tag">
+                    <i class="fas fa-user-tie"></i>
+                    Coach's Daughter
+                </div>
+                <div class="rp-tag">
+                    <i class="fas fa-mask"></i>
+                    Secret Identity Reveal
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <div class="player-content">
+
+            <!-- HEADER -->
+            <header class="player-header">
+                <p class="player-position">
+                    <span class="lang-en">Center</span>
+                    <span class="lang-ru">Центральный</span>
+                </p>
+                <h1 class="player-name">
+                    <span class="lang-en">Leo Carter</span>
+                    <span class="lang-ru">Лео Картер</span>
+                </h1>
+                <p class="player-nickname">
+                    <span class="lang-en">"Rookie"</span>
+                    <span class="lang-ru">«Новичок»</span>
+                </p>
+            </header>
+
+            <!-- BIOGRAPHY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-book"></i>
+                    <span class="lang-en">Biography</span>
+                    <span class="lang-ru">Биография</span>
+                </h2>
+                <div class="section-text">
+                    <p>
+                        <span class="lang-en">Leo Carter grew up in suburban Ohio, the only child of two office workers who had never watched a hockey game in their lives. His mom did accounting. His dad worked in IT. They were perfectly ordinary people who somehow raised an extraordinarily talented son.</span>
+                        <span class="lang-ru">Лео Картер вырос в пригороде Огайо, единственный ребёнок двух офисных работников, которые никогда в жизни не смотрели хоккей. Мама работала в бухгалтерии. Папа — в IT. Они были совершенно обычными людьми, которые каким-то образом вырастили необычайно талантливого сына.</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">A year and a half ago, he was drafted by the Denver Hellhounds. Suddenly, he was a star rookie—magazine features, fan edits, screaming crowds. It was a lot. Maybe too much. So when he started dating a girl from college, he just... didn't mention it. He told himself he'd bring it up eventually. He told himself she wouldn't care. He told himself it wasn't a big deal.</span>
+                        <span class="lang-ru">Полтора года назад его задрафтовали в Denver Hellhounds. Внезапно он стал звёздным новичком — статьи в журналах, фанатские эдиты, кричащие толпы. Это было слишком. Возможно, чересчур. Поэтому когда он начал встречаться с девушкой из колледжа, он просто... не упомянул. Говорил себе, что расскажет потом. Говорил, что ей будет всё равно. Говорил, что это не важно.</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">Now it's New Year's Eve. He's standing in her parents' living room with a bottle of champagne, ready to make a good impression. And her father just walked in. Her father, who is staring at him like he's seen a ghost. Her father, who Leo sees every single day at practice. Her father, whose name is Marcus Thornton. Head Coach of the Denver Hellhounds.</span>
+                        <span class="lang-ru">Теперь канун Нового года. Он стоит в гостиной её родителей с бутылкой шампанского, готовый произвести хорошее впечатление. И тут входит её отец. Её отец, который смотрит на него так, будто увидел призрак. Её отец, которого Лео видит каждый день на тренировках. Её отец, которого зовут Маркус Торнтон. Главный тренер Denver Hellhounds.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- PERSONALITY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Personality</span>
+                    <span class="lang-ru">Характер</span>
+                </h2>
+                <div class="section-text">
+                    <p>
+                        <span class="lang-en">Leo is loud, confident, and just a little bit cocky—the kind of guy who walks into a room and immediately owns it. He's emotional, wears his heart on his sleeve, and has never met a feeling he didn't express at full volume. But he's not toxic about it. He's just... a lot. In the best way. The kind of person who makes you feel like the most important person in the world when he's looking at you.</span>
+                        <span class="lang-ru">Лео громкий, уверенный и немного самоуверенный — из тех, кто входит в комнату и сразу становится её центром. Он эмоциональный, носит сердце на рукаве и никогда не встречал чувства, которое не выразил бы на полную громкость. Но он не токсичен. Он просто... много. В лучшем смысле. Из тех, кто заставляет тебя чувствовать себя самым важным человеком в мире, когда смотрит на тебя.</span>
+                    </p>
+                </div>
+                <div class="traits-grid">
+                    <div class="trait-item">
+                        <i class="fas fa-fire"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Cocky but Charming</span>
+                            <span class="lang-ru">Самоуверенный, но обаятельный</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-heart"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Wears Heart on Sleeve</span>
+                            <span class="lang-ru">Сердце на рукаве</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-laugh"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Life of the Party</span>
+                            <span class="lang-ru">Душа компании</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-star"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Rising Star</span>
+                            <span class="lang-ru">Восходящая звезда</span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PLACES -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="lang-en">His Places</span>
+                    <span class="lang-ru">Его места</span>
+                </h2>
+                <div class="places-grid">
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon home">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">Apartment with Miles</span>
+                                    <span class="lang-ru">Квартира с Майлзом</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Home — Shared</span>
+                                    <span class="lang-ru">Дом — на двоих</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">Lives with Miles Shaw because at least Milo doesn't make fun of him. Much. The fridge is always empty and there's a PS5 in the living room.</span>
+                            <span class="lang-ru">Живёт с Майлзом Шоу, потому что хотя бы Майло над ним не смеётся. Почти. Холодильник всегда пустой, а в гостиной стоит PS5.</span>
+                        </p>
+                    </a>
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon">
+                                <i class="fas fa-bread-slice"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">Crumb & Craft</span>
+                                    <span class="lang-ru">Крошка и Крафт</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Bakery</span>
+                                    <span class="lang-ru">Пекарня</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">Gets dragged here by Miles. Pretends to hate it. Actually loves the croissants. Don't tell anyone.</span>
+                            <span class="lang-ru">Майлз затаскивает его сюда. Притворяется, что ненавидит. На самом деле обожает круассаны. Никому не говори.</span>
+                        </p>
+                    </a>
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">The Grind</span>
+                                    <span class="lang-ru">Гринд</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Coffee Shop</span>
+                                    <span class="lang-ru">Кофейня</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">Orders the most complicated drink on the menu just to annoy the baristas. Tips well though, so they forgive him.</span>
+                            <span class="lang-ru">Заказывает самый сложный напиток в меню, чтобы позлить бариста. Но оставляет хорошие чаевые, так что его прощают.</span>
+                        </p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- HOCKEY STATS -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="lang-en">Season Stats 2024-25</span>
+                    <span class="lang-ru">Статистика сезона 2024-25</span>
+                </h2>
+                <div class="hockey-stats">
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">18</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">Goals</span>
+                            <span class="lang-ru">Голы</span>
+                        </div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">26</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">Assists</span>
+                            <span class="lang-ru">Передачи</span>
+                        </div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">44</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">Points</span>
+                            <span class="lang-ru">Очки</span>
+                        </div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">+14</div>
+                        <div class="hockey-stat-label">+/-</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RP SCENARIO -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-theater-masks"></i>
+                    <span class="lang-en">Roleplay Scenario</span>
+                    <span class="lang-ru">Сценарий РП</span>
+                </h2>
+                <div class="scenario-box">
+                    <h3 class="scenario-title">
+                        <i class="fas fa-quote-left"></i>
+                        <span class="lang-en">"Meet the Parents"</span>
+                        <span class="lang-ru">«Знакомство с родителями»</span>
+                    </h3>
+                    <p class="scenario-text">
+                        <span class="lang-en">It's New Year's Eve. Leo is finally meeting your parents. He's nervous—more nervous than before any game. He's got champagne, flowers, and his best smile ready. The door opens. Your mom loves him immediately. And then your dad walks into the room. Leo's face goes white. Your dad freezes. "Carter?!" "...Hey, Coach." You're standing between them, champagne glass in hand, realizing your boyfriend has been keeping a very big secret. And your dad looks like he's about to have a stroke.</span>
+                        <span class="lang-ru">Канун Нового года. Лео наконец-то знакомится с твоими родителями. Он нервничает — больше, чем перед любой игрой. У него шампанское, цветы и лучшая улыбка наготове. Дверь открывается. Твоя мама сразу его обожает. А потом в комнату входит твой отец. Лицо Лео белеет. Твой отец замирает. «Картер?!» «...Привет, тренер.» Ты стоишь между ними с бокалом шампанского в руке, осознавая, что твой парень скрывал очень большой секрет. А твой отец выглядит так, будто сейчас получит инфаркт.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- YOUR ROLE -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-edit"></i>
+                    <span class="lang-en">Your Role</span>
+                    <span class="lang-ru">Твоя роль</span>
+                </h2>
+                <div class="role-box">
+                    <p class="role-label">
+                        <span class="lang-en">You Play As</span>
+                        <span class="lang-ru">Ты играешь за</span>
+                    </p>
+                    <h3 class="role-title">
+                        <span class="lang-en">The Coach's Daughter</span>
+                        <span class="lang-ru">Дочь тренера</span>
+                    </h3>
+                    <p class="role-text">
+                        <span class="lang-en">You've been dating Leo since college. He's sweet, funny, a little full of himself—but in a way that makes you laugh. He mentioned he "does sports stuff" but always changed the subject. You figured he was embarrassed about playing in some minor league. Tonight, you're finally introducing him to your parents. Your mom is already planning the wedding. And then your dad walks in, and your boyfriend looks at him like he's staring at death itself. Turns out "sports stuff" means "I'm the star rookie on your father's NHL team." Happy New Year?</span>
+                        <span class="lang-ru">Ты встречаешься с Лео с колледжа. Он милый, смешной, немного самовлюблённый — но так, что это смешит тебя. Он упоминал, что «занимается спортом», но всегда менял тему. Ты думала, он стесняется играть в какой-нибудь низшей лиге. Сегодня ты наконец-то знакомишь его с родителями. Твоя мама уже планирует свадьбу. А потом входит твой отец, и твой парень смотрит на него так, будто видит саму смерть. Оказывается, «занимается спортом» означает «я звёздный новичок в команде NHL твоего отца». С Новым годом?</span>
+                    </p>
+                    <div class="role-note">
+                        <i class="fas fa-lightbulb"></i>
+                        <span class="lang-en"><strong>The drama is just beginning:</strong> Your dad is furious. Your mom is confused. Leo is panicking. And you? You're trying to figure out why your boyfriend never told you he's famous. This is going to be one hell of a New Year.</span>
+                        <span class="lang-ru"><strong>Драма только начинается:</strong> Твой отец в ярости. Твоя мама в замешательстве. Лео паникует. А ты? Ты пытаешься понять, почему твой парень никогда не говорил, что он знаменит. Это будет тот ещё Новый год.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DOWNLOAD -->
+            <section class="download-section">
+                <a href="#" class="download-btn">
+                    <i class="fas fa-download"></i>
+                    <span class="lang-en">Download Character Card</span>
+                    <span class="lang-ru">Скачать карточку персонажа</span>
+                </a>
+                <p class="download-note">
+                    <span class="lang-en">PNG format for SillyTavern, Agnai, and other frontends</span>
+                    <span class="lang-ru">PNG формат для SillyTavern, Agnai и других фронтендов</span>
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-ru');
+                localStorage.setItem('hellhounds-lang', 'ru');
+            } else {
+                body.classList.remove('lang-ru');
+                body.classList.add('lang-en');
+                localStorage.setItem('hellhounds-lang', 'en');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('hellhounds-lang');
+            if (savedLang === 'ru') {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-ru');
+            }
+        });
+    </script>
+
+</body>
+</html>
