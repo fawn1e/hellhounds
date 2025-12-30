@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World | Denver Hellhounds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-hover: #1a1a1a;
+            --accent: #722F37;
+            --accent-light: #8B3D48;
+            --accent-glow: rgba(114, 47, 55, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #5a5a5a;
+            --border: #2a2a2a;
+            --gold: #C9A962;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .lang-switch {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 140px 40px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center top, var(--accent-glow) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .page-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+        }
+
+        .page-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            margin-top: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .map-container {
+            position: relative;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            min-height: 500px;
+        }
+
+        /* MAP BACKGROUND - стилизованная карта */
+        .map-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                /* Сетка улиц */
+                linear-gradient(90deg, var(--border) 1px, transparent 1px),
+                linear-gradient(180deg, var(--border) 1px, transparent 1px),
+                var(--bg-secondary);
+            background-size: 60px 60px, 60px 60px, 100% 100%;
+            opacity: 0.5;
+        }
+
+        /* Река/водоём */
+        .map-river {
+            position: absolute;
+            bottom: 15%;
+            left: 0;
+            right: 30%;
+            height: 40px;
+            background: linear-gradient(90deg,
+                rgba(114, 47, 55, 0.1) 0%,
+                rgba(114, 47, 55, 0.2) 50%,
+                rgba(114, 47, 55, 0.1) 100%);
+            border-radius: 100px;
+            transform: rotate(-5deg);
+        }
+
+        /* Горы на заднем плане */
+        .map-mountains {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(180deg,
+                rgba(114, 47, 55, 0.15) 0%,
+                transparent 100%);
+            clip-path: polygon(0 100%, 10% 40%, 20% 70%, 35% 20%, 50% 60%, 65% 30%, 80% 50%, 90% 25%, 100% 55%, 100% 100%);
+        }
+
+        /* LOCATION MARKERS */
+        .location-marker {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .marker-dot {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .marker-dot i {
+            font-size: 1.2rem;
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .marker-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        .location-marker:hover .marker-dot {
+            background: var(--accent);
+            transform: scale(1.15);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .location-marker:hover .marker-dot i {
+            color: var(--text-primary);
+        }
+
+        .marker-label {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .location-marker:hover .marker-label {
+            opacity: 1;
+        }
+
+        /* LOCATION POSITIONS */
+        .loc-arena { top: 35%; left: 50%; }
+        .loc-ember { top: 45%; left: 30%; }
+        .loc-crumb { top: 55%; left: 65%; }
+        .loc-pit { top: 70%; left: 40%; }
+        .loc-prime { top: 40%; left: 70%; }
+        .loc-altitude { top: 25%; left: 60%; }
+        .loc-hospital { top: 60%; left: 20%; }
+        .loc-reed { top: 30%; left: 40%; }
+        .loc-sterling { top: 35%; left: 75%; }
+        .loc-murphy { top: 15%; left: 15%; }
+        .loc-shaw { top: 50%; left: 50%; }
+
+        /* MAP LEGEND */
+        .map-legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px 20px;
+        }
+
+        .legend-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 10px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .legend-icon i {
+            font-size: 0.7rem;
+            color: var(--accent-light);
+        }
+
+        /* LOCATION DETAIL PANEL */
+        .location-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 450px;
+            max-width: 100%;
+            height: 100%;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border);
+            z-index: 200;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+
+        .location-panel.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .panel-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 150;
+        }
+
+        .panel-overlay.active {
+            display: block;
+        }
+
+        .panel-header {
+            position: relative;
+            padding: 100px 30px 30px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--bg-secondary) 100%);
+        }
+
+        .panel-close {
+            position: absolute;
+            top: 90px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.3);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .panel-close:hover {
+            background: rgba(0,0,0,0.5);
+        }
+
+        .panel-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-light);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .panel-icon i {
+            font-size: 1.5rem;
+            color: var(--accent-light);
+        }
+
+        .panel-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .panel-type {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .panel-body {
+            padding: 30px;
+        }
+
+        .panel-section {
+            margin-bottom: 25px;
+        }
+
+        .panel-section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 12px;
+        }
+
+        .panel-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .panel-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .panel-tag {
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text-secondary);
+        }
+
+        .panel-residents {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .resident-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .resident-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resident-avatar i {
+            color: var(--text-muted);
+        }
+
+        .resident-info {
+            flex: 1;
+        }
+
+        .resident-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .resident-role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* LOCATIONS LIST (Mobile) */
+        .locations-list {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding: 0 40px 80px;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .location-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .location-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .location-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .location-card-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .location-card-icon i {
+            font-size: 1.1rem;
+            color: var(--accent-light);
+        }
+
+        .location-card-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .location-card-type {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .location-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .map-container {
+                aspect-ratio: 1/1;
+            }
+
+            .location-panel {
+                width: 100%;
+            }
+
+            .map-legend {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hockey-puck"></i>
+                </div>
+                HELLHOUNDS
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Roster</a></li>
+                <li><a href="lore.html" class="active">World</a></li>
+                <li><a href="news.html">News</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="lang-switch" onclick="toggleLanguage()">EN / RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <p class="page-label">Explore Denver</p>
+        <h1 class="page-title">THE WORLD</h1>
+        <p class="page-subtitle">Discover the city where the Hellhounds live, train, and play. Click on any location to learn more.</p>
+    </header>
+
+    <!-- MAP -->
+    <section class="map-section">
+        <div class="map-container">
+            <div class="map-bg"></div>
+            <div class="map-mountains"></div>
+            <div class="map-river"></div>
+
+            <!-- ARENA -->
+            <div class="location-marker loc-arena" onclick="openLocation('arena')">
+                <div class="marker-dot"><i class="fas fa-hockey-puck"></i></div>
+                <span class="marker-label">Ball Arena</span>
+            </div>
+
+            <!-- EMBER & BREW -->
+            <div class="location-marker loc-ember" onclick="openLocation('ember')">
+                <div class="marker-dot"><i class="fas fa-mug-hot"></i></div>
+                <span class="marker-label">Ember & Brew</span>
+            </div>
+
+            <!-- CRUMB & COMFORT -->
+            <div class="location-marker loc-crumb" onclick="openLocation('crumb')">
+                <div class="marker-dot"><i class="fas fa-cookie"></i></div>
+                <span class="marker-label">Crumb & Comfort</span>
+            </div>
+
+            <!-- THE PIT -->
+            <div class="location-marker loc-pit" onclick="openLocation('pit')">
+                <div class="marker-dot"><i class="fas fa-glass-martini-alt"></i></div>
+                <span class="marker-label">The Pit</span>
+            </div>
+
+            <!-- PRIME CUT -->
+            <div class="location-marker loc-prime" onclick="openLocation('prime')">
+                <div class="marker-dot"><i class="fas fa-utensils"></i></div>
+                <span class="marker-label">Prime Cut</span>
+            </div>
+
+            <!-- ALTITUDE -->
+            <div class="location-marker loc-altitude" onclick="openLocation('altitude')">
+                <div class="marker-dot"><i class="fas fa-star"></i></div>
+                <span class="marker-label">Altitude</span>
+            </div>
+
+            <!-- ST. CATHERINE'S -->
+            <div class="location-marker loc-hospital" onclick="openLocation('hospital')">
+                <div class="marker-dot"><i class="fas fa-hospital"></i></div>
+                <span class="marker-label">St. Catherine's</span>
+            </div>
+
+            <!-- REED'S PENTHOUSE -->
+            <div class="location-marker loc-reed" onclick="openLocation('reed-home')">
+                <div class="marker-dot"><i class="fas fa-building"></i></div>
+                <span class="marker-label">Reed's Place</span>
+            </div>
+
+            <!-- STERLING'S PENTHOUSE -->
+            <div class="location-marker loc-sterling" onclick="openLocation('sterling-home')">
+                <div class="marker-dot"><i class="fas fa-building"></i></div>
+                <span class="marker-label">Sterling's Place</span>
+            </div>
+
+            <!-- MURPHY'S HOUSE -->
+            <div class="location-marker loc-murphy" onclick="openLocation('murphy-home')">
+                <div class="marker-dot"><i class="fas fa-home"></i></div>
+                <span class="marker-label">Murphy's House</span>
+            </div>
+
+            <!-- SHAW & CARTER'S APT -->
+            <div class="location-marker loc-shaw" onclick="openLocation('shaw-home')">
+                <div class="marker-dot"><i class="fas fa-home"></i></div>
+                <span class="marker-label">Shaw & Carter</span>
+            </div>
+
+            <!-- LEGEND -->
+            <div class="map-legend">
+                <p class="legend-title">Legend</p>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-icon"><i class="fas fa-hockey-puck"></i></div>
+                        Arena
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-icon"><i class="fas fa-utensils"></i></div>
+                        Dining
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-icon"><i class="fas fa-home"></i></div>
+                        Residence
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-icon"><i class="fas fa-hospital"></i></div>
+                        Medical
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATIONS LIST -->
+    <section class="locations-list">
+        <div class="locations-grid">
+
+            <div class="location-card" onclick="openLocation('arena')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-hockey-puck"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Ball Arena</h3>
+                        <p class="location-card-type">Home Arena</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">The fortress where the Hellhounds unleash hell on their opponents.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('ember')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-mug-hot"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Ember & Brew</h3>
+                        <p class="location-card-type">Coffee Shop</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">A cozy spot where players grab their morning fuel.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('crumb')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-cookie"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Crumb & Comfort</h3>
+                        <p class="location-card-type">Bakery</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">Fresh pastries and a warm atmosphere. A team favorite.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('pit')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-glass-martini-alt"></i></div>
+                    <div>
+                        <h3 class="location-card-title">The Pit</h3>
+                        <p class="location-card-type">Nightclub</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">Where secrets are made and kept. The team's unofficial after-hours spot.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('prime')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-utensils"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Prime Cut</h3>
+                        <p class="location-card-type">Steakhouse</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">Classic American steakhouse. Perfect for team dinners.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('altitude')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-star"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Altitude</h3>
+                        <p class="location-card-type">Fine Dining</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">Denver's most exclusive restaurant. Reservation-only.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('hospital')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-hospital"></i></div>
+                    <div>
+                        <h3 class="location-card-title">St. Catherine's Medical</h3>
+                        <p class="location-card-type">Hospital & Physio Center</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">Where broken bodies—and sometimes spirits—get patched up.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PANEL OVERLAY -->
+    <div class="panel-overlay" id="panel-overlay" onclick="closeLocation()"></div>
+
+    <!-- LOCATION PANELS -->
+
+    <!-- BALL ARENA -->
+    <div class="location-panel" id="panel-arena">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-hockey-puck"></i></div>
+            <h2 class="panel-title">Ball Arena</h2>
+            <p class="panel-type">Home Arena • Downtown Denver</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] The home fortress of the Denver Hellhounds. With a capacity of 18,007 for hockey, the arena becomes a sea of red and black on game nights. The crowd's roar is legendary—opposing teams call it "The Pit of Hell."</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Features</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">18,007 Capacity</span>
+                    <span class="panel-tag">Team Locker Room</span>
+                    <span class="panel-tag">Training Facility</span>
+                    <span class="panel-tag">Press Room</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EMBER & BREW -->
+    <div class="location-panel" id="panel-ember">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-mug-hot"></i></div>
+            <h2 class="panel-title">Ember & Brew</h2>
+            <p class="panel-type">Coffee Shop • Midtown</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] A cozy coffee shop with exposed brick walls and the smell of fresh roasted beans. The baristas know the Hellhounds players by name—and their orders by heart.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Cozy</span>
+                    <span class="panel-tag">Warm Lighting</span>
+                    <span class="panel-tag">Fireplace</span>
+                    <span class="panel-tag">Quiet Corners</span>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Regulars</h3>
+                <div class="panel-residents">
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Miles Shaw</p>
+                            <p class="resident-role">Orders: Black coffee, no sugar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRUMB & COMFORT -->
+    <div class="location-panel" id="panel-crumb">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-cookie"></i></div>
+            <h2 class="panel-title">Crumb & Comfort</h2>
+            <p class="panel-type">Bakery • East Side</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] Fresh croissants, homemade pies, and the best cinnamon rolls in Denver. A cheerful spot that feels like a warm hug.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Bright</span>
+                    <span class="panel-tag">Homey</span>
+                    <span class="panel-tag">Sweet Aromas</span>
+                    <span class="panel-tag">Friendly Staff</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE PIT -->
+    <div class="location-panel" id="panel-pit">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-glass-martini-alt"></i></div>
+            <h2 class="panel-title">The Pit</h2>
+            <p class="panel-type">Nightclub • Downtown</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] Dark, loud, and exclusive. The Pit is where Denver's elite come to lose themselves. VIP section in the back. What happens here, stays here.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Dark</span>
+                    <span class="panel-tag">Exclusive</span>
+                    <span class="panel-tag">VIP Access</span>
+                    <span class="panel-tag">No Photos</span>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Regulars</h3>
+                <div class="panel-residents">
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Chase Sterling</p>
+                            <p class="resident-role">VIP Regular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIME CUT -->
+    <div class="location-panel" id="panel-prime">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-utensils"></i></div>
+            <h2 class="panel-title">Prime Cut</h2>
+            <p class="panel-type">Steakhouse • Business District</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] Classic American steakhouse with dark wood interiors and leather booths. Where the team celebrates wins—and drowns losses.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Classic</span>
+                    <span class="panel-tag">Masculine</span>
+                    <span class="panel-tag">Private Booths</span>
+                    <span class="panel-tag">Expensive</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALTITUDE -->
+    <div class="location-panel" id="panel-altitude">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-star"></i></div>
+            <h2 class="panel-title">Altitude</h2>
+            <p class="panel-type">Fine Dining • Rooftop</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] Denver's most exclusive restaurant, perched on the 40th floor with panoramic mountain views. Michelin-starred chef. Three-month waitlist—unless you know someone.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Ultra Exclusive</span>
+                    <span class="panel-tag">Mountain Views</span>
+                    <span class="panel-tag">Dress Code</span>
+                    <span class="panel-tag">$$$$$</span>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Spotted Here</h3>
+                <div class="panel-residents">
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Alexander Reed</p>
+                            <p class="resident-role">Business dinners</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ST. CATHERINE'S -->
+    <div class="location-panel" id="panel-hospital">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-hospital"></i></div>
+            <h2 class="panel-title">St. Catherine's Medical Center</h2>
+            <p class="panel-type">Hospital & Physio Center</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] The team's official medical partner. State-of-the-art physiotherapy center on the third floor. The players know these halls too well.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Facilities</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Emergency Room</span>
+                    <span class="panel-tag">Physio Center</span>
+                    <span class="panel-tag">Sports Medicine</span>
+                    <span class="panel-tag">Rehabilitation</span>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Current Patients</h3>
+                <div class="panel-residents">
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Caleb Murphy</p>
+                            <p class="resident-role">Shoulder rehabilitation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REED'S PENTHOUSE -->
+    <div class="location-panel" id="panel-reed-home">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-building"></i></div>
+            <h2 class="panel-title">The Monarch Residences</h2>
+            <p class="panel-type">Penthouse • Downtown</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] A sleek, minimalist penthouse on the 35th floor. Floor-to-ceiling windows, cold marble floors, and not a single photo on the walls. It looks more like a showroom than a home.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Minimalist</span>
+                    <span class="panel-tag">Cold</span>
+                    <span class="panel-tag">Immaculate</span>
+                    <span class="panel-tag">Lonely</span>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Resident</h3>
+                <div class="panel-residents">
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Alexander Reed</p>
+                            <p class="resident-role">Team Captain</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STERLING'S PENTHOUSE -->
+    <div class="location-panel" id="panel-sterling-home">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-building"></i></div>
+            <h2 class="panel-title">The Apex Tower</h2>
+            <p class="panel-type">Penthouse • Uptown</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] Flashy, modern, and very Chase. Designer furniture, a bar that's always stocked, and a view that screams "I made it." The perfect backdrop for his Instagram.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Flashy</span>
+                    <span class="panel-tag">Modern</span>
+                    <span class="panel-tag">Party-Ready</span>
+                    <span class="panel-tag">Instagram-Worthy</span>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Resident</h3>
+                <div class="panel-residents">
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Chase Sterling</p>
+                            <p class="resident-role">"Golden Boy"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MURPHY'S HOUSE -->
+    <div class="location-panel" id="panel-murphy-home">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-home"></i></div>
+            <h2 class="panel-title">Murphy's Place</h2>
+            <p class="panel-type">House • Outside City Limits</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] A modest house on a few acres, far from the city lights. Caleb bought it for the silence. No neighbors, no noise, no one asking how he's doing. Just him, the mountains, and his thoughts.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Isolated</span>
+                    <span class="panel-tag">Quiet</span>
+                    <span class="panel-tag">Rustic</span>
+                    <span class="panel-tag">Healing</span>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Resident</h3>
+                <div class="panel-residents">
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Caleb Murphy</p>
+                            <p class="resident-role">"Doctor Doom"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHAW & CARTER'S APARTMENT -->
+    <div class="location-panel" id="panel-shaw-home">
+        <div class="panel-header">
+            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+            <div class="panel-icon"><i class="fas fa-home"></i></div>
+            <h2 class="panel-title">The Apartment</h2>
+            <p class="panel-type">Shared Apartment • Midtown</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3 class="panel-section-title">About</h3>
+                <p class="panel-description">[PLACEHOLDER] A comfortable two-bedroom apartment that somehow feels like home. Miles keeps it clean; Leo fills it with life. There's always music playing and leftovers in the fridge.</p>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Vibe</h3>
+                <div class="panel-tags">
+                    <span class="panel-tag">Comfortable</span>
+                    <span class="panel-tag">Lived-In</span>
+                    <span class="panel-tag">Warm</span>
+                    <span class="panel-tag">Safe</span>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-section-title">Residents</h3>
+                <div class="panel-residents">
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Miles Shaw</p>
+                            <p class="resident-role">"Milo"</p>
+                        </div>
+                    </div>
+                    <div class="resident-item">
+                        <div class="resident-avatar"><i class="fas fa-user"></i></div>
+                        <div class="resident-info">
+                            <p class="resident-name">Leo Carter</p>
+                            <p class="resident-role">"Rookie"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="footer-logo">DENVER HELLHOUNDS</p>
+        <p class="footer-text">Cards for SillyTavern • Est. 2024</p>
+    </footer>
+
+    <script>
+        let currentPanel = null;
+
+        function openLocation(location) {
+            // Close any open panel first
+            if (currentPanel) {
+                document.getElementById('panel-' + currentPanel).classList.remove('active');
+            }
+
+            // Open new panel
+            document.getElementById('panel-' + location).classList.add('active');
+            document.getElementById('panel-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            currentPanel = location;
+        }
+
+        function closeLocation() {
+            if (currentPanel) {
+                document.getElementById('panel-' + currentPanel).classList.remove('active');
+            }
+            document.getElementById('panel-overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentPanel = null;
+        }
+
+        // Close on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLocation();
+            }
+        });
+
+        function toggleLanguage() {
+            alert('Language switch coming in Part 4!');
+        }
+    </script>
+
+</body>
+</html>
