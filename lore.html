@@ -6,6 +6,8 @@
     <title>World | Denver Hellhounds</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
             --bg-primary: #0a0a0a;
@@ -42,7 +44,7 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
+            z-index: 1000;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
@@ -126,7 +128,7 @@
 
         /* PAGE HEADER */
         .page-header {
-            padding: 140px 40px 60px;
+            padding: 140px 40px 40px;
             text-align: center;
             position: relative;
         }
@@ -168,174 +170,110 @@
 
         /* MAP SECTION */
         .map-section {
+            padding: 20px 40px 40px;
+        }
+
+        .map-wrapper {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px;
-        }
-
-        .map-container {
-            position: relative;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
             border-radius: 20px;
             overflow: hidden;
-            aspect-ratio: 16/10;
-            min-height: 500px;
+            border: 1px solid var(--border);
         }
 
-        /* MAP BACKGROUND - стилизованная карта */
-        .map-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                /* Сетка улиц */
-                linear-gradient(90deg, var(--border) 1px, transparent 1px),
-                linear-gradient(180deg, var(--border) 1px, transparent 1px),
-                var(--bg-secondary);
-            background-size: 60px 60px, 60px 60px, 100% 100%;
-            opacity: 0.5;
-        }
-
-        /* Река/водоём */
-        .map-river {
-            position: absolute;
-            bottom: 15%;
-            left: 0;
-            right: 30%;
-            height: 40px;
-            background: linear-gradient(90deg,
-                rgba(114, 47, 55, 0.1) 0%,
-                rgba(114, 47, 55, 0.2) 50%,
-                rgba(114, 47, 55, 0.1) 100%);
-            border-radius: 100px;
-            transform: rotate(-5deg);
-        }
-
-        /* Горы на заднем плане */
-        .map-mountains {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(180deg,
-                rgba(114, 47, 55, 0.15) 0%,
-                transparent 100%);
-            clip-path: polygon(0 100%, 10% 40%, 20% 70%, 35% 20%, 50% 60%, 65% 30%, 80% 50%, 90% 25%, 100% 55%, 100% 100%);
-        }
-
-        /* LOCATION MARKERS */
-        .location-marker {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .marker-dot {
+        #map {
+            height: 600px;
             width: 100%;
-            height: 100%;
+            background: var(--bg-secondary);
+        }
+
+        /* Custom Leaflet Markers */
+        .custom-marker {
             background: var(--bg-card);
             border: 2px solid var(--accent);
             border-radius: 50%;
+            width: 44px !important;
+            height: 44px !important;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             transition: all 0.3s ease;
-            position: relative;
+            cursor: pointer;
         }
 
-        .marker-dot i {
-            font-size: 1.2rem;
+        .custom-marker:hover {
+            transform: scale(1.2);
+            border-color: var(--accent-light);
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        .custom-marker i {
+            font-size: 1rem;
             color: var(--accent-light);
-            transition: all 0.3s ease;
-        }
-
-        .marker-dot::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.4;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1.8);
-                opacity: 0;
-            }
-        }
-
-        .location-marker:hover .marker-dot {
-            background: var(--accent);
-            transform: scale(1.15);
-            box-shadow: 0 0 30px var(--accent-glow);
-        }
-
-        .location-marker:hover .marker-dot i {
-            color: var(--text-primary);
         }
 
         .marker-label {
             position: absolute;
-            top: 100%;
+            bottom: -25px;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 8px;
+            white-space: nowrap;
             font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            white-space: nowrap;
+            color: var(--text-primary);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+            letter-spacing: 0.5px;
             opacity: 0;
             transition: opacity 0.3s ease;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
-        .location-marker:hover .marker-label {
+        .custom-marker:hover .marker-label {
             opacity: 1;
         }
 
-        /* LOCATION POSITIONS */
-        .loc-arena { top: 35%; left: 50%; }
-        .loc-ember { top: 45%; left: 30%; }
-        .loc-crumb { top: 55%; left: 65%; }
-        .loc-pit { top: 70%; left: 40%; }
-        .loc-prime { top: 40%; left: 70%; }
-        .loc-altitude { top: 25%; left: 60%; }
-        .loc-hospital { top: 60%; left: 20%; }
-        .loc-reed { top: 30%; left: 40%; }
-        .loc-sterling { top: 35%; left: 75%; }
-        .loc-murphy { top: 15%; left: 15%; }
-        .loc-shaw { top: 50%; left: 50%; }
+        /* Leaflet popup override */
+        .leaflet-popup-content-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .leaflet-popup-content {
+            margin: 15px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .leaflet-popup-tip {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+
+        .popup-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .popup-type {
+            font-size: 0.75rem;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         /* MAP LEGEND */
         .map-legend {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(10, 10, 10, 0.9);
+            bottom: 30px;
+            left: 30px;
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 15px 20px;
+            z-index: 500;
         }
 
         .legend-title {
@@ -344,26 +282,26 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--accent-light);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .legend-items {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 0.75rem;
             color: var(--text-secondary);
         }
 
         .legend-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 50%;
@@ -377,18 +315,33 @@
             color: var(--accent-light);
         }
 
-        /* LOCATION DETAIL PANEL */
+        /* LOCATION PANEL */
+        .panel-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1500;
+        }
+
+        .panel-overlay.active {
+            display: block;
+        }
+
         .location-panel {
             display: none;
             position: fixed;
             top: 0;
             right: 0;
-            width: 450px;
+            width: 500px;
             max-width: 100%;
             height: 100%;
             background: var(--bg-secondary);
             border-left: 1px solid var(--border);
-            z-index: 200;
+            z-index: 2000;
             overflow-y: auto;
             animation: slideIn 0.3s ease;
         }
@@ -398,74 +351,89 @@
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(0);
-            }
-        }
-
-        .panel-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 150;
-        }
-
-        .panel-overlay.active {
-            display: block;
-        }
-
-        .panel-header {
-            position: relative;
-            padding: 100px 30px 30px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--bg-secondary) 100%);
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
         }
 
         .panel-close {
             position: absolute;
-            top: 90px;
+            top: 20px;
             right: 20px;
             width: 40px;
             height: 40px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.5);
             border: none;
             border-radius: 50%;
             color: var(--text-primary);
             font-size: 1.2rem;
             cursor: pointer;
+            z-index: 10;
             transition: all 0.3s ease;
         }
 
         .panel-close:hover {
-            background: rgba(0,0,0,0.5);
+            background: var(--accent);
         }
 
-        .panel-icon {
-            width: 60px;
-            height: 60px;
+        /* PANEL IMAGE */
+        .panel-image {
+            width: 100%;
+            height: 250px;
             background: var(--bg-card);
-            border: 2px solid var(--accent-light);
-            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .panel-image-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+        }
+
+        .panel-image-placeholder i {
+            font-size: 3rem;
+        }
+
+        .panel-image-placeholder span {
+            font-size: 0.8rem;
+        }
+
+        .panel-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
         }
 
         .panel-icon i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--accent-light);
         }
 
         .panel-title {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
             margin-bottom: 5px;
         }
@@ -478,11 +446,15 @@
         }
 
         .panel-body {
-            padding: 30px;
+            padding: 25px 30px;
         }
 
         .panel-section {
             margin-bottom: 25px;
+        }
+
+        .panel-section:last-child {
+            margin-bottom: 0;
         }
 
         .panel-section-title {
@@ -493,11 +465,22 @@
             text-transform: uppercase;
             color: var(--accent-light);
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
         }
 
         .panel-description {
             color: var(--text-secondary);
             line-height: 1.8;
+            font-size: 0.9rem;
         }
 
         .panel-tags {
@@ -559,16 +542,24 @@
             color: var(--text-muted);
         }
 
-        /* LOCATIONS LIST (Mobile) */
+        /* LOCATIONS LIST */
         .locations-list {
             max-width: 1200px;
-            margin: 60px auto 0;
+            margin: 40px auto 0;
             padding: 0 40px 80px;
+        }
+
+        .locations-list h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
         }
 
         .locations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
@@ -576,7 +567,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 25px;
+            padding: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -590,28 +581,29 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .location-card-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .location-card-icon i {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--accent-light);
         }
 
         .location-card-title {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
         }
 
@@ -625,7 +617,7 @@
         .location-card-desc {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         /* FOOTER */
@@ -654,8 +646,8 @@
                 display: none;
             }
 
-            .map-container {
-                aspect-ratio: 1/1;
+            #map {
+                height: 400px;
             }
 
             .location-panel {
@@ -663,7 +655,14 @@
             }
 
             .map-legend {
-                display: none;
+                bottom: 10px;
+                left: 10px;
+                padding: 10px 15px;
+            }
+
+            .legend-items {
+                flex-direction: row;
+                flex-wrap: wrap;
             }
         }
     </style>
@@ -699,97 +698,29 @@
 
     <!-- MAP -->
     <section class="map-section">
-        <div class="map-container">
-            <div class="map-bg"></div>
-            <div class="map-mountains"></div>
-            <div class="map-river"></div>
+        <div class="map-wrapper">
+            <div id="map"></div>
+        </div>
 
-            <!-- ARENA -->
-            <div class="location-marker loc-arena" onclick="openLocation('arena')">
-                <div class="marker-dot"><i class="fas fa-hockey-puck"></i></div>
-                <span class="marker-label">Ball Arena</span>
-            </div>
-
-            <!-- EMBER & BREW -->
-            <div class="location-marker loc-ember" onclick="openLocation('ember')">
-                <div class="marker-dot"><i class="fas fa-mug-hot"></i></div>
-                <span class="marker-label">Ember & Brew</span>
-            </div>
-
-            <!-- CRUMB & COMFORT -->
-            <div class="location-marker loc-crumb" onclick="openLocation('crumb')">
-                <div class="marker-dot"><i class="fas fa-cookie"></i></div>
-                <span class="marker-label">Crumb & Comfort</span>
-            </div>
-
-            <!-- THE PIT -->
-            <div class="location-marker loc-pit" onclick="openLocation('pit')">
-                <div class="marker-dot"><i class="fas fa-glass-martini-alt"></i></div>
-                <span class="marker-label">The Pit</span>
-            </div>
-
-            <!-- PRIME CUT -->
-            <div class="location-marker loc-prime" onclick="openLocation('prime')">
-                <div class="marker-dot"><i class="fas fa-utensils"></i></div>
-                <span class="marker-label">Prime Cut</span>
-            </div>
-
-            <!-- ALTITUDE -->
-            <div class="location-marker loc-altitude" onclick="openLocation('altitude')">
-                <div class="marker-dot"><i class="fas fa-star"></i></div>
-                <span class="marker-label">Altitude</span>
-            </div>
-
-            <!-- ST. CATHERINE'S -->
-            <div class="location-marker loc-hospital" onclick="openLocation('hospital')">
-                <div class="marker-dot"><i class="fas fa-hospital"></i></div>
-                <span class="marker-label">St. Catherine's</span>
-            </div>
-
-            <!-- REED'S PENTHOUSE -->
-            <div class="location-marker loc-reed" onclick="openLocation('reed-home')">
-                <div class="marker-dot"><i class="fas fa-building"></i></div>
-                <span class="marker-label">Reed's Place</span>
-            </div>
-
-            <!-- STERLING'S PENTHOUSE -->
-            <div class="location-marker loc-sterling" onclick="openLocation('sterling-home')">
-                <div class="marker-dot"><i class="fas fa-building"></i></div>
-                <span class="marker-label">Sterling's Place</span>
-            </div>
-
-            <!-- MURPHY'S HOUSE -->
-            <div class="location-marker loc-murphy" onclick="openLocation('murphy-home')">
-                <div class="marker-dot"><i class="fas fa-home"></i></div>
-                <span class="marker-label">Murphy's House</span>
-            </div>
-
-            <!-- SHAW & CARTER'S APT -->
-            <div class="location-marker loc-shaw" onclick="openLocation('shaw-home')">
-                <div class="marker-dot"><i class="fas fa-home"></i></div>
-                <span class="marker-label">Shaw & Carter</span>
-            </div>
-
-            <!-- LEGEND -->
-            <div class="map-legend">
-                <p class="legend-title">Legend</p>
-                <div class="legend-items">
-                    <div class="legend-item">
-                        <div class="legend-icon"><i class="fas fa-hockey-puck"></i></div>
-                        Arena
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-icon"><i class="fas fa-utensils"></i></div>
-                        Dining
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-icon"><i class="fas fa-home"></i></div>
-                        Residence
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-icon"><i class="fas fa-hospital"></i></div>
-                        Medical
-                    </div>
+        <!-- LEGEND -->
+        <div class="map-legend">
+            <p class="legend-title">Legend</p>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-icon"><i class="fas fa-hockey-puck"></i></div>
+                    Arena
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon"><i class="fas fa-utensils"></i></div>
+                    Dining
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon"><i class="fas fa-home"></i></div>
+                    Residence
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon"><i class="fas fa-hospital"></i></div>
+                    Medical
                 </div>
             </div>
         </div>
@@ -797,6 +728,7 @@
 
     <!-- LOCATIONS LIST -->
     <section class="locations-list">
+        <h2>ALL LOCATIONS</h2>
         <div class="locations-grid">
 
             <div class="location-card" onclick="openLocation('arena')">
@@ -807,7 +739,7 @@
                         <p class="location-card-type">Home Arena</p>
                     </div>
                 </div>
-                <p class="location-card-desc">The fortress where the Hellhounds unleash hell on their opponents.</p>
+                <p class="location-card-desc">The fortress where the Hellhounds unleash hell.</p>
             </div>
 
             <div class="location-card" onclick="openLocation('ember')">
@@ -818,7 +750,7 @@
                         <p class="location-card-type">Coffee Shop</p>
                     </div>
                 </div>
-                <p class="location-card-desc">A cozy spot where players grab their morning fuel.</p>
+                <p class="location-card-desc">Cozy spot for morning fuel.</p>
             </div>
 
             <div class="location-card" onclick="openLocation('crumb')">
@@ -829,7 +761,7 @@
                         <p class="location-card-type">Bakery</p>
                     </div>
                 </div>
-                <p class="location-card-desc">Fresh pastries and a warm atmosphere. A team favorite.</p>
+                <p class="location-card-desc">Fresh pastries and warm vibes.</p>
             </div>
 
             <div class="location-card" onclick="openLocation('pit')">
@@ -840,7 +772,7 @@
                         <p class="location-card-type">Nightclub</p>
                     </div>
                 </div>
-                <p class="location-card-desc">Where secrets are made and kept. The team's unofficial after-hours spot.</p>
+                <p class="location-card-desc">Where secrets are made and kept.</p>
             </div>
 
             <div class="location-card" onclick="openLocation('prime')">
@@ -851,7 +783,7 @@
                         <p class="location-card-type">Steakhouse</p>
                     </div>
                 </div>
-                <p class="location-card-desc">Classic American steakhouse. Perfect for team dinners.</p>
+                <p class="location-card-desc">Classic American steakhouse.</p>
             </div>
 
             <div class="location-card" onclick="openLocation('altitude')">
@@ -862,18 +794,62 @@
                         <p class="location-card-type">Fine Dining</p>
                     </div>
                 </div>
-                <p class="location-card-desc">Denver's most exclusive restaurant. Reservation-only.</p>
+                <p class="location-card-desc">Denver's most exclusive restaurant.</p>
             </div>
 
             <div class="location-card" onclick="openLocation('hospital')">
                 <div class="location-card-header">
                     <div class="location-card-icon"><i class="fas fa-hospital"></i></div>
                     <div>
-                        <h3 class="location-card-title">St. Catherine's Medical</h3>
-                        <p class="location-card-type">Hospital & Physio Center</p>
+                        <h3 class="location-card-title">St. Catherine's</h3>
+                        <p class="location-card-type">Hospital & Physio</p>
                     </div>
                 </div>
-                <p class="location-card-desc">Where broken bodies—and sometimes spirits—get patched up.</p>
+                <p class="location-card-desc">Where broken bodies get fixed.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('reed-home')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-building"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Reed's Penthouse</h3>
+                        <p class="location-card-type">Residence</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">The Captain's cold fortress.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('sterling-home')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-building"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Sterling's Penthouse</h3>
+                        <p class="location-card-type">Residence</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">Flashy and Instagram-ready.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('murphy-home')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-home"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Murphy's House</h3>
+                        <p class="location-card-type">Residence</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">Isolated. Quiet. Healing.</p>
+            </div>
+
+            <div class="location-card" onclick="openLocation('shaw-home')">
+                <div class="location-card-header">
+                    <div class="location-card-icon"><i class="fas fa-home"></i></div>
+                    <div>
+                        <h3 class="location-card-title">Shaw & Carter's</h3>
+                        <p class="location-card-type">Shared Apartment</p>
+                    </div>
+                </div>
+                <p class="location-card-desc">Home is where your roommate is.</p>
             </div>
 
         </div>
@@ -886,8 +862,15 @@
 
     <!-- BALL ARENA -->
     <div class="location-panel" id="panel-arena">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <!-- ЗАМЕНИ НА СВОЮ КАРТИНКУ: <img src="images/arena.jpg" alt="Ball Arena"> -->
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/arena.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-hockey-puck"></i></div>
             <h2 class="panel-title">Ball Arena</h2>
             <p class="panel-type">Home Arena • Downtown Denver</p>
@@ -895,7 +878,7 @@
         <div class="panel-body">
             <div class="panel-section">
                 <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] The home fortress of the Denver Hellhounds. With a capacity of 18,007 for hockey, the arena becomes a sea of red and black on game nights. The crowd's roar is legendary—opposing teams call it "The Pit of Hell."</p>
+                <p class="panel-description">[PLACEHOLDER] The home fortress of the Denver Hellhounds. With a capacity of 18,007 for hockey, the arena becomes a sea of red and black on game nights. The crowd's roar is legendary.</p>
             </div>
             <div class="panel-section">
                 <h3 class="panel-section-title">Features</h3>
@@ -911,8 +894,14 @@
 
     <!-- EMBER & BREW -->
     <div class="location-panel" id="panel-ember">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/ember.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-mug-hot"></i></div>
             <h2 class="panel-title">Ember & Brew</h2>
             <p class="panel-type">Coffee Shop • Midtown</p>
@@ -920,7 +909,7 @@
         <div class="panel-body">
             <div class="panel-section">
                 <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] A cozy coffee shop with exposed brick walls and the smell of fresh roasted beans. The baristas know the Hellhounds players by name—and their orders by heart.</p>
+                <p class="panel-description">[PLACEHOLDER] A cozy coffee shop with exposed brick walls and the smell of fresh roasted beans. The baristas know the players by name.</p>
             </div>
             <div class="panel-section">
                 <h3 class="panel-section-title">Vibe</h3>
@@ -948,8 +937,14 @@
 
     <!-- CRUMB & COMFORT -->
     <div class="location-panel" id="panel-crumb">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/crumb.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-cookie"></i></div>
             <h2 class="panel-title">Crumb & Comfort</h2>
             <p class="panel-type">Bakery • East Side</p>
@@ -973,8 +968,14 @@
 
     <!-- THE PIT -->
     <div class="location-panel" id="panel-pit">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/pit.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-glass-martini-alt"></i></div>
             <h2 class="panel-title">The Pit</h2>
             <p class="panel-type">Nightclub • Downtown</p>
@@ -1010,8 +1011,14 @@
 
     <!-- PRIME CUT -->
     <div class="location-panel" id="panel-prime">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/prime.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-utensils"></i></div>
             <h2 class="panel-title">Prime Cut</h2>
             <p class="panel-type">Steakhouse • Business District</p>
@@ -1035,8 +1042,14 @@
 
     <!-- ALTITUDE -->
     <div class="location-panel" id="panel-altitude">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/altitude.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-star"></i></div>
             <h2 class="panel-title">Altitude</h2>
             <p class="panel-type">Fine Dining • Rooftop</p>
@@ -1044,7 +1057,7 @@
         <div class="panel-body">
             <div class="panel-section">
                 <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] Denver's most exclusive restaurant, perched on the 40th floor with panoramic mountain views. Michelin-starred chef. Three-month waitlist—unless you know someone.</p>
+                <p class="panel-description">[PLACEHOLDER] Denver's most exclusive restaurant, perched on the 40th floor with panoramic mountain views. Three-month waitlist—unless you know someone.</p>
             </div>
             <div class="panel-section">
                 <h3 class="panel-section-title">Vibe</h3>
@@ -1072,10 +1085,16 @@
 
     <!-- ST. CATHERINE'S -->
     <div class="location-panel" id="panel-hospital">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/hospital.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-hospital"></i></div>
-            <h2 class="panel-title">St. Catherine's Medical Center</h2>
+            <h2 class="panel-title">St. Catherine's Medical</h2>
             <p class="panel-type">Hospital & Physio Center</p>
         </div>
         <div class="panel-body">
@@ -1109,8 +1128,14 @@
 
     <!-- REED'S PENTHOUSE -->
     <div class="location-panel" id="panel-reed-home">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/reed-home.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-building"></i></div>
             <h2 class="panel-title">The Monarch Residences</h2>
             <p class="panel-type">Penthouse • Downtown</p>
@@ -1118,7 +1143,7 @@
         <div class="panel-body">
             <div class="panel-section">
                 <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] A sleek, minimalist penthouse on the 35th floor. Floor-to-ceiling windows, cold marble floors, and not a single photo on the walls. It looks more like a showroom than a home.</p>
+                <p class="panel-description">[PLACEHOLDER] A sleek, minimalist penthouse on the 35th floor. Floor-to-ceiling windows, cold marble floors, and not a single photo on the walls.</p>
             </div>
             <div class="panel-section">
                 <h3 class="panel-section-title">Vibe</h3>
@@ -1146,8 +1171,14 @@
 
     <!-- STERLING'S PENTHOUSE -->
     <div class="location-panel" id="panel-sterling-home">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/sterling-home.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-building"></i></div>
             <h2 class="panel-title">The Apex Tower</h2>
             <p class="panel-type">Penthouse • Uptown</p>
@@ -1155,7 +1186,7 @@
         <div class="panel-body">
             <div class="panel-section">
                 <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] Flashy, modern, and very Chase. Designer furniture, a bar that's always stocked, and a view that screams "I made it." The perfect backdrop for his Instagram.</p>
+                <p class="panel-description">[PLACEHOLDER] Flashy, modern, and very Chase. Designer furniture, a bar that's always stocked, and a view that screams "I made it."</p>
             </div>
             <div class="panel-section">
                 <h3 class="panel-section-title">Vibe</h3>
@@ -1183,8 +1214,14 @@
 
     <!-- MURPHY'S HOUSE -->
     <div class="location-panel" id="panel-murphy-home">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/murphy-home.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-home"></i></div>
             <h2 class="panel-title">Murphy's Place</h2>
             <p class="panel-type">House • Outside City Limits</p>
@@ -1192,7 +1229,7 @@
         <div class="panel-body">
             <div class="panel-section">
                 <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] A modest house on a few acres, far from the city lights. Caleb bought it for the silence. No neighbors, no noise, no one asking how he's doing. Just him, the mountains, and his thoughts.</p>
+                <p class="panel-description">[PLACEHOLDER] A modest house on a few acres, far from the city lights. Caleb bought it for the silence. No neighbors, no noise, just him and the mountains.</p>
             </div>
             <div class="panel-section">
                 <h3 class="panel-section-title">Vibe</h3>
@@ -1220,8 +1257,14 @@
 
     <!-- SHAW & CARTER'S APARTMENT -->
     <div class="location-panel" id="panel-shaw-home">
+        <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
+        <div class="panel-image">
+            <div class="panel-image-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add image: images/shaw-home.jpg</span>
+            </div>
+        </div>
         <div class="panel-header">
-            <button class="panel-close" onclick="closeLocation()"><i class="fas fa-times"></i></button>
             <div class="panel-icon"><i class="fas fa-home"></i></div>
             <h2 class="panel-title">The Apartment</h2>
             <p class="panel-type">Shared Apartment • Midtown</p>
@@ -1229,7 +1272,7 @@
         <div class="panel-body">
             <div class="panel-section">
                 <h3 class="panel-section-title">About</h3>
-                <p class="panel-description">[PLACEHOLDER] A comfortable two-bedroom apartment that somehow feels like home. Miles keeps it clean; Leo fills it with life. There's always music playing and leftovers in the fridge.</p>
+                <p class="panel-description">[PLACEHOLDER] A comfortable two-bedroom that somehow feels like home. Miles keeps it clean; Leo fills it with life. There's always music playing.</p>
             </div>
             <div class="panel-section">
                 <h3 class="panel-section-title">Vibe</h3>
@@ -1268,16 +1311,72 @@
         <p class="footer-text">Cards for SillyTavern • Est. 2024</p>
     </footer>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <script>
+        // Initialize map centered on Denver
+        const map = L.map('map', {
+            zoomControl: true,
+            scrollWheelZoom: true
+        }).setView([39.7392, -104.9903], 13);
+
+        // Dark map style (CartoDB Dark Matter)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '©OpenStreetMap, ©CartoDB',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Custom marker icon function
+        function createMarker(iconClass, color) {
+            return L.divIcon({
+                className: 'custom-marker-wrapper',
+                html: `<div class="custom-marker"><i class="fas ${iconClass}"></i></div>`,
+                iconSize: [44, 44],
+                iconAnchor: [22, 22]
+            });
+        }
+
+        // Location data with real Denver coordinates
+        const locations = [
+            { id: 'arena', name: 'Ball Arena', lat: 39.7487, lng: -105.0077, icon: 'fa-hockey-puck' },
+            { id: 'ember', name: 'Ember & Brew', lat: 39.7502, lng: -104.9892, icon: 'fa-mug-hot' },
+            { id: 'crumb', name: 'Crumb & Comfort', lat: 39.7445, lng: -104.9785, icon: 'fa-cookie' },
+            { id: 'pit', name: 'The Pit', lat: 39.7478, lng: -104.9998, icon: 'fa-glass-martini-alt' },
+            { id: 'prime', name: 'Prime Cut', lat: 39.7512, lng: -104.9956, icon: 'fa-utensils' },
+            { id: 'altitude', name: 'Altitude', lat: 39.7535, lng: -104.9875, icon: 'fa-star' },
+            { id: 'hospital', name: "St. Catherine's", lat: 39.7398, lng: -104.9723, icon: 'fa-hospital' },
+            { id: 'reed-home', name: "Reed's Penthouse", lat: 39.7525, lng: -104.9912, icon: 'fa-building' },
+            { id: 'sterling-home', name: "Sterling's Penthouse", lat: 39.7548, lng: -104.9798, icon: 'fa-building' },
+            { id: 'murphy-home', name: "Murphy's House", lat: 39.7650, lng: -105.0250, icon: 'fa-home' },
+            { id: 'shaw-home', name: "Shaw & Carter's", lat: 39.7465, lng: -104.9845, icon: 'fa-home' }
+        ];
+
+        // Add markers to map
+        locations.forEach(loc => {
+            const marker = L.marker([loc.lat, loc.lng], {
+                icon: createMarker(loc.icon)
+            }).addTo(map);
+
+            marker.on('click', () => openLocation(loc.id));
+
+            // Popup on hover
+            marker.bindTooltip(loc.name, {
+                permanent: false,
+                direction: 'top',
+                className: 'custom-tooltip',
+                offset: [0, -25]
+            });
+        });
+
+        // Panel functions
         let currentPanel = null;
 
         function openLocation(location) {
-            // Close any open panel first
             if (currentPanel) {
                 document.getElementById('panel-' + currentPanel).classList.remove('active');
             }
-
-            // Open new panel
             document.getElementById('panel-' + location).classList.add('active');
             document.getElementById('panel-overlay').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1293,17 +1392,73 @@
             currentPanel = null;
         }
 
-        // Close on Escape
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLocation();
-            }
+            if (e.key === 'Escape') closeLocation();
         });
 
         function toggleLanguage() {
             alert('Language switch coming in Part 4!');
         }
     </script>
+
+    <style>
+        /* Custom tooltip style */
+        .custom-tooltip {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            color: var(--text-primary) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.8rem !important;
+            padding: 8px 12px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+        }
+
+        .custom-tooltip::before {
+            border-top-color: var(--border) !important;
+        }
+
+        .custom-marker-wrapper {
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .custom-marker {
+            width: 44px;
+            height: 44px;
+            background: #161616;
+            border: 2px solid #722F37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .custom-marker:hover {
+            transform: scale(1.2);
+            border-color: #8B3D48;
+            box-shadow: 0 0 25px rgba(114, 47, 55, 0.4);
+        }
+
+        .custom-marker i {
+            font-size: 1rem;
+            color: #8B3D48;
+        }
+
+        /* Hide default Leaflet attribution styling */
+        .leaflet-control-attribution {
+            background: rgba(10, 10, 10, 0.8) !important;
+            color: #5a5a5a !important;
+            font-size: 0.65rem !important;
+        }
+
+        .leaflet-control-attribution a {
+            color: #722F37 !important;
+        }
+    </style>
 
 </body>
 </html>
