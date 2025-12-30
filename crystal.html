@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal Collective | Ball Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-hover: #1a1a1a;
+            --accent: #4A90A4;
+            --accent-light: #6BB5CC;
+            --accent-glow: rgba(74, 144, 164, 0.3);
+            --accent-soft: rgba(107, 181, 204, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #5a5a5a;
+            --border: #2a2a2a;
+            --gold: #C9A962;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-hellhounds {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-hellhounds:hover {
+            border-color: #722F37;
+            color: #8B3D48;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center top, var(--accent-glow) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-badge::before,
+        .hero-badge::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 600;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .hero-title span {
+            display: block;
+            font-size: 0.5em;
+            letter-spacing: 12px;
+            color: var(--accent-light);
+            font-weight: 400;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* SECTION STYLES */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            margin-top: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ABOUT SECTION */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            aspect-ratio: 4/3;
+            background: var(--bg-card);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+        }
+
+        .about-image i {
+            font-size: 4rem;
+            color: var(--text-muted);
+        }
+
+        /* ACHIEVEMENTS */
+        .achievements {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .achievement i {
+            color: var(--gold);
+        }
+
+        .achievement span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* PROGRAMS SECTION */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .program-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-soft), var(--bg-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .program-image i {
+            font-size: 3rem;
+            color: var(--accent-light);
+        }
+
+        .program-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .program-content {
+            padding: 25px;
+        }
+
+        .program-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .program-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .program-details {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .program-detail {
+            text-align: center;
+        }
+
+        .program-detail-value {
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+
+        .program-detail-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ICE RENTAL SECTION */
+        .rental-section {
+            background: var(--bg-secondary);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 100px auto;
+            max-width: 1200px;
+        }
+
+        .rental-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .rental-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .rental-card:hover {
+            border-color: var(--accent);
+        }
+
+        .rental-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .rental-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .rental-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .rental-icon i {
+            font-size: 1.5rem;
+            color: var(--accent-light);
+        }
+
+        .rental-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .rental-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            margin: 20px 0;
+        }
+
+        .rental-price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .rental-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .rental-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rental-features li:last-child {
+            border-bottom: none;
+        }
+
+        .rental-features li i {
+            color: var(--accent-light);
+            font-size: 0.8rem;
+        }
+
+        .rental-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            color: var(--accent-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rental-btn:hover {
+            background: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .rental-card.featured .rental-btn {
+            background: var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* COACHING STAFF */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .staff-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .staff-card:hover {
+            border-color: var(--accent);
+        }
+
+        .staff-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .staff-image i {
+            font-size: 4rem;
+            color: var(--text-muted);
+        }
+
+        .staff-content {
+            padding: 25px;
+        }
+
+        .staff-role {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 8px;
+        }
+
+        .staff-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .staff-bio {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .staff-credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .credential {
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            color: var(--text-muted);
+        }
+
+        /* EVENTS SECTION */
+        .events-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .events-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .event-item {
+            position: relative;
+            padding: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 25px;
+            margin-left: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .event-item:hover {
+            border-color: var(--accent);
+        }
+
+        .event-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 35px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .event-date {
+            position: absolute;
+            left: -120px;
+            top: 30px;
+            text-align: right;
+            width: 70px;
+        }
+
+        .event-date-day {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            line-height: 1;
+        }
+
+        .event-date-month {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent);
+            border-radius: 15px;
+            font-size: 0.7rem;
+            color: var(--accent-light);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .event-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .event-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            background: linear-gradient(135deg, var(--accent-soft), var(--bg-secondary));
+            border-radius: 30px;
+            padding: 80px;
+            text-align: center;
+            margin: 0 40px;
+        }
+
+        .contact-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            border-color: var(--accent);
+        }
+
+        .contact-method i {
+            font-size: 1.5rem;
+            color: var(--accent-light);
+        }
+
+        .contact-method-info {
+            text-align: left;
+        }
+
+        .contact-method-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-method-value {
+            font-weight: 500;
+            margin-top: 3px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--border);
+            margin-top: 100px;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
+            .rental-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rental-card.featured {
+                transform: none;
+            }
+
+            .events-timeline {
+                padding-left: 0;
+            }
+
+            .events-timeline::before {
+                display: none;
+            }
+
+            .event-item {
+                margin-left: 0;
+            }
+
+            .event-item::before {
+                display: none;
+            }
+
+            .event-date {
+                position: static;
+                text-align: left;
+                width: auto;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+            }
+
+            .event-date-day {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .rental-section {
+                padding: 40px 20px;
+                margin: 50px 20px;
+            }
+
+            .contact-section {
+                padding: 50px 20px;
+                margin: 0 20px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="crystal.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                Crystal Collective
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#rental">Ice Rental</a></li>
+                <li><a href="#staff">Coaches</a></li>
+                <li><a href="#events">Events</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="index.html" class="nav-hellhounds">
+                    <i class="fas fa-hockey-puck"></i>
+                    Hellhounds
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">Ball Arena, Denver</div>
+        <h1 class="hero-title">
+            Crystal
+            <span>Collective</span>
+        </h1>
+        <p class="hero-subtitle">Where artistry meets athleticism on ice</p>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">2019</div>
+                <div class="hero-stat-label">Established</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">24</div>
+                <div class="hero-stat-label">Elite Skaters</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">12</div>
+                <div class="hero-stat-label">Championships</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">6</div>
+                <div class="hero-stat-label">World-Class Coaches</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+        <div class="about-grid">
+            <div class="about-content">
+                <p class="section-label">Our Story</p>
+                <h3>Redefining Figure Skating in the Mile High City</h3>
+                <p>Founded in 2019, the Crystal Collective emerged from a vision to create a world-class figure skating ensemble in Denver. What began as a small group of passionate skaters has evolved into one of the most respected programs in North American figure skating.</p>
+                <p>We share Ball Arena with the Denver Hellhounds—a partnership that, while occasionally challenging, represents the diverse athletic spirit of our city. Our skaters train alongside hockey players, each pushing the boundaries of what's possible on ice.</p>
+
+                <div class="achievements">
+                    <div class="achievement">
+                        <i class="fas fa-trophy"></i>
+                        <span>3x National Champions</span>
+                    </div>
+                    <div class="achievement">
+                        <i class="fas fa-medal"></i>
+                        <span>ISU Recognized Program</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <i class="fas fa-image"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="section" id="programs">
+        <div class="section-header">
+            <p class="section-label">Training Programs</p>
+            <h2 class="section-title">FIND YOUR ICE</h2>
+            <p class="section-subtitle">From beginners to elite competitors, we offer programs designed to nurture talent at every level.</p>
+        </div>
+
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-child"></i>
+                    <span class="program-badge">Ages 4-8</span>
+                </div>
+                <div class="program-content">
+                    <h3 class="program-title">Snowflake Beginners</h3>
+                    <p class="program-description">Introduction to ice skating fundamentals. Building confidence, balance, and a love for the ice in a fun, supportive environment.</p>
+                    <div class="program-details">
+                        <div class="program-detail">
+                            <div class="program-detail-value">2x/week</div>
+                            <div class="program-detail-label">Sessions</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">45 min</div>
+                            <div class="program-detail-label">Duration</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">$180</div>
+                            <div class="program-detail-label">Monthly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-skating"></i>
+                    <span class="program-badge">Ages 8-14</span>
+                </div>
+                <div class="program-content">
+                    <h3 class="program-title">Rising Stars</h3>
+                    <p class="program-description">Intermediate program focusing on technical skills, jumps, spins, and artistic expression. Competition preparation available.</p>
+                    <div class="program-details">
+                        <div class="program-detail">
+                            <div class="program-detail-value">3x/week</div>
+                            <div class="program-detail-label">Sessions</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">90 min</div>
+                            <div class="program-detail-label">Duration</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">$320</div>
+                            <div class="program-detail-label">Monthly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-star"></i>
+                    <span class="program-badge">Invitation Only</span>
+                </div>
+                <div class="program-content">
+                    <h3 class="program-title">Elite Ensemble</h3>
+                    <p class="program-description">Our flagship competitive program. Intensive training for skaters pursuing national and international competition.</p>
+                    <div class="program-details">
+                        <div class="program-detail">
+                            <div class="program-detail-value">6x/week</div>
+                            <div class="program-detail-label">Sessions</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">3 hrs</div>
+                            <div class="program-detail-label">Duration</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">$850</div>
+                            <div class="program-detail-label">Monthly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-user-friends"></i>
+                    <span class="program-badge">All Ages</span>
+                </div>
+                <div class="program-content">
+                    <h3 class="program-title">Adult Skating</h3>
+                    <p class="program-description">Never too late to learn. Classes for adults of all skill levels, from first-timers to those returning to the ice.</p>
+                    <div class="program-details">
+                        <div class="program-detail">
+                            <div class="program-detail-value">2x/week</div>
+                            <div class="program-detail-label">Sessions</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">60 min</div>
+                            <div class="program-detail-label">Duration</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">$150</div>
+                            <div class="program-detail-label">Monthly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-users"></i>
+                    <span class="program-badge">Teams</span>
+                </div>
+                <div class="program-content">
+                    <h3 class="program-title">Synchronized Skating</h3>
+                    <p class="program-description">Team-based skating that combines precision, athleticism, and artistry. Multiple teams by age and skill level.</p>
+                    <div class="program-details">
+                        <div class="program-detail">
+                            <div class="program-detail-value">4x/week</div>
+                            <div class="program-detail-label">Sessions</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">2 hrs</div>
+                            <div class="program-detail-label">Duration</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">$420</div>
+                            <div class="program-detail-label">Monthly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-user"></i>
+                    <span class="program-badge">1-on-1</span>
+                </div>
+                <div class="program-content">
+                    <h3 class="program-title">Private Coaching</h3>
+                    <p class="program-description">Personalized instruction with our world-class coaches. Customized training plans for any goal or skill level.</p>
+                    <div class="program-details">
+                        <div class="program-detail">
+                            <div class="program-detail-value">Flexible</div>
+                            <div class="program-detail-label">Schedule</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">30-60 min</div>
+                            <div class="program-detail-label">Duration</div>
+                        </div>
+                        <div class="program-detail">
+                            <div class="program-detail-value">$95+</div>
+                            <div class="program-detail-label">Per Session</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ICE RENTAL -->
+    <div class="rental-section" id="rental">
+        <div class="section-header">
+            <p class="section-label">Ice Time</p>
+            <h2 class="section-title">RENT THE ICE</h2>
+            <p class="section-subtitle">Book Ball Arena's world-class ice surface for your team, event, or private session.</p>
+        </div>
+
+        <div class="rental-grid">
+            <div class="rental-card">
+                <div class="rental-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="rental-title">Off-Peak Hours</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Weekdays 6AM - 2PM</p>
+                <div class="rental-price">$275<span>/hour</span></div>
+                <ul class="rental-features">
+                    <li><i class="fas fa-check"></i> Full ice surface</li>
+                    <li><i class="fas fa-check"></i> Basic sound system</li>
+                    <li><i class="fas fa-check"></i> Locker room access</li>
+                    <li><i class="fas fa-check"></i> 2 hour minimum</li>
+                </ul>
+                <button class="rental-btn">Inquire Now</button>
+            </div>
+
+            <div class="rental-card featured">
+                <div class="rental-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <h3 class="rental-title">Prime Time</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Weekdays 2PM - 10PM</p>
+                <div class="rental-price">$425<span>/hour</span></div>
+                <ul class="rental-features">
+                    <li><i class="fas fa-check"></i> Full ice surface</li>
+                    <li><i class="fas fa-check"></i> Premium sound system</li>
+                    <li><i class="fas fa-check"></i> Locker room access</li>
+                    <li><i class="fas fa-check"></i> Video recording available</li>
+                    <li><i class="fas fa-check"></i> On-site coordinator</li>
+                </ul>
+                <button class="rental-btn">Inquire Now</button>
+            </div>
+
+            <div class="rental-card">
+                <div class="rental-icon">
+                    <i class="fas fa-calendar-week"></i>
+                </div>
+                <h3 class="rental-title">Weekend</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Sat & Sun All Day</p>
+                <div class="rental-price">$550<span>/hour</span></div>
+                <ul class="rental-features">
+                    <li><i class="fas fa-check"></i> Full ice surface</li>
+                    <li><i class="fas fa-check"></i> Premium sound & lighting</li>
+                    <li><i class="fas fa-check"></i> Locker room access</li>
+                    <li><i class="fas fa-check"></i> Event staff included</li>
+                    <li><i class="fas fa-check"></i> Spectator seating available</li>
+                </ul>
+                <button class="rental-btn">Inquire Now</button>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 0.85rem;">
+            Full arena rental for events and shows available upon request. Contact us for custom packages.
+        </p>
+    </div>
+
+    <!-- COACHING STAFF -->
+    <section class="section" id="staff">
+        <div class="section-header">
+            <p class="section-label">World-Class Instruction</p>
+            <h2 class="section-title">OUR COACHES</h2>
+            <p class="section-subtitle">Learn from Olympic medalists, world champions, and the most respected names in figure skating.</p>
+        </div>
+
+        <div class="staff-grid">
+            <div class="staff-card">
+                <div class="staff-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="staff-content">
+                    <p class="staff-role">Head Coach & Artistic Director</p>
+                    <h3 class="staff-name">Elena Volkov</h3>
+                    <p class="staff-bio">Former Russian National Champion with 20+ years of coaching experience. Elena has trained 6 Olympic athletes and is known for her innovative choreography.</p>
+                    <div class="staff-credentials">
+                        <span class="credential">Russian Nationals Gold 2002</span>
+                        <span class="credential">ISU Technical Specialist</span>
+                        <span class="credential">PSA Master Rated</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="staff-content">
+                    <p class="staff-role">Technical Director</p>
+                    <h3 class="staff-name">Marcus Chen</h3>
+                    <p class="staff-bio">Two-time US National medalist specializing in jump technique and edge work. Marcus brings a modern, analytical approach to training.</p>
+                    <div class="staff-credentials">
+                        <span class="credential">US Nationals Silver 2015</span>
+                        <span class="credential">Sports Science Degree</span>
+                        <span class="credential">Jump Specialist</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="staff-content">
+                    <p class="staff-role">Choreographer</p>
+                    <h3 class="staff-name">Isabella Reyes</h3>
+                    <p class="staff-bio">Broadway dancer turned figure skating choreographer. Isabella's programs blend contemporary dance with classical skating technique.</p>
+                    <div class="staff-credentials">
+                        <span class="credential">Juilliard Graduate</span>
+                        <span class="credential">Broadway Credits</span>
+                        <span class="credential">Ice Dance Specialist</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="staff-content">
+                    <p class="staff-role">Youth Program Director</p>
+                    <h3 class="staff-name">Sarah Mitchell</h3>
+                    <p class="staff-bio">Passionate about introducing young skaters to the sport. Sarah's patient, encouraging approach has developed countless beginners into competitive skaters.</p>
+                    <div class="staff-credentials">
+                        <span class="credential">US Figure Skating Coach</span>
+                        <span class="credential">Child Development Cert.</span>
+                        <span class="credential">Learn to Skate USA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="staff-content">
+                    <p class="staff-role">Pairs & Synchro Coach</p>
+                    <h3 class="staff-name">David & Nina Park</h3>
+                    <p class="staff-bio">Husband-wife coaching duo and former World Pairs competitors. They specialize in lifts, throws, and synchronized team skating.</p>
+                    <div class="staff-credentials">
+                        <span class="credential">World Championships 5th</span>
+                        <span class="credential">Four Continents Bronze</span>
+                        <span class="credential">Pairs Specialists</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="staff-content">
+                    <p class="staff-role">Sports Psychologist</p>
+                    <h3 class="staff-name">Dr. James Wright</h3>
+                    <p class="staff-bio">Helping athletes overcome performance anxiety and build mental resilience. Dr. Wright works with skaters at all levels to develop a champion's mindset.</p>
+                    <div class="staff-credentials">
+                        <span class="credential">Ph.D. Sports Psychology</span>
+                        <span class="credential">Olympic Team Consultant</span>
+                        <span class="credential">Mental Performance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section" id="events">
+        <div class="section-header">
+            <p class="section-label">Upcoming</p>
+            <h2 class="section-title">EVENTS & SHOWS</h2>
+            <p class="section-subtitle">Mark your calendar for these upcoming Crystal Collective performances and events.</p>
+        </div>
+
+        <div class="events-timeline">
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="event-date-day">18</div>
+                    <div class="event-date-month">Jan</div>
+                </div>
+                <span class="event-badge">Showcase</span>
+                <h3 class="event-title">Winter Showcase: Frozen Dreams</h3>
+                <p class="event-description">Our annual winter spectacular featuring all Crystal Collective programs. Watch our skaters perform original choreography set to a live orchestra.</p>
+                <div class="event-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Ball Arena Main Ice</span>
+                    <span><i class="fas fa-clock"></i> 7:00 PM</span>
+                    <span><i class="fas fa-ticket-alt"></i> $35 - $85</span>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="event-date-day">02</div>
+                    <div class="event-date-month">Feb</div>
+                </div>
+                <span class="event-badge">Competition</span>
+                <h3 class="event-title">Rocky Mountain Invitational</h3>
+                <p class="event-description">Regional competition hosting skaters from Colorado, Utah, and New Mexico. Crystal Collective skaters will compete in all divisions.</p>
+                <div class="event-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Ball Arena</span>
+                    <span><i class="fas fa-clock"></i> All Day</span>
+                    <span><i class="fas fa-ticket-alt"></i> Free Admission</span>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="event-date-day">14</div>
+                    <div class="event-date-month">Feb</div>
+                </div>
+                <span class="event-badge">Special Event</span>
+                <h3 class="event-title">Valentine's Skate Night</h3>
+                <p class="event-description">Public skating session with a romantic twist. Live music, special lighting, and complimentary hot chocolate for couples.</p>
+                <div class="event-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Ball Arena</span>
+                    <span><i class="fas fa-clock"></i> 6:00 PM - 9:00 PM</span>
+                    <span><i class="fas fa-ticket-alt"></i> $25 per couple</span>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="event-date-day">08</div>
+                    <div class="event-date-month">Mar</div>
+                </div>
+                <span class="event-badge">Open House</span>
+                <h3 class="event-title">Spring Open House & Tryouts</h3>
+                <p class="event-description">Interested in joining Crystal Collective? Meet our coaches, tour our facilities, and participate in placement assessments for all programs.</p>
+                <div class="event-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Ball Arena Training Facility</span>
+                    <span><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</span>
+                    <span><i class="fas fa-ticket-alt"></i> Free</span>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="event-date-day">22</div>
+                    <div class="event-date-month">Mar</div>
+                </div>
+                <span class="event-badge">Gala</span>
+                <h3 class="event-title">Champions on Ice Gala</h3>
+                <p class="event-description">An evening of elegance featuring Olympic and World medalists as guest performers alongside our Elite Ensemble. Black tie optional.</p>
+                <div class="event-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Ball Arena</span>
+                    <span><i class="fas fa-clock"></i> 7:30 PM</span>
+                    <span><i class="fas fa-ticket-alt"></i> $75 - $200</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <div class="contact-section">
+        <h2 class="contact-title">Get in Touch</h2>
+        <p class="contact-subtitle">Ready to start your skating journey? Have questions about our programs or events? We'd love to hear from you.</p>
+
+        <div class="contact-methods">
+            <div class="contact-method">
+                <i class="fas fa-envelope"></i>
+                <div class="contact-method-info">
+                    <div class="contact-method-label">Email</div>
+                    <div class="contact-method-value">info@crystalcollective.com</div>
+                </div>
+            </div>
+            <div class="contact-method">
+                <i class="fas fa-phone"></i>
+                <div class="contact-method-info">
+                    <div class="contact-method-label">Phone</div>
+                    <div class="contact-method-value">(303) 555-SKATE</div>
+                </div>
+            </div>
+            <div class="contact-method">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-method-info">
+                    <div class="contact-method-label">Location</div>
+                    <div class="contact-method-value">Ball Arena, Denver CO</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="footer-logo">CRYSTAL COLLECTIVE</p>
+        <p class="footer-text">Ball Arena, Denver Colorado</p>
+        <div class="footer-links">
+            <a href="index.html">Denver Hellhounds</a>
+            <a href="news.html">News</a>
+            <a href="lore.html">World</a>
+        </div>
+    </footer>
+
+</body>
+</html>
