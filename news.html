@@ -38,11 +38,9 @@
             line-height: 1.6;
         }
 
-        /* LANGUAGE SWITCH */
         body.lang-en .lang-ru { display: none; }
         body.lang-ru .lang-en { display: none; }
 
-        /* NAVIGATION */
         nav {
             position: fixed;
             top: 0;
@@ -114,24 +112,6 @@
             gap: 15px;
         }
 
-        .crystal-link {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            padding: 6px 10px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .crystal-link:hover {
-            border-color: #6BB5CC;
-            color: #6BB5CC;
-        }
-
         .lang-switch {
             font-size: 0.8rem;
             color: var(--text-muted);
@@ -148,7 +128,6 @@
             color: var(--text-primary);
         }
 
-        /* PAGE HEADER */
         .page-header {
             padding: 140px 40px 40px;
             text-align: center;
@@ -190,7 +169,6 @@
             margin-right: auto;
         }
 
-        /* NEWS FILTERS */
         .news-filters {
             max-width: 1200px;
             margin: 0 auto;
@@ -235,7 +213,6 @@
             border-color: var(--crystal-blue);
         }
 
-        /* BREAKING NEWS TICKER */
         .breaking-news {
             background: var(--accent);
             padding: 12px 0;
@@ -272,14 +249,12 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* NEWS SECTION */
         .news-section {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px;
         }
 
-        /* FEATURED NEWS */
         .featured-news {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -301,30 +276,8 @@
             transform: translateY(-5px);
         }
 
-        .featured-image {
-            height: 300px;
-            background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .featured-image i {
-            font-size: 4rem;
-            color: var(--text-muted);
-        }
-
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .featured-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            display: inline-block;
             background: var(--accent);
             padding: 6px 12px;
             border-radius: 6px;
@@ -332,6 +285,7 @@
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
+            margin-bottom: 15px;
         }
 
         .featured-content {
@@ -407,7 +361,6 @@
             border: 1px solid var(--crystal-blue);
         }
 
-        /* FEATURED SIDEBAR */
         .featured-sidebar {
             display: flex;
             flex-direction: column;
@@ -440,7 +393,6 @@
             overflow: hidden;
         }
 
-        /* NEWS GRID */
         .news-grid-header {
             display: flex;
             justify-content: space-between;
@@ -496,62 +448,23 @@
             border-color: var(--crystal-blue);
         }
 
-        .news-card-image {
-            height: 160px;
-            background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .news-card-image i {
-            font-size: 2.5rem;
-            color: var(--text-muted);
-        }
-
-        .news-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .card-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
+            display: inline-block;
             padding: 4px 10px;
             border-radius: 5px;
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
-        .card-badge.injury {
-            background: #8B0000;
-        }
-
-        .card-badge.trade {
-            background: var(--gold);
-            color: #000;
-        }
-
-        .card-badge.interview {
-            background: #2E5A3A;
-        }
-
-        .card-badge.rumor {
-            background: #4A4A4A;
-        }
-
-        .card-badge.crystal {
-            background: var(--crystal-blue);
-        }
-
-        .card-badge.drama {
-            background: #6B2D5C;
-        }
+        .card-badge.injury { background: #8B0000; }
+        .card-badge.trade { background: var(--gold); color: #000; }
+        .card-badge.interview { background: #2E5A3A; }
+        .card-badge.rumor { background: #4A4A4A; }
+        .card-badge.crystal { background: var(--crystal-blue); }
+        .card-badge.drama { background: #6B2D5C; }
 
         .news-card-content {
             padding: 20px;
@@ -571,7 +484,6 @@
             margin-bottom: 15px;
         }
 
-        /* SOURCES SECTION */
         .sources-section {
             background: var(--bg-secondary);
             border-radius: 20px;
@@ -604,9 +516,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .source-item:hover {
-            opacity: 1;
-        }
+        .source-item:hover { opacity: 1; }
 
         .source-icon {
             width: 40px;
@@ -635,7 +545,6 @@
             color: var(--text-muted);
         }
 
-        /* ARTICLE MODAL */
         .article-overlay {
             display: none;
             position: fixed;
@@ -651,9 +560,7 @@
             overflow-y: auto;
         }
 
-        .article-overlay.active {
-            display: flex;
-        }
+        .article-overlay.active { display: flex; }
 
         .article-modal {
             background: var(--bg-secondary);
@@ -682,28 +589,7 @@
             transition: all 0.3s ease;
         }
 
-        .article-close:hover {
-            background: var(--accent);
-        }
-
-        .article-hero {
-            height: 300px;
-            background: var(--bg-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .article-hero i {
-            font-size: 5rem;
-            color: var(--text-muted);
-        }
-
-        .article-hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .article-close:hover { background: var(--accent); }
 
         .article-content {
             padding: 40px;
@@ -742,9 +628,7 @@
             line-height: 1.9;
         }
 
-        .article-body p {
-            margin-bottom: 20px;
-        }
+        .article-body p { margin-bottom: 20px; }
 
         .article-body blockquote {
             border-left: 3px solid var(--accent);
@@ -763,7 +647,6 @@
             flex-wrap: wrap;
         }
 
-        /* FOOTER */
         footer {
             text-align: center;
             padding: 60px 40px;
@@ -783,38 +666,20 @@
             color: var(--text-muted);
         }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
-            .featured-news {
-                grid-template-columns: 1fr;
-            }
-
+            .featured-news { grid-template-columns: 1fr; }
             .featured-sidebar {
                 flex-direction: row;
                 overflow-x: auto;
             }
-
-            .sidebar-card {
-                min-width: 280px;
-            }
+            .sidebar-card { min-width: 280px; }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .news-filters {
-                padding: 0 20px 20px;
-            }
-
-            .news-section {
-                padding: 20px;
-            }
-
-            .article-title {
-                font-size: 1.6rem;
-            }
+            .nav-links { display: none; }
+            .news-filters { padding: 0 20px 20px; }
+            .news-section { padding: 20px; }
+            .article-title { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -830,29 +695,11 @@
                 HELLHOUNDS
             </a>
             <ul class="nav-links">
-                <li>
-                    <a href="index.html">
-                        <span class="lang-en">Roster</span>
-                        <span class="lang-ru">Состав</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="lore.html">
-                        <span class="lang-en">World</span>
-                        <span class="lang-ru">Мир</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="news.html" class="active">
-                        <span class="lang-en">News</span>
-                        <span class="lang-ru">Новости</span>
-                    </a>
-                </li>
+                <li><a href="index.html"><span class="lang-en">Roster</span><span class="lang-ru">Состав</span></a></li>
+                <li><a href="lore.html"><span class="lang-en">World</span><span class="lang-ru">Мир</span></a></li>
+                <li><a href="news.html" class="active"><span class="lang-en">News</span><span class="lang-ru">Новости</span></a></li>
             </ul>
             <div class="nav-right">
-                <a href="crystal.html" class="crystal-link">
-                    <i class="fas fa-snowflake"></i> Crystal
-                </a>
                 <button class="lang-switch" onclick="toggleLanguage()">EN / RU</button>
             </div>
         </div>
@@ -862,91 +709,54 @@
     <div class="breaking-news">
         <div class="ticker-wrapper">
             <div class="ticker-item">
-                <span class="label">
-                    <span class="lang-en">BREAKING</span>
-                    <span class="lang-ru">СРОЧНО</span>
-                </span>
-                <span class="lang-en">Murphy undergoes shoulder surgery, out indefinitely</span>
-                <span class="lang-ru">Мёрфи перенёс операцию на плече, срок восстановления неизвестен</span>
+                <span class="label"><span class="lang-en">BREAKING</span><span class="lang-ru">СРОЧНО</span></span>
+                <span class="lang-en">Murphy undergoes third shoulder surgery, timeline unknown</span>
+                <span class="lang-ru">Мёрфи перенёс третью операцию на плече, сроки неизвестны</span>
             </div>
             <div class="ticker-item">
-                <span class="label">
-                    <span class="lang-en">UPDATE</span>
-                    <span class="lang-ru">ОБНОВЛЕНИЕ</span>
-                </span>
-                <span class="lang-en">Sterling named to All-Star roster for third consecutive year</span>
-                <span class="lang-ru">Стерлинг попал в состав Матча всех звёзд третий год подряд</span>
+                <span class="label"><span class="lang-en">UPDATE</span><span class="lang-ru">ОБНОВЛЕНИЕ</span></span>
+                <span class="lang-en">Sterling named to All-Star roster despite controversial season</span>
+                <span class="lang-ru">Стерлинг в составе Матча звёзд несмотря на скандальный сезон</span>
             </div>
             <div class="ticker-item">
-                <span class="label">
-                    <span class="lang-en">RUMOR</span>
-                    <span class="lang-ru">СЛУХИ</span>
-                </span>
-                <span class="lang-en">Crystal Collective to share practice facility with Hellhounds?</span>
-                <span class="lang-ru">Crystal Collective будет делить тренировочную базу с Hellhounds?</span>
+                <span class="label"><span class="lang-en">RUMOR</span><span class="lang-ru">СЛУХИ</span></span>
+                <span class="lang-en">Rookie Carter spotted with mystery woman — Coach's daughter?</span>
+                <span class="lang-ru">Новичка Картера видели с загадочной девушкой — дочь тренера?</span>
             </div>
             <div class="ticker-item">
-                <span class="label">
-                    <span class="lang-en">BREAKING</span>
-                    <span class="lang-ru">СРОЧНО</span>
-                </span>
-                <span class="lang-en">Murphy undergoes shoulder surgery, out indefinitely</span>
-                <span class="lang-ru">Мёрфи перенёс операцию на плече, срок восстановления неизвестен</span>
+                <span class="label"><span class="lang-en">BREAKING</span><span class="lang-ru">СРОЧНО</span></span>
+                <span class="lang-en">Murphy undergoes third shoulder surgery, timeline unknown</span>
+                <span class="lang-ru">Мёрфи перенёс третью операцию на плече, сроки неизвестны</span>
             </div>
             <div class="ticker-item">
-                <span class="label">
-                    <span class="lang-en">UPDATE</span>
-                    <span class="lang-ru">ОБНОВЛЕНИЕ</span>
-                </span>
-                <span class="lang-en">Sterling named to All-Star roster for third consecutive year</span>
-                <span class="lang-ru">Стерлинг попал в состав Матча всех звёзд третий год подряд</span>
+                <span class="label"><span class="lang-en">UPDATE</span><span class="lang-ru">ОБНОВЛЕНИЕ</span></span>
+                <span class="lang-en">Sterling named to All-Star roster despite controversial season</span>
+                <span class="lang-ru">Стерлинг в составе Матча звёзд несмотря на скандальный сезон</span>
             </div>
             <div class="ticker-item">
-                <span class="label">
-                    <span class="lang-en">RUMOR</span>
-                    <span class="lang-ru">СЛУХИ</span>
-                </span>
-                <span class="lang-en">Crystal Collective to share practice facility with Hellhounds?</span>
-                <span class="lang-ru">Crystal Collective будет делить тренировочную базу с Hellhounds?</span>
+                <span class="label"><span class="lang-en">RUMOR</span><span class="lang-ru">СЛУХИ</span></span>
+                <span class="lang-en">Rookie Carter spotted with mystery woman — Coach's daughter?</span>
+                <span class="lang-ru">Новичка Картера видели с загадочной девушкой — дочь тренера?</span>
             </div>
         </div>
     </div>
 
     <!-- PAGE HEADER -->
     <header class="page-header">
-        <p class="page-label">
-            <span class="lang-en">Latest Updates</span>
-            <span class="lang-ru">Последние новости</span>
-        </p>
-        <h1 class="page-title">
-            <span class="lang-en">NEWS</span>
-            <span class="lang-ru">НОВОСТИ</span>
-        </h1>
+        <p class="page-label"><span class="lang-en">Latest Updates</span><span class="lang-ru">Последние новости</span></p>
+        <h1 class="page-title"><span class="lang-en">NEWS</span><span class="lang-ru">НОВОСТИ</span></h1>
         <p class="page-subtitle">
-            <span class="lang-en">All the latest from the Denver Hellhounds, Ball Arena, and the Crystal Collective.</span>
-            <span class="lang-ru">Всё самое свежее о Denver Hellhounds, Болл Арене и Crystal Collective.</span>
+            <span class="lang-en">All the latest from the Denver Hellhounds and Ball Arena.</span>
+            <span class="lang-ru">Всё самое свежее о Denver Hellhounds и Болл Арене.</span>
         </p>
     </header>
 
     <!-- FILTERS -->
     <div class="news-filters">
-        <button class="filter-btn active" onclick="filterNews('all')">
-            <span class="lang-en">All News</span>
-            <span class="lang-ru">Все новости</span>
-        </button>
-        <button class="filter-btn" onclick="filterNews('team')">
-            <span class="lang-en">Team News</span>
-            <span class="lang-ru">Команда</span>
-        </button>
-        <button class="filter-btn" onclick="filterNews('injury')">
-            <span class="lang-en">Injury Reports</span>
-            <span class="lang-ru">Травмы</span>
-        </button>
-        <button class="filter-btn" onclick="filterNews('rumors')">
-            <span class="lang-en">Rumors</span>
-            <span class="lang-ru">Слухи</span>
-        </button>
-        <button class="filter-btn crystal" onclick="filterNews('crystal')">Crystal Collective</button>
+        <button class="filter-btn active" onclick="filterNews('all')"><span class="lang-en">All News</span><span class="lang-ru">Все новости</span></button>
+        <button class="filter-btn" onclick="filterNews('team')"><span class="lang-en">Team News</span><span class="lang-ru">Команда</span></button>
+        <button class="filter-btn" onclick="filterNews('injury')"><span class="lang-en">Injury Reports</span><span class="lang-ru">Травмы</span></button>
+        <button class="filter-btn" onclick="filterNews('rumors')"><span class="lang-en">Rumors</span><span class="lang-ru">Слухи</span></button>
     </div>
 
     <!-- NEWS SECTION -->
@@ -955,43 +765,25 @@
         <!-- FEATURED NEWS -->
         <div class="featured-news">
             <article class="featured-main" onclick="openArticle('murphy-injury')">
-                <div class="featured-image">
-                    <i class="fas fa-image"></i>
-                    <span class="featured-badge">
-                        <span class="lang-en">Breaking</span>
-                        <span class="lang-ru">Срочно</span>
-                    </span>
-                </div>
                 <div class="featured-content">
+                    <span class="featured-badge"><span class="lang-en">Breaking</span><span class="lang-ru">Срочно</span></span>
                     <div class="news-source">
                         <div class="source-logo">DP</div>
                         <span class="source-name">Denver Post Sports</span>
-                        <span class="source-date">
-                            <span class="lang-en">• 2 hours ago</span>
-                            <span class="lang-ru">• 2 часа назад</span>
-                        </span>
+                        <span class="source-date"><span class="lang-en">• 2 hours ago</span><span class="lang-ru">• 2 часа назад</span></span>
                     </div>
                     <h2 class="news-title">
-                        <span class="lang-en">Murphy's Season in Jeopardy: Hellhounds Goaltender Faces Long Recovery After Shoulder Surgery</span>
-                        <span class="lang-ru">Сезон Мёрфи под угрозой: вратарь Hellhounds столкнулся с долгим восстановлением после операции на плече</span>
+                        <span class="lang-en">Murphy's Career in Jeopardy: Third Surgery Raises Questions About Goaltender's Future</span>
+                        <span class="lang-ru">Карьера Мёрфи под угрозой: третья операция ставит вопрос о будущем вратаря</span>
                     </h2>
                     <p class="news-excerpt">
-                        <span class="lang-en">Caleb Murphy, the backbone of Denver's defense, underwent successful surgery yesterday but faces months of rehabilitation. Team sources say the locker room is "devastated" by the news.</span>
-                        <span class="lang-ru">Калеб Мёрфи, опора обороны Денвера, вчера успешно перенёс операцию, но впереди месяцы реабилитации. Источники в команде говорят, что раздевалка «опустошена» этой новостью.</span>
+                        <span class="lang-en">Caleb Murphy, once considered one of the league's elite goaltenders, underwent his third shoulder surgery yesterday. Team sources describe the locker room as "devastated," while Murphy himself has refused all visitors except his fishing gear.</span>
+                        <span class="lang-ru">Калеб Мёрфи, когда-то считавшийся одним из элитных вратарей лиги, вчера перенёс третью операцию на плече. Источники в команде описывают раздевалку как «опустошённую», а сам Мёрфи отказал всем посетителям, кроме своих рыболовных снастей.</span>
                     </p>
                     <div class="news-tags">
-                        <span class="news-tag player">
-                            <span class="lang-en">Caleb Murphy</span>
-                            <span class="lang-ru">Калеб Мёрфи</span>
-                        </span>
-                        <span class="news-tag">
-                            <span class="lang-en">Injury</span>
-                            <span class="lang-ru">Травма</span>
-                        </span>
-                        <span class="news-tag">
-                            <span class="lang-en">Surgery</span>
-                            <span class="lang-ru">Операция</span>
-                        </span>
+                        <span class="news-tag player"><span class="lang-en">Caleb Murphy</span><span class="lang-ru">Калеб Мёрфи</span></span>
+                        <span class="news-tag"><span class="lang-en">Injury</span><span class="lang-ru">Травма</span></span>
+                        <span class="news-tag"><span class="lang-en">Surgery</span><span class="lang-ru">Операция</span></span>
                     </div>
                 </div>
             </article>
@@ -1001,18 +793,15 @@
                     <div class="news-source">
                         <div class="source-logo">HH</div>
                         <span class="source-name">Hockey Herald</span>
-                        <span class="source-date">
-                            <span class="lang-en">• 5 hours ago</span>
-                            <span class="lang-ru">• 5 часов назад</span>
-                        </span>
+                        <span class="source-date"><span class="lang-en">• 5 hours ago</span><span class="lang-ru">• 5 часов назад</span></span>
                     </div>
                     <h3 class="news-title">
-                        <span class="lang-en">Sterling's All-Star Selection: Deserved Honor or Popularity Contest?</span>
-                        <span class="lang-ru">Стерлинг в Матче звёзд: заслуженная честь или конкурс популярности?</span>
+                        <span class="lang-en">Sterling's All-Star Nod: Talent or Daddy's Money?</span>
+                        <span class="lang-ru">Стерлинг в Матче звёзд: талант или деньги папочки?</span>
                     </h3>
                     <p class="news-excerpt">
-                        <span class="lang-en">The "Golden Boy" earns his third consecutive nod, but critics question if his off-ice appeal outweighs his on-ice performance.</span>
-                        <span class="lang-ru">«Золотой мальчик» получает приглашение третий год подряд, но критики сомневаются: его привлекательность вне льда важнее игры?</span>
+                        <span class="lang-en">The "Golden Boy" earns his third selection amid tabloid scandals and questions about his billionaire father's influence.</span>
+                        <span class="lang-ru">«Золотой мальчик» получает третье приглашение на фоне таблоидных скандалов и вопросов о влиянии отца-миллиардера.</span>
                     </p>
                 </article>
 
@@ -1020,37 +809,31 @@
                     <div class="news-source">
                         <div class="source-logo">MH</div>
                         <span class="source-name">Mile High Sports</span>
-                        <span class="source-date">
-                            <span class="lang-en">• Yesterday</span>
-                            <span class="lang-ru">• Вчера</span>
-                        </span>
+                        <span class="source-date"><span class="lang-en">• Yesterday</span><span class="lang-ru">• Вчера</span></span>
                     </div>
                     <h3 class="news-title">
-                        <span class="lang-en">Captain Under Pressure: Is Reed Losing His Grip on the Locker Room?</span>
-                        <span class="lang-ru">Капитан под давлением: Рид теряет контроль над раздевалкой?</span>
+                        <span class="lang-en">The Duke's Dilemma: Reed Struggles to Connect With Young Core</span>
+                        <span class="lang-ru">Дилемма Герцога: Рид не может найти общий язык с молодёжью</span>
                     </h3>
                     <p class="news-excerpt">
-                        <span class="lang-en">Anonymous sources describe tension between the veteran captain and younger players.</span>
-                        <span class="lang-ru">Анонимные источники описывают напряжённость между опытным капитаном и молодыми игроками.</span>
+                        <span class="lang-en">Sources describe growing tension between the perfectionist captain and players who "just want to have fun."</span>
+                        <span class="lang-ru">Источники описывают растущую напряжённость между капитаном-перфекционистом и игроками, которые «просто хотят веселиться».</span>
                     </p>
                 </article>
 
-                <article class="sidebar-card" onclick="openArticle('crystal-arena')">
+                <article class="sidebar-card" onclick="openArticle('carter-mystery')">
                     <div class="news-source">
-                        <div class="source-logo" style="color: var(--crystal-blue);">CC</div>
-                        <span class="source-name">Crystal Collective</span>
-                        <span class="source-date">
-                            <span class="lang-en">• Yesterday</span>
-                            <span class="lang-ru">• Вчера</span>
-                        </span>
+                        <div class="source-logo">PD</div>
+                        <span class="source-name">Puck Daily</span>
+                        <span class="source-date"><span class="lang-en">• Yesterday</span><span class="lang-ru">• Вчера</span></span>
                     </div>
                     <h3 class="news-title">
-                        <span class="lang-en">Ice Time Wars: Crystal Collective Demands More Practice Hours at Ball Arena</span>
-                        <span class="lang-ru">Война за лёд: Crystal Collective требует больше тренировочного времени на Болл Арене</span>
+                        <span class="lang-en">Carter's Secret Romance: Who Is the Mystery Brunette?</span>
+                        <span class="lang-ru">Тайный роман Картера: кто эта загадочная брюнетка?</span>
                     </h3>
                     <p class="news-excerpt">
-                        <span class="lang-en">Figure skating team frustrated with "second-class treatment" at shared facility.</span>
-                        <span class="lang-ru">Команда фигуристов разочарована «второсортным отношением» на общем объекте.</span>
+                        <span class="lang-en">Rookie sensation spotted leaving upscale restaurant with unidentified woman. Teammates claim to know nothing.</span>
+                        <span class="lang-ru">Сенсационного новичка видели выходящим из дорогого ресторана с неизвестной девушкой. Товарищи по команде утверждают, что ничего не знают.</span>
                     </p>
                 </article>
             </div>
@@ -1058,273 +841,93 @@
 
         <!-- TEAM NEWS -->
         <div class="news-grid-header">
-            <h2 class="grid-title">
-                <span class="lang-en">TEAM NEWS</span>
-                <span class="lang-ru">НОВОСТИ КОМАНДЫ</span>
-            </h2>
-            <a href="#" class="view-all">
-                <span class="lang-en">View All</span>
-                <span class="lang-ru">Все</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            <h2 class="grid-title"><span class="lang-en">TEAM NEWS</span><span class="lang-ru">НОВОСТИ КОМАНДЫ</span></h2>
+            <a href="#" class="view-all"><span class="lang-en">View All</span><span class="lang-ru">Все</span> <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div class="news-grid">
             <article class="news-card" onclick="openArticle('carter-spotlight')">
-                <div class="news-card-image">
-                    <i class="fas fa-image"></i>
-                    <span class="card-badge interview">
-                        <span class="lang-en">Interview</span>
-                        <span class="lang-ru">Интервью</span>
-                    </span>
-                </div>
                 <div class="news-card-content">
+                    <span class="card-badge interview"><span class="lang-en">Interview</span><span class="lang-ru">Интервью</span></span>
                     <div class="news-source">
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
-                        <span class="source-date">
-                            <span class="lang-en">• 1 day ago</span>
-                            <span class="lang-ru">• 1 день назад</span>
-                        </span>
+                        <span class="source-date"><span class="lang-en">• 1 day ago</span><span class="lang-ru">• 1 день назад</span></span>
                     </div>
                     <h3 class="news-title">
-                        <span class="lang-en">Rookie Sensation: Leo Carter Opens Up About Pressure and Expectations</span>
-                        <span class="lang-ru">Сенсационный новичок: Лео Картер откровенно о давлении и ожиданиях</span>
+                        <span class="lang-en">"I'm Still Figuring It Out": Carter Opens Up About Fame, Pressure, and Living With Shaw</span>
+                        <span class="lang-ru">«Я всё ещё разбираюсь»: Картер откровенно о славе, давлении и жизни с Шоу</span>
                     </h3>
                     <p class="news-excerpt">
-                        <span class="lang-en">In a rare interview, the 21-year-old discusses life in the NHL spotlight and the weight of being called "the future."</span>
-                        <span class="lang-ru">В редком интервью 21-летний игрок рассказывает о жизни под прицелом НХЛ и тяжести звания «будущее команды».</span>
+                        <span class="lang-en">The 21-year-old rookie discusses the surreal experience of sudden stardom and why his roommate is the only one who doesn't laugh at him.</span>
+                        <span class="lang-ru">21-летний новичок рассказывает о сюрреалистичном опыте внезапной славы и почему его сосед — единственный, кто над ним не смеётся.</span>
                     </p>
                     <div class="news-tags">
-                        <span class="news-tag player">
-                            <span class="lang-en">Leo Carter</span>
-                            <span class="lang-ru">Лео Картер</span>
-                        </span>
+                        <span class="news-tag player"><span class="lang-en">Leo Carter</span><span class="lang-ru">Лео Картер</span></span>
                     </div>
                 </div>
             </article>
 
             <article class="news-card" onclick="openArticle('shaw-defense')">
-                <div class="news-card-image">
-                    <i class="fas fa-image"></i>
-                </div>
                 <div class="news-card-content">
                     <div class="news-source">
                         <div class="source-logo">HH</div>
                         <span class="source-name">Hockey Herald</span>
-                        <span class="source-date">
-                            <span class="lang-en">• 2 days ago</span>
-                            <span class="lang-ru">• 2 дня назад</span>
-                        </span>
+                        <span class="source-date"><span class="lang-en">• 2 days ago</span><span class="lang-ru">• 2 дня назад</span></span>
                     </div>
                     <h3 class="news-title">
-                        <span class="lang-en">Shaw's Quiet Dominance: The Numbers Behind Denver's Shutdown Defenseman</span>
-                        <span class="lang-ru">Тихое доминирование Шоу: цифры за главным защитником Денвера</span>
+                        <span class="lang-en">The Ghost Who Wins Games: Inside Shaw's Quiet Dominance</span>
+                        <span class="lang-ru">Призрак, который выигрывает матчи: тихое доминирование Шоу</span>
                     </h3>
                     <p class="news-excerpt">
-                        <span class="lang-en">Miles Shaw doesn't make headlines, but advanced stats show he's one of the league's most effective defenders.</span>
-                        <span class="lang-ru">Майлз Шоу не попадает в заголовки, но продвинутая статистика показывает — он один из самых эффективных защитников лиги.</span>
+                        <span class="lang-en">He doesn't give interviews, doesn't have social media, and brings tea to morning meetings. He's also the team's most valuable player.</span>
+                        <span class="lang-ru">Он не даёт интервью, у него нет соцсетей, и он приносит чай на утренние собрания. Он также самый ценный игрок команды.</span>
                     </p>
                     <div class="news-tags">
-                        <span class="news-tag player">
-                            <span class="lang-en">Miles Shaw</span>
-                            <span class="lang-ru">Майлз Шоу</span>
-                        </span>
+                        <span class="news-tag player"><span class="lang-en">Miles Shaw</span><span class="lang-ru">Майлз Шоу</span></span>
                     </div>
                 </div>
             </article>
 
             <article class="news-card" onclick="openArticle('trade-rumors')">
-                <div class="news-card-image">
-                    <i class="fas fa-image"></i>
-                    <span class="card-badge rumor">
-                        <span class="lang-en">Rumor</span>
-                        <span class="lang-ru">Слухи</span>
-                    </span>
-                </div>
                 <div class="news-card-content">
+                    <span class="card-badge rumor"><span class="lang-en">Rumor</span><span class="lang-ru">Слухи</span></span>
                     <div class="news-source">
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
-                        <span class="source-date">
-                            <span class="lang-en">• 3 days ago</span>
-                            <span class="lang-ru">• 3 дня назад</span>
-                        </span>
+                        <span class="source-date"><span class="lang-en">• 3 days ago</span><span class="lang-ru">• 3 дня назад</span></span>
                     </div>
                     <h3 class="news-title">
-                        <span class="lang-en">Trade Deadline Approaching: Which Hellhounds Are On the Block?</span>
-                        <span class="lang-ru">Дедлайн обменов приближается: кого из Hellhounds могут обменять?</span>
+                        <span class="lang-en">Trade Deadline Chaos: Hellhounds Desperate for Goaltending Help</span>
+                        <span class="lang-ru">Хаос дедлайна обменов: Hellhounds отчаянно ищут вратаря</span>
                     </h3>
                     <p class="news-excerpt">
-                        <span class="lang-en">League insiders suggest Denver's front office is "listening to offers" on several roster players.</span>
-                        <span class="lang-ru">Инсайдеры лиги утверждают, что руководство Денвера «слушает предложения» по нескольким игрокам состава.</span>
+                        <span class="lang-en">With Murphy's future uncertain, sources say Denver is willing to pay "whatever it takes" to secure playoff-ready netminding.</span>
+                        <span class="lang-ru">С неопределённым будущим Мёрфи источники говорят, что Денвер готов заплатить «любую цену» за готового к плей-офф вратаря.</span>
                     </p>
-                </div>
-            </article>
-        </div>
-
-        <!-- CRYSTAL COLLECTIVE NEWS -->
-        <div class="news-grid-header">
-            <h2 class="grid-title" style="color: var(--crystal-light);">
-                <i class="fas fa-snowflake" style="margin-right: 10px;"></i>
-                CRYSTAL COLLECTIVE
-            </h2>
-            <a href="#" class="view-all" style="color: var(--crystal-light);">
-                <span class="lang-en">View All</span>
-                <span class="lang-ru">Все</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-
-        <div class="news-grid">
-            <article class="news-card crystal-news" onclick="openArticle('crystal-rivalry')">
-                <div class="news-card-image">
-                    <i class="fas fa-image"></i>
-                    <span class="card-badge crystal">
-                        <span class="lang-en">Feature</span>
-                        <span class="lang-ru">Репортаж</span>
-                    </span>
-                </div>
-                <div class="news-card-content">
-                    <div class="news-source">
-                        <div class="source-logo" style="color: var(--crystal-blue);">DP</div>
-                        <span class="source-name">Denver Post</span>
-                        <span class="source-date">
-                            <span class="lang-en">• 4 days ago</span>
-                            <span class="lang-ru">• 4 дня назад</span>
-                        </span>
-                    </div>
-                    <h3 class="news-title">
-                        <span class="lang-en">Fire and Ice: Inside the Tense Relationship Between Hellhounds and Crystal Collective</span>
-                        <span class="lang-ru">Огонь и лёд: внутри напряжённых отношений между Hellhounds и Crystal Collective</span>
-                    </h3>
-                    <p class="news-excerpt">
-                        <span class="lang-en">They share an arena but couldn't be more different. A deep dive into Ball Arena's unlikely cohabitants.</span>
-                        <span class="lang-ru">Они делят арену, но не могут быть более разными. Глубокое погружение в жизнь неожиданных соседей Болл Арены.</span>
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag crystal">Crystal Collective</span>
-                        <span class="news-tag">
-                            <span class="lang-en">Feature</span>
-                            <span class="lang-ru">Репортаж</span>
-                        </span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="news-card crystal-news" onclick="openArticle('crystal-gala')">
-                <div class="news-card-image">
-                    <i class="fas fa-image"></i>
-                    <span class="card-badge drama">
-                        <span class="lang-en">Drama</span>
-                        <span class="lang-ru">Драма</span>
-                    </span>
-                </div>
-                <div class="news-card-content">
-                    <div class="news-source">
-                        <div class="source-logo" style="color: var(--crystal-blue);">PD</div>
-                        <span class="source-name">Puck Daily</span>
-                        <span class="source-date">
-                            <span class="lang-en">• 5 days ago</span>
-                            <span class="lang-ru">• 5 дней назад</span>
-                        </span>
-                    </div>
-                    <h3 class="news-title">
-                        <span class="lang-en">Awkward Encounter: Sterling and Crystal Collective Star Spotted in Heated Exchange at Charity Gala</span>
-                        <span class="lang-ru">Неловкая встреча: Стерлинга и звезду Crystal Collective заметили в горячем споре на благотворительном гала</span>
-                    </h3>
-                    <p class="news-excerpt">
-                        <span class="lang-en">Witnesses describe "tense words" between the hockey star and figure skating champion at Denver's annual sports gala.</span>
-                        <span class="lang-ru">Свидетели описывают «напряжённые слова» между хоккейной звездой и чемпионкой по фигурному катанию на ежегодном спортивном гала Денвера.</span>
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag player">
-                            <span class="lang-en">Chase Sterling</span>
-                            <span class="lang-ru">Чейз Стерлинг</span>
-                        </span>
-                        <span class="news-tag crystal">Crystal Collective</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="news-card crystal-news" onclick="openArticle('crystal-schedule')">
-                <div class="news-card-image">
-                    <i class="fas fa-image"></i>
-                </div>
-                <div class="news-card-content">
-                    <div class="news-source">
-                        <div class="source-logo" style="color: var(--crystal-blue);">MH</div>
-                        <span class="source-name">Mile High Sports</span>
-                        <span class="source-date">
-                            <span class="lang-en">• 1 week ago</span>
-                            <span class="lang-ru">• 1 неделю назад</span>
-                        </span>
-                    </div>
-                    <h3 class="news-title">
-                        <span class="lang-en">Crystal Collective Announces Winter Showcase at Ball Arena</span>
-                        <span class="lang-ru">Crystal Collective объявляет о зимнем шоу на Болл Арене</span>
-                    </h3>
-                    <p class="news-excerpt">
-                        <span class="lang-en">The figure skating team's biggest event of the year will take place during Hellhounds' road trip.</span>
-                        <span class="lang-ru">Главное событие года для команды фигуристов пройдёт во время выездной серии Hellhounds.</span>
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag crystal">Crystal Collective</span>
-                        <span class="news-tag">
-                            <span class="lang-en">Event</span>
-                            <span class="lang-ru">Событие</span>
-                        </span>
-                    </div>
                 </div>
             </article>
         </div>
 
         <!-- NEWS SOURCES -->
         <div class="sources-section">
-            <h3 class="sources-title">
-                <span class="lang-en">Our Sources</span>
-                <span class="lang-ru">Наши источники</span>
-            </h3>
+            <h3 class="sources-title"><span class="lang-en">Our Sources</span><span class="lang-ru">Наши источники</span></h3>
             <div class="sources-grid">
                 <div class="source-item">
                     <div class="source-icon denver">DP</div>
-                    <div class="source-details">
-                        Denver Post Sports
-                        <span>
-                            <span class="lang-en">Local Coverage</span>
-                            <span class="lang-ru">Местные новости</span>
-                        </span>
-                    </div>
+                    <div class="source-details">Denver Post Sports<span><span class="lang-en">Local Coverage</span><span class="lang-ru">Местные новости</span></span></div>
                 </div>
                 <div class="source-item">
                     <div class="source-icon herald">HH</div>
-                    <div class="source-details">
-                        The Hockey Herald
-                        <span>
-                            <span class="lang-en">NHL Analysis</span>
-                            <span class="lang-ru">Аналитика НХЛ</span>
-                        </span>
-                    </div>
+                    <div class="source-details">The Hockey Herald<span><span class="lang-en">NHL Analysis</span><span class="lang-ru">Аналитика НХЛ</span></span></div>
                 </div>
                 <div class="source-item">
                     <div class="source-icon puck">PD</div>
-                    <div class="source-details">
-                        Puck Daily
-                        <span>
-                            <span class="lang-en">Rumors & Insider</span>
-                            <span class="lang-ru">Слухи и инсайды</span>
-                        </span>
-                    </div>
+                    <div class="source-details">Puck Daily<span><span class="lang-en">Rumors & Insider</span><span class="lang-ru">Слухи и инсайды</span></span></div>
                 </div>
                 <div class="source-item">
                     <div class="source-icon mile">MH</div>
-                    <div class="source-details">
-                        Mile High Sports
-                        <span>
-                            <span class="lang-en">Denver Sports</span>
-                            <span class="lang-ru">Спорт Денвера</span>
-                        </span>
-                    </div>
+                    <div class="source-details">Mile High Sports<span><span class="lang-en">Denver Sports</span><span class="lang-ru">Спорт Денвера</span></span></div>
                 </div>
             </div>
         </div>
@@ -1336,70 +939,65 @@
     <!-- MURPHY INJURY ARTICLE -->
     <div class="article-overlay" id="article-murphy-injury">
         <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('murphy-injury')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
+            <button class="article-close" onclick="closeArticle('murphy-injury')"><i class="fas fa-times"></i></button>
             <div class="article-content">
                 <div class="article-meta">
                     <div class="article-source">
                         <div class="source-logo">DP</div>
                         <span class="source-name">Denver Post Sports</span>
                     </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 15, 2024 • 8 min read</span>
-                        <span class="lang-ru">15 декабря 2024 • 8 мин. чтения</span>
-                    </span>
+                    <span class="article-date"><span class="lang-en">December 15, 2024 • 8 min read</span><span class="lang-ru">15 декабря 2024 • 8 мин. чтения</span></span>
                 </div>
                 <h1 class="article-title">
-                    <span class="lang-en">Murphy's Season in Jeopardy: Hellhounds Goaltender Faces Long Recovery After Shoulder Surgery</span>
-                    <span class="lang-ru">Сезон Мёрфи под угрозой: вратарь Hellhounds столкнулся с долгим восстановлением после операции на плече</span>
+                    <span class="lang-en">Murphy's Career in Jeopardy: Third Surgery Raises Questions About Goaltender's Future</span>
+                    <span class="lang-ru">Карьера Мёрфи под угрозой: третья операция ставит вопрос о будущем вратаря</span>
                 </h1>
                 <div class="article-body">
                     <p>
-                        <span class="lang-en"> Caleb Murphy, the 29-year-old goaltender who has anchored Denver's defense for the past five seasons, underwent successful surgery on his right shoulder yesterday at St. Catherine's Medical Center.</span>
-                        <span class="lang-ru"> Калеб Мёрфи, 29-летний вратарь, который был опорой обороны Денвера последние пять сезонов, вчера успешно перенёс операцию на правом плече в Медицинском центре Св. Екатерины.</span>
+                        <span class="lang-en">Caleb Murphy, the 29-year-old goaltender who was once considered the backbone of Denver's championship aspirations, underwent his third shoulder surgery yesterday at St. Catherine's Medical Center. The procedure, performed by Dr. Michael Chen, lasted over four hours.</span>
+                        <span class="lang-ru">Калеб Мёрфи, 29-летний вратарь, которого когда-то считали основой чемпионских амбиций Денвера, вчера перенёс третью операцию на плече в Медицинском центре Св. Екатерины. Процедура, проведённая доктором Майклом Ченом, длилась более четырёх часов.</span>
                     </p>
 
                     <p>
-                        <span class="lang-en">The procedure, performed by renowned sports surgeon Dr. Michael Chen, addressed a chronic instability issue that has plagued Murphy for years. Sources close to the team indicate the injury was more severe than initially reported.</span>
-                        <span class="lang-ru">Процедуру провёл известный спортивный хирург доктор Майкл Чен. Операция была направлена на устранение хронической нестабильности, которая мучила Мёрфи годами. Источники, близкие к команде, сообщают, что травма была серьёзнее, чем сообщалось изначально.</span>
+                        <span class="lang-en">For those who have followed Murphy's career, this surgery represents more than just another setback—it's a potential ending to one of hockey's most heartbreaking "what if" stories. Three years ago, Murphy was posting a .918 save percentage and being mentioned alongside the league's elite. Now, he can't lift his arm above his shoulder without risking dislocation.</span>
+                        <span class="lang-ru">Для тех, кто следил за карьерой Мёрфи, эта операция — не просто очередная неудача, а потенциальный конец одной из самых душераздирающих историй «а что если» в хоккее. Три года назад Мёрфи показывал 91.8% отражённых бросков и упоминался наравне с элитой лиги. Теперь он не может поднять руку выше плеча без риска вывиха.</span>
                     </p>
 
                     <blockquote>
-                        <span class="lang-en">"Caleb is one of the toughest competitors I've ever been around. He's been playing through pain that would sideline most players. This surgery was necessary—his long-term health had to come first."<br>— Alexander Reed, Team Captain</span>
-                        <span class="lang-ru">«Калеб — один из самых стойких соперников, которых я встречал. Он играл через боль, которая вывела бы из строя большинство игроков. Эта операция была необходима — его долгосрочное здоровье должно быть на первом месте.»<br>— Александр Рид, капитан команды</span>
+                        <span class="lang-en">"Caleb is the toughest man I know. He's been playing through pain that would have ended most careers years ago. But there comes a point where toughness isn't enough. His body needs to heal."<br>— Alexander Reed, Team Captain</span>
+                        <span class="lang-ru">«Калеб — самый стойкий человек, которого я знаю. Он играл через боль, которая завершила бы большинство карьер годы назад. Но наступает момент, когда стойкости недостаточно. Его тело должно исцелиться.»<br>— Александр Рид, капитан команды</span>
                     </blockquote>
 
                     <p>
-                        <span class="lang-en">The timeline for Murphy's return remains uncertain, with team physicians estimating a minimum of 4-6 months of rehabilitation. This effectively rules him out for the remainder of the regular season and potentially the playoffs.</span>
-                        <span class="lang-ru">Сроки возвращения Мёрфи остаются неопределёнными: врачи команды оценивают минимальный срок реабилитации в 4-6 месяцев. Фактически это исключает его участие в оставшейся части регулярного сезона и, возможно, в плей-офф.</span>
+                        <span class="lang-en">Sources close to Murphy paint a picture of a man struggling with more than just physical pain. The goaltender, known for his sardonic humor and impenetrable emotional walls, has reportedly refused all visitors since checking into the hospital. When asked about his recovery timeline, Murphy's only response was reportedly: "Ask the fish. They're better listeners than doctors."</span>
+                        <span class="lang-ru">Источники, близкие к Мёрфи, рисуют картину человека, борющегося не только с физической болью. Вратарь, известный своим язвительным юмором и непробиваемыми эмоциональными стенами, по сообщениям, отказал всем посетителям с момента поступления в больницу. На вопрос о сроках восстановления Мёрфи, по слухам, ответил: «Спросите рыб. Они лучше слушают, чем врачи.»</span>
                     </p>
 
                     <p>
-                        <span class="lang-en">[PLACEHOLDER - Add more content about team reaction, backup goaltender situation, etc.]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить больше о реакции команды, ситуации с запасным вратарём и т.д.]</span>
+                        <span class="lang-en">The Hellhounds have hired a new physical therapist specifically for Murphy's rehabilitation—a recent medical school graduate whose optimism has already clashed with Murphy's infamous cynicism. Team sources say the first meeting between them lasted exactly four minutes before Murphy walked out.</span>
+                        <span class="lang-ru">Hellhounds наняли нового физиотерапевта специально для реабилитации Мёрфи — недавнюю выпускницу медицинского, чей оптимизм уже столкнулся со знаменитым цинизмом Мёрфи. Источники в команде говорят, что первая встреча между ними длилась ровно четыре минуты, прежде чем Мёрфи ушёл.</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">The locker room, meanwhile, is described as "devastated." Murphy may not be the most social player on the roster, but his presence—steady, unshakeable, always there when it matters—has been the foundation of this team's identity. Without him, the Hellhounds must now confront an uncomfortable question: who are they?</span>
+                        <span class="lang-ru">Раздевалка тем временем описывается как «опустошённая». Мёрфи, возможно, не самый общительный игрок в составе, но его присутствие — стабильное, непоколебимое, всегда рядом, когда это важно — было основой идентичности этой команды. Без него Hellhounds теперь должны столкнуться с неудобным вопросом: кто они?</span>
+                    </p>
+
+                    <blockquote>
+                        <span class="lang-en">"Doc doesn't talk much. But when you're on the ice and you look back and see him there... you know nothing's getting through. That's worth more than words."<br>— Miles Shaw, Defenseman</span>
+                        <span class="lang-ru">«Док мало говорит. Но когда ты на льду и оглядываешься и видишь его там... ты знаешь, что ничто не пройдёт. Это стоит больше слов.»<br>— Майлз Шоу, защитник</span>
+                    </blockquote>
+
+                    <p>
+                        <span class="lang-en">Murphy's recovery timeline remains uncertain. Team physicians estimate 4-6 months of rehabilitation at minimum, but given his history of complications, that number could stretch significantly longer. The question isn't just whether Murphy will play again—it's whether he'll ever trust another doctor enough to try.</span>
+                        <span class="lang-ru">Сроки восстановления Мёрфи остаются неопределёнными. Врачи команды оценивают минимум 4-6 месяцев реабилитации, но учитывая его историю осложнений, этот срок может значительно растянуться. Вопрос не только в том, будет ли Мёрфи снова играть — но в том, сможет ли он когда-нибудь достаточно довериться врачу, чтобы попытаться.</span>
                     </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">
-                        <span class="lang-en">Caleb Murphy</span>
-                        <span class="lang-ru">Калеб Мёрфи</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Injury</span>
-                        <span class="lang-ru">Травма</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Surgery</span>
-                        <span class="lang-ru">Операция</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Analysis</span>
-                        <span class="lang-ru">Анализ</span>
-                    </span>
+                    <span class="news-tag player"><span class="lang-en">Caleb Murphy</span><span class="lang-ru">Калеб Мёрфи</span></span>
+                    <span class="news-tag"><span class="lang-en">Injury</span><span class="lang-ru">Травма</span></span>
+                    <span class="news-tag"><span class="lang-en">Surgery</span><span class="lang-ru">Операция</span></span>
+                    <span class="news-tag"><span class="lang-en">Analysis</span><span class="lang-ru">Анализ</span></span>
                 </div>
             </div>
         </div>
@@ -1408,178 +1006,181 @@
     <!-- STERLING ALL-STAR ARTICLE -->
     <div class="article-overlay" id="article-sterling-allstar">
         <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('sterling-allstar')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
+            <button class="article-close" onclick="closeArticle('sterling-allstar')"><i class="fas fa-times"></i></button>
             <div class="article-content">
                 <div class="article-meta">
                     <div class="article-source">
                         <div class="source-logo">HH</div>
                         <span class="source-name">The Hockey Herald</span>
                     </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 15, 2024 • 5 min read</span>
-                        <span class="lang-ru">15 декабря 2024 • 5 мин. чтения</span>
-                    </span>
+                    <span class="article-date"><span class="lang-en">December 15, 2024 • 6 min read</span><span class="lang-ru">15 декабря 2024 • 6 мин. чтения</span></span>
                 </div>
                 <h1 class="article-title">
-                    <span class="lang-en">Sterling's All-Star Selection: Deserved Honor or Popularity Contest?</span>
-                    <span class="lang-ru">Стерлинг в Матче звёзд: заслуженная честь или конкурс популярности?</span>
+                    <span class="lang-en">Sterling's All-Star Nod: Talent or Daddy's Money?</span>
+                    <span class="lang-ru">Стерлинг в Матче звёзд: талант или деньги папочки?</span>
                 </h1>
                 <div class="article-body">
                     <p>
-                        <span class="lang-en"> Chase Sterling has been named to the NHL All-Star Game for the third consecutive year, cementing his status as one of the league's most marketable stars. But is the "Golden Boy" truly among the game's elite, or is his selection driven by jersey sales and Instagram followers?</span>
-                        <span class="lang-ru"> Чейз Стерлинг был назван участником Матча всех звёзд НХЛ третий год подряд, укрепив свой статус одной из самых продаваемых звёзд лиги. Но действительно ли «Золотой мальчик» среди элиты, или его выбор обусловлен продажами футболок и подписчиками в Instagram?</span>
+                        <span class="lang-en">Chase Sterling has been named to the NHL All-Star Game for the third consecutive year. The announcement, which should have been a celebration of one of hockey's most electric talents, has instead reignited a debate that has followed Sterling his entire career: does the "Golden Boy" deserve his spotlight, or is he simply too profitable to ignore?</span>
+                        <span class="lang-ru">Чейз Стерлинг был назван участником Матча всех звёзд НХЛ третий год подряд. Объявление, которое должно было стать праздником одного из самых электрических талантов хоккея, вместо этого разожгло дебаты, которые преследуют Стерлинга всю его карьеру: заслуживает ли «Золотой мальчик» своего света софитов, или он просто слишком прибылен, чтобы его игнорировать?</span>
                     </p>
 
                     <p>
-                        <span class="lang-en">Sterling's numbers this season—38 goals and 54 assists through 82 games—are undeniably impressive. But critics point to his defensive lapses and question whether his flashy style translates to playoff success.</span>
-                        <span class="lang-ru">Статистика Стерлинга в этом сезоне — 38 голов и 54 передачи за 82 игры — бесспорно впечатляет. Но критики указывают на его провалы в обороне и сомневаются, приведёт ли его яркий стиль к успеху в плей-офф.</span>
+                        <span class="lang-en">Let's be clear: Sterling's numbers are impressive. 38 goals and 54 assists through 82 games last season. A highlight reel that gets millions of views. A face that sells jerseys from Denver to Dubai. But critics point to his defensive lapses, his tendency to disappear in big moments, and—most damningly—his father's $4.2 billion net worth and extensive connections within the league's ownership circles.</span>
+                        <span class="lang-ru">Давайте будем честны: статистика Стерлинга впечатляет. 38 голов и 54 передачи за 82 игры в прошлом сезоне. Подборка лучших моментов, набирающая миллионы просмотров. Лицо, которое продаёт футболки от Денвера до Дубая. Но критики указывают на его провалы в обороне, склонность исчезать в важные моменты и — что самое обвинительное — состояние его отца в $4.2 миллиарда и обширные связи в кругах владельцев лиги.</span>
                     </p>
 
                     <blockquote>
-                        <span class="lang-en">"Chase is a generational talent. The All-Star Game is about entertainment, and nobody entertains like he does."<br>— NHL Marketing Executive (anonymous)</span>
-                        <span class="lang-ru">«Чейз — талант поколения. Матч всех звёзд — это развлечение, и никто не развлекает так, как он.»<br>— Маркетинговый директор НХЛ (анонимно)</span>
+                        <span class="lang-en">"Chase is a generational talent. Full stop. The All-Star Game is about entertainment, and nobody entertains like Sterling. The kid puts butts in seats."<br>— NHL Marketing Executive (speaking anonymously)</span>
+                        <span class="lang-ru">«Чейз — талант поколения. Точка. Матч всех звёзд — это развлечение, и никто не развлекает как Стерлинг. Парень заполняет трибуны.»<br>— Маркетинговый директор НХЛ (анонимно)</span>
                     </blockquote>
 
                     <p>
-                        <span class="lang-en">[PLACEHOLDER - Add more analysis, quotes, debate about his selection]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить больше анализа, цитат, дебатов о его выборе]</span>
+                        <span class="lang-en">The tabloid drama certainly hasn't helped Sterling's case. In the past month alone, he's been photographed leaving three different clubs with three different women, crashed a charity gala after-party, and was spotted in a heated exchange with a Crystal Collective figure skater that witnesses described as "explosive." His PR team has been working overtime.</span>
+                        <span class="lang-ru">Таблоидные скандалы определённо не помогли делу Стерлинга. Только за последний месяц его фотографировали выходящим из трёх разных клубов с тремя разными женщинами, он ворвался на афтерпати благотворительного гала и был замечен в горячем споре с фигуристкой Crystal Collective, который свидетели описали как «взрывной». Его PR-команда работает сверхурочно.</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">Teammates, for their part, seem torn. Captain Alexander Reed—whose relationship with Sterling has always been complicated—offered only a terse "He earned it" when asked about the selection. Meanwhile, rookie Leo Carter was more enthusiastic: "Chase is the most talented guy I've ever played with. Also the most annoying. But mostly talented."</span>
+                        <span class="lang-ru">Товарищи по команде, со своей стороны, похоже, разрываются. Капитан Александр Рид — чьи отношения со Стерлингом всегда были сложными — предложил лишь краткое «Он это заслужил», когда его спросили о выборе. Тем временем новичок Лео Картер был более восторженным: «Чейз — самый талантливый парень, с которым я когда-либо играл. Также самый раздражающий. Но в основном талантливый.»</span>
+                    </p>
+
+                    <blockquote>
+                        <span class="lang-en">"You want to know if I deserve it? Watch the tape. I don't need my father's money to score goals. I need my hands, my eyes, and a stick. Everything else is noise."<br>— Chase Sterling, responding to critics</span>
+                        <span class="lang-ru">«Хотите знать, заслуживаю ли я? Посмотрите записи. Мне не нужны деньги отца, чтобы забивать голы. Мне нужны мои руки, мои глаза и клюшка. Всё остальное — шум.»<br>— Чейз Стерлинг, в ответ критикам</span>
+                    </blockquote>
+
+                    <p>
+                        <span class="lang-en">Whether Sterling's selection was merit-based or marketing-driven, one thing is certain: all eyes will be on the Golden Boy when he takes the ice in February. And love him or hate him, that's exactly what the NHL wants.</span>
+                        <span class="lang-ru">Был ли выбор Стерлинга основан на заслугах или маркетинге, одно точно: все взгляды будут прикованы к Золотому мальчику, когда он выйдет на лёд в феврале. И любите его или ненавидьте — это именно то, чего хочет НХЛ.</span>
                     </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">
-                        <span class="lang-en">Chase Sterling</span>
-                        <span class="lang-ru">Чейз Стерлинг</span>
-                    </span>
+                    <span class="news-tag player"><span class="lang-en">Chase Sterling</span><span class="lang-ru">Чейз Стерлинг</span></span>
                     <span class="news-tag">All-Star</span>
-                    <span class="news-tag">
-                        <span class="lang-en">Opinion</span>
-                        <span class="lang-ru">Мнение</span>
-                    </span>
+                    <span class="news-tag"><span class="lang-en">Opinion</span><span class="lang-ru">Мнение</span></span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- REED PRESSURE ARTICLE -->
-    <div class="article-overlay" id="article-reed-pressure">
-        <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('reed-pressure')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
+<div class="article-overlay" id="article-reed-pressure">
+    <div class="article-modal">
+        <button class="article-close" onclick="closeArticle('reed-pressure')"><i class="fas fa-times"></i></button>
+        <div class="article-content">
+            <div class="article-meta">
+                <div class="article-source">
+                    <div class="source-logo">MH</div>
+                    <span class="source-name">Mile High Sports</span>
+                </div>
+                <span class="article-date"><span class="lang-en">December 14, 2024 • 7 min read</span><span class="lang-ru">14 декабря 2024 • 7 мин. чтения</span></span>
             </div>
-            <div class="article-content">
-                <div class="article-meta">
-                    <div class="article-source">
-                        <div class="source-logo">MH</div>
-                        <span class="source-name">Mile High Sports</span>
-                    </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 14, 2024 • 7 min read</span>
-                        <span class="lang-ru">14 декабря 2024 • 7 мин. чтения</span>
-                    </span>
-                </div>
-                <h1 class="article-title">
-                    <span class="lang-en">Captain Under Pressure: Is Reed Losing His Grip on the Locker Room?</span>
-                    <span class="lang-ru">Капитан под давлением: Рид теряет контроль над раздевалкой?</span>
-                </h1>
-                <div class="article-body">
-                    <p>
-                        <span class="lang-en"> Alexander Reed has worn the captain's "C" for five seasons, leading the Hellhounds with an iron fist and unwavering discipline. But cracks are beginning to show in the 31-year-old's leadership.</span>
-                        <span class="lang-ru"> Александр Рид носит капитанскую «К» пять сезонов, ведя Hellhounds железной рукой и непоколебимой дисциплиной. Но в лидерстве 31-летнего начинают появляться трещины.</span>
-                    </p>
+            <h1 class="article-title">
+                <span class="lang-en">The Duke's Dilemma: Reed Struggles to Connect With Young Core</span>
+                <span class="lang-ru">Дилемма Герцога: Рид не может найти общий язык с молодёжью</span>
+            </h1>
+            <div class="article-body">
+                <p>
+                    <span class="lang-en">Alexander Reed has worn the captain's "C" for five seasons. In that time, he's led the Hellhounds to three playoff appearances, earned the nickname "The Duke" for his aristocratic bearing, and built a reputation as the most disciplined player in the league. But lately, cracks are beginning to show—not in his game, but in his leadership.</span>
+                    <span class="lang-ru">Александр Рид носит капитанскую «К» пять сезонов. За это время он привёл Hellhounds к трём выходам в плей-офф, заработал прозвище «Герцог» за аристократическую осанку и построил репутацию самого дисциплинированного игрока лиги. Но в последнее время появляются трещины — не в его игре, а в его лидерстве.</span>
+                </p>
 
-                    <p>
-                        <span class="lang-en">Multiple sources within the organization describe a growing disconnect between Reed and the team's younger players. His demanding style, once respected, is now seen by some as "outdated" and "inflexible."</span>
-                        <span class="lang-ru">Несколько источников внутри организации описывают растущий разрыв между Ридом и молодыми игроками команды. Его требовательный стиль, когда-то уважаемый, теперь некоторые считают «устаревшим» и «негибким».</span>
-                    </p>
+                <p>
+                    <span class="lang-en">Multiple sources within the organization describe a growing disconnect between the 31-year-old veteran and the team's younger players. Reed's demanding style—5 AM workouts, film sessions that run hours long, zero tolerance for mistakes—was once respected. Now, some players describe it as "exhausting" and "out of touch."</span>
+                    <span class="lang-ru">Несколько источников внутри организации описывают растущий разрыв между 31-летним ветераном и молодыми игроками команды. Требовательный стиль Рида — тренировки в 5 утра, многочасовые разборы видео, нулевая терпимость к ошибкам — когда-то уважали. Теперь некоторые игроки описывают его как «изматывающий» и «оторванный от реальности».</span>
+                </p>
 
-                    <blockquote>
-                        <span class="lang-en">"Duke expects everyone to be like him—100% hockey, all the time. But not everyone can live like that. Not everyone wants to."<br>— Anonymous Hellhounds player</span>
-                        <span class="lang-ru">«Герцог ожидает, что все будут как он — 100% хоккей, всё время. Но не все могут так жить. Не все хотят.»<br>— Анонимный игрок Hellhounds</span>
-                    </blockquote>
+                <blockquote>
+                    <span class="lang-en">"Duke expects everyone to be like him—100% hockey, all the time. No social life, no distractions, no fun. But we're not robots. Some of us want to actually enjoy this."<br>— Anonymous Hellhounds player</span>
+                    <span class="lang-ru">«Герцог ожидает, что все будут как он — 100% хоккей, всё время. Никакой личной жизни, никаких отвлечений, никакого веселья. Но мы не роботы. Некоторые из нас хотят на самом деле наслаждаться этим.»<br>— Анонимный игрок Hellhounds</span>
+                </blockquote>
 
-                    <p>
-                        <span class="lang-en">[PLACEHOLDER - Add more about locker room dynamics, Reed's response, management's position]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить больше о динамике раздевалки, ответе Рида, позиции руководства]</span>
-                    </p>
-                </div>
-                <div class="article-tags">
-                    <span class="news-tag player">
-                        <span class="lang-en">Alexander Reed</span>
-                        <span class="lang-ru">Александр Рид</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Leadership</span>
-                        <span class="lang-ru">Лидерство</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Analysis</span>
-                        <span class="lang-ru">Анализ</span>
-                    </span>
-                </div>
+                <p>
+                    <span class="lang-en">The tension is particularly visible between Reed and Chase Sterling, whose flashy lifestyle represents everything the captain despises. Sources say the two barely speak outside of game situations, and their on-ice chemistry—once electric—has noticeably cooled.</span>
+                    <span class="lang-ru">Напряжённость особенно заметна между Ридом и Чейзом Стерлингом, чей яркий образ жизни представляет всё, что капитан презирает. Источники говорят, что они едва общаются вне игровых ситуаций, и их химия на льду — когда-то электрическая — заметно остыла.</span>
+                </p>
+
+                <p>
+                    <span class="lang-en">Reed lives alone in a downtown penthouse that teammates describe as "cold" and "like a museum"—all clean lines and expensive furniture, but nothing personal. No photos, no memorabilia, no signs that anyone actually lives there. It's the apartment of a man who has given everything to hockey and has nothing left over for anything else.</span>
+                    <span class="lang-ru">Рид живёт один в пентхаусе в центре города, который товарищи по команде описывают как «холодный» и «как музей» — сплошные чистые линии и дорогая мебель, но ничего личного. Никаких фотографий, никаких памятных вещей, никаких признаков того, что там кто-то живёт. Это квартира человека, который отдал всё хоккею и не оставил ничего для чего-либо ещё.</span>
+                </p>
+
+                <blockquote>
+                    <span class="lang-en">"Alex is the best captain I've ever played for. He just... forgets that not everyone processes things the way he does. He's so focused on being perfect that he doesn't realize he's pushing people away."<br>— Miles Shaw, Defenseman</span>
+                    <span class="lang-ru">«Алекс — лучший капитан, за которого я когда-либо играл. Он просто... забывает, что не все обрабатывают вещи так, как он. Он так сосредоточен на совершенстве, что не понимает, что отталкивает людей.»<br>— Майлз Шоу, защитник</span>
+                </blockquote>
+
+                <p>
+                    <span class="lang-en">Those who know Reed well say the pressure he puts on others is nothing compared to what he demands of himself. He's the first to arrive at practice and the last to leave. He watches film until his eyes burn. He's never satisfied, never content, never able to simply enjoy a win without immediately focusing on what went wrong.</span>
+                    <span class="lang-ru">Те, кто хорошо знает Рида, говорят, что давление, которое он оказывает на других — ничто по сравнению с тем, что он требует от себя. Он первым приходит на тренировку и последним уходит. Он смотрит записи, пока глаза не горят. Он никогда не удовлетворён, никогда не доволен, никогда не может просто насладиться победой, не сосредоточившись сразу на том, что пошло не так.</span>
+                </p>
+
+                <p>
+                    <span class="lang-en">Head Coach Marcus Thornton has declined to comment on the locker room dynamics, saying only that "every team has growing pains" and that "Alex has my full confidence." But with Murphy's injury creating additional stress and the playoffs approaching, the Hellhounds can't afford a fractured leadership structure. The Duke needs to adapt—or risk losing his kingdom.</span>
+                    <span class="lang-ru">Главный тренер Маркус Торнтон отказался комментировать динамику раздевалки, сказав лишь, что «у каждой команды есть трудности роста» и что «Алекс имеет моё полное доверие». Но с травмой Мёрфи, создающей дополнительный стресс, и приближающимся плей-офф, Hellhounds не могут позволить себе раскол в руководстве. Герцогу нужно адаптироваться — или рискнуть потерять своё королевство.</span>
+                </p>
+            </div>
+            <div class="article-tags">
+                <span class="news-tag player"><span class="lang-en">Alexander Reed</span><span class="lang-ru">Александр Рид</span></span>
+                <span class="news-tag"><span class="lang-en">Leadership</span><span class="lang-ru">Лидерство</span></span>
+                <span class="news-tag"><span class="lang-en">Analysis</span><span class="lang-ru">Анализ</span></span>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- CRYSTAL ARENA ARTICLE -->
-    <div class="article-overlay" id="article-crystal-arena">
+    <!-- CARTER MYSTERY ARTICLE -->
+    <div class="article-overlay" id="article-carter-mystery">
         <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('crystal-arena')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
+            <button class="article-close" onclick="closeArticle('carter-mystery')"><i class="fas fa-times"></i></button>
             <div class="article-content">
                 <div class="article-meta">
                     <div class="article-source">
-                        <div class="source-logo" style="color: var(--crystal-blue);">CC</div>
-                        <span class="source-name">Crystal Collective Press</span>
+                        <div class="source-logo">PD</div>
+                        <span class="source-name">Puck Daily</span>
                     </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 14, 2024 • 4 min read</span>
-                        <span class="lang-ru">14 декабря 2024 • 4 мин. чтения</span>
-                    </span>
+                    <span class="article-date"><span class="lang-en">December 14, 2024 • 4 min read</span><span class="lang-ru">14 декабря 2024 • 4 мин. чтения</span></span>
                 </div>
                 <h1 class="article-title">
-                    <span class="lang-en">Ice Time Wars: Crystal Collective Demands More Practice Hours at Ball Arena</span>
-                    <span class="lang-ru">Война за лёд: Crystal Collective требует больше тренировочного времени на Болл Арене</span>
+                    <span class="lang-en">Carter's Secret Romance: Who Is the Mystery Brunette?</span>
+                    <span class="lang-ru">Тайный роман Картера: кто эта загадочная брюнетка?</span>
                 </h1>
                 <div class="article-body">
                     <p>
-                        <span class="lang-en"> The Crystal Collective, Denver's premier figure skating ensemble, has formally requested additional practice time at Ball Arena, citing "inadequate access" to the facility they share with the Hellhounds.</span>
-                        <span class="lang-ru"> Crystal Collective, ведущий ансамбль фигурного катания Денвера, официально запросил дополнительное тренировочное время на Болл Арене, ссылаясь на «недостаточный доступ» к объекту, который они делят с Hellhounds.</span>
+                        <span class="lang-en">Leo Carter, the Hellhounds' 21-year-old rookie sensation, has been spotted multiple times over the past month with an unidentified young woman. The couple has been photographed leaving restaurants, walking through downtown Denver, and—most recently—holding hands at a local farmer's market. But who is she?</span>
+                        <span class="lang-ru">Лео Картер, 21-летний сенсационный новичок Hellhounds, был замечен несколько раз за последний месяц с неизвестной молодой женщиной. Пару фотографировали выходящей из ресторанов, гуляющей по центру Денвера и — совсем недавно — держащейся за руки на местном фермерском рынке. Но кто она?</span>
                     </p>
 
                     <p>
-                        <span class="lang-en">In a statement released today, Crystal Collective management expressed frustration with the current scheduling arrangement, which prioritizes hockey operations.</span>
-                        <span class="lang-ru">В заявлении, опубликованном сегодня, руководство Crystal Collective выразило разочарование текущим расписанием, которое отдаёт приоритет хоккейным операциям.</span>
+                        <span class="lang-en">Teammates claim to know nothing. When asked about Carter's dating life, Miles Shaw—his roommate—simply shrugged and said "Leo doesn't tell me anything." Chase Sterling was more colorful: "Rookie's got game? Good for him. About time someone on this team had a love life that isn't a disaster."</span>
+                        <span class="lang-ru">Товарищи по команде утверждают, что ничего не знают. На вопрос о личной жизни Картера Майлз Шоу — его сосед — просто пожал плечами и сказал: «Лео мне ничего не рассказывает». Чейз Стерлинг был более красноречив: «У новичка есть игра? Молодец. Пора бы кому-то в этой команде иметь личную жизнь, которая не катастрофа.»</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">What makes this story particularly intriguing is Carter's unusual secrecy. The rookie is known for being loud, cocky, and utterly incapable of keeping his mouth shut. Yet on this topic, he's been completely silent. When a reporter asked about the woman after practice, Carter turned bright red and mumbled something about "respecting privacy" before practically sprinting to the locker room.</span>
+                        <span class="lang-ru">Что делает эту историю особенно интригующей — необычная скрытность Картера. Новичок известен тем, что он громкий, самоуверенный и совершенно неспособный держать рот на замке. Однако на эту тему он полностью молчит. Когда репортёр спросил о женщине после тренировки, Картер покраснел и пробормотал что-то об «уважении к приватности», прежде чем практически убежать в раздевалку.</span>
                     </p>
 
                     <blockquote>
-                        <span class="lang-en">"We are world-class athletes who deserve world-class treatment. Being relegated to 6 AM practice slots while the hockey team gets prime evening hours is unacceptable."<br>— Crystal Collective Management</span>
-                        <span class="lang-ru">«Мы — спортсмены мирового класса, которые заслуживают соответствующего отношения. То, что нас отправляют на тренировки в 6 утра, пока хоккейная команда получает лучшие вечерние часы — неприемлемо.»<br>— Руководство Crystal Collective</span>
+                        <span class="lang-en">"I've never seen Leo nervous about anything. Kid scored a hat trick in his NHL debut and celebrated like it was nothing. But mention this girl and he turns into a tomato. It's hilarious."<br>— Anonymous Hellhounds source</span>
+                        <span class="lang-ru">«Я никогда не видел, чтобы Лео нервничал из-за чего-то. Парень забил хет-трик в своём дебюте в НХЛ и праздновал как ни в чём не бывало. Но упомяни эту девушку — и он превращается в помидор. Это уморительно.»<br>— Анонимный источник в Hellhounds</span>
                     </blockquote>
 
                     <p>
-                        <span class="lang-en">[PLACEHOLDER - Add arena response, Hellhounds' position, scheduling details]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить ответ арены, позицию Hellhounds, детали расписания]</span>
+                        <span class="lang-en">Eagle-eyed fans have noted that the mystery woman bears a striking resemblance to someone occasionally seen in the family section at Hellhounds games—specifically, in the area reserved for coaching staff families. This has led to rampant speculation, though no confirmation has been provided.</span>
+                        <span class="lang-ru">Внимательные фанаты заметили, что загадочная женщина поразительно похожа на кого-то, кого иногда видят в семейной секции на играх Hellhounds — конкретно, в зоне, зарезервированной для семей тренерского штаба. Это привело к бурным спекуляциям, хотя подтверждения не поступало.</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">One thing is certain: whatever Carter is hiding, he's hiding it very carefully. For a player known for oversharing, that silence speaks volumes.</span>
+                        <span class="lang-ru">Одно точно: что бы Картер ни скрывал, он скрывает это очень тщательно. Для игрока, известного чрезмерной откровенностью, это молчание говорит о многом.</span>
                     </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag crystal">Crystal Collective</span>
-                    <span class="news-tag">Ball Arena</span>
-                    <span class="news-tag">
-                        <span class="lang-en">Scheduling</span>
-                        <span class="lang-ru">Расписание</span>
-                    </span>
+                    <span class="news-tag player"><span class="lang-en">Leo Carter</span><span class="lang-ru">Лео Картер</span></span>
+                    <span class="news-tag"><span class="lang-en">Rumors</span><span class="lang-ru">Слухи</span></span>
+                    <span class="news-tag"><span class="lang-en">Gossip</span><span class="lang-ru">Сплетни</span></span>
                 </div>
             </div>
         </div>
@@ -1588,61 +1189,64 @@
     <!-- CARTER SPOTLIGHT ARTICLE -->
     <div class="article-overlay" id="article-carter-spotlight">
         <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('carter-spotlight')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
+            <button class="article-close" onclick="closeArticle('carter-spotlight')"><i class="fas fa-times"></i></button>
             <div class="article-content">
                 <div class="article-meta">
                     <div class="article-source">
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
                     </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 13, 2024 • 10 min read</span>
-                        <span class="lang-ru">13 декабря 2024 • 10 мин. чтения</span>
-                    </span>
+                    <span class="article-date"><span class="lang-en">December 13, 2024 • 10 min read</span><span class="lang-ru">13 декабря 2024 • 10 мин. чтения</span></span>
                 </div>
                 <h1 class="article-title">
-                    <span class="lang-en">Rookie Sensation: Leo Carter Opens Up About Pressure and Expectations</span>
-                    <span class="lang-ru">Сенсационный новичок: Лео Картер откровенно о давлении и ожиданиях</span>
+                    <span class="lang-en">"I'm Still Figuring It Out": Carter Opens Up About Fame, Pressure, and Living With Shaw</span>
+                    <span class="lang-ru">«Я всё ещё разбираюсь»: Картер откровенно о славе, давлении и жизни с Шоу</span>
                 </h1>
                 <div class="article-body">
                     <p>
-                        <span class="lang-en"> At 21 years old, Leo Carter is already being called "the future of the franchise." But behind the highlight-reel goals and electric speed lies a young man still figuring out who he is.</span>
-                        <span class="lang-ru"> В 21 год Лео Картера уже называют «будущим франшизы». Но за яркими голами и электрической скоростью скрывается молодой человек, который всё ещё пытается понять, кто он.</span>
+                        <span class="lang-en">Leo Carter didn't expect any of this. Eighteen months ago, he was a college kid from Ohio whose parents had never watched a hockey game. Now he's the "future of the franchise," with a highlight reel that's been viewed 40 million times and a face that teenage girls have plastered on their bedroom walls.</span>
+                        <span class="lang-ru">Лео Картер ничего этого не ожидал. Восемнадцать месяцев назад он был студентом из Огайо, чьи родители никогда не смотрели хоккей. Теперь он «будущее франшизы», с подборкой лучших моментов, набравшей 40 миллионов просмотров, и лицом, которое девочки-подростки развешивают на стенах своих спален.</span>
                     </p>
 
                     <p>
-                        <span class="lang-en">In this exclusive interview, Carter speaks candidly about the weight of expectations, his relationship with teammates, and the challenges of living in the spotlight.</span>
-                        <span class="lang-ru">В этом эксклюзивном интервью Картер откровенно говорит о тяжести ожиданий, отношениях с товарищами по команде и сложностях жизни под прицелом камер.</span>
+                        <span class="lang-en">"Some days I feel like I'm living someone else's dream," Carter admits, sitting in a Denver coffee shop where he's been recognized three times in the past hour. "Like I'm playing a character called 'Leo Carter, NHL Star.' The real me? I'm still figuring that out."</span>
+                        <span class="lang-ru">«Иногда мне кажется, что я живу чужой мечтой», — признаётся Картер, сидя в денверской кофейне, где его узнали три раза за последний час. «Будто я играю персонажа по имени "Лео Картер, звезда НХЛ". Настоящий я? Я всё ещё разбираюсь.»</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">The 21-year-old is surprisingly candid about the challenges of sudden fame. He talks about the pressure of being called "the next Gretzky" (a comparison he finds "terrifying"), the weirdness of seeing his face on billboards, and the difficulty of maintaining normal relationships when everyone wants something from you.</span>
+                        <span class="lang-ru">21-летний удивительно откровенен о трудностях внезапной славы. Он говорит о давлении от сравнений с «новым Гретцки» (сравнение, которое он находит «ужасающим»), странности видеть своё лицо на билбордах и сложности поддерживать нормальные отношения, когда все чего-то от тебя хотят.</span>
                     </p>
 
                     <blockquote>
-                        <span class="lang-en">"Some days I feel like I'm living someone else's dream. Like I'm playing a character called 'Leo Carter, NHL Star.' The real me? I'm still figuring that out."<br>— Leo Carter</span>
-                        <span class="lang-ru">«Иногда мне кажется, что я живу чужой мечтой. Будто играю персонажа по имени "Лео Картер, звезда НХЛ". Настоящий я? Я всё ещё пытаюсь это понять.»<br>— Лео Картер</span>
+                        <span class="lang-en">"I moved in with Milo because he's the only one who doesn't make a big deal out of things. He doesn't care that I'm 'Leo Carter.' To him, I'm just the idiot who forgets to buy milk and leaves dishes in the sink. It's grounding, you know?"<br>— Leo Carter, on living with Miles Shaw</span>
+                        <span class="lang-ru">«Я переехал к Майло, потому что он единственный, кто не делает из всего большое дело. Ему плевать, что я "Лео Картер". Для него я просто идиот, который забывает купить молоко и оставляет посуду в раковине. Это заземляет, понимаешь?»<br>— Лео Картер, о жизни с Майлзом Шоу</span>
                     </blockquote>
 
                     <p>
-                        <span class="lang-en">[PLACEHOLDER - Add interview content, quotes about teammates, his journey]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить содержание интервью, цитаты о товарищах по команде, его путь]</span>
+                        <span class="lang-en">Carter's relationship with his roommate is clearly important to him. He describes Shaw as "the most underrated player in the league" and "the best listener I know," adding that their apartment is "always quiet, which is exactly what I need after being 'on' all day."</span>
+                        <span class="lang-ru">Отношения Картера с соседом явно важны для него. Он описывает Шоу как «самого недооценённого игрока в лиге» и «лучшего слушателя, которого я знаю», добавляя, что их квартира «всегда тихая, что именно то, что мне нужно после того, как весь день "на связи"».</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">When asked about his personal life, Carter becomes noticeably evasive. He mentions having "someone important" but refuses to elaborate, saying only that "some things deserve to stay private." Given his usual oversharing tendencies, the discretion is notable.</span>
+                        <span class="lang-ru">На вопрос о личной жизни Картер становится заметно уклончивым. Он упоминает, что у него есть «кто-то важный», но отказывается уточнять, говоря лишь, что «некоторые вещи заслуживают оставаться приватными». Учитывая его обычную склонность к чрезмерной откровенности, эта сдержанность примечательна.</span>
+                    </p>
+
+                    <blockquote>
+                        <span class="lang-en">"My parents still don't really understand what I do. My mom asked me last week if I'd 'won the Super Bowl yet.' I had to explain—again—that hockey doesn't have a Super Bowl. She said 'that's nice, dear' and asked if I was eating enough vegetables."<br>— Leo Carter</span>
+                        <span class="lang-ru">«Мои родители до сих пор не совсем понимают, чем я занимаюсь. Мама спросила меня на прошлой неделе, выиграл ли я уже "Супербоул". Мне пришлось объяснять — снова — что в хоккее нет Супербоула. Она сказала "это мило, дорогой" и спросила, ем ли я достаточно овощей.»<br>— Лео Картер</span>
+                    </blockquote>
+
+                    <p>
+                        <span class="lang-en">Despite the pressures, Carter remains infectiously optimistic. He loves the game, loves his teammates, and genuinely seems to love Denver. "This city took a chance on me," he says. "I'm going to spend my whole career paying that back." Whether he can handle everything that comes with that promise remains to be seen—but so far, the rookie is handling it better than most.</span>
+                        <span class="lang-ru">Несмотря на давление, Картер остаётся заразительно оптимистичным. Он любит игру, любит товарищей по команде и, похоже, искренне любит Денвер. «Этот город дал мне шанс», — говорит он. «Я собираюсь всю карьеру отплачивать за это». Сможет ли он справиться со всем, что приходит с этим обещанием, ещё предстоит увидеть — но пока новичок справляется лучше большинства.</span>
                     </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">
-                        <span class="lang-en">Leo Carter</span>
-                        <span class="lang-ru">Лео Картер</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Interview</span>
-                        <span class="lang-ru">Интервью</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Feature</span>
-                        <span class="lang-ru">Репортаж</span>
-                    </span>
+                    <span class="news-tag player"><span class="lang-en">Leo Carter</span><span class="lang-ru">Лео Картер</span></span>
+                    <span class="news-tag"><span class="lang-en">Interview</span><span class="lang-ru">Интервью</span></span>
+                    <span class="news-tag"><span class="lang-en">Feature</span><span class="lang-ru">Репортаж</span></span>
                 </div>
             </div>
         </div>
@@ -1651,61 +1255,64 @@
     <!-- SHAW DEFENSE ARTICLE -->
     <div class="article-overlay" id="article-shaw-defense">
         <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('shaw-defense')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
+            <button class="article-close" onclick="closeArticle('shaw-defense')"><i class="fas fa-times"></i></button>
             <div class="article-content">
                 <div class="article-meta">
                     <div class="article-source">
                         <div class="source-logo">HH</div>
                         <span class="source-name">The Hockey Herald</span>
                     </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 12, 2024 • 6 min read</span>
-                        <span class="lang-ru">12 декабря 2024 • 6 мин. чтения</span>
-                    </span>
+                    <span class="article-date"><span class="lang-en">December 12, 2024 • 6 min read</span><span class="lang-ru">12 декабря 2024 • 6 мин. чтения</span></span>
                 </div>
                 <h1 class="article-title">
-                    <span class="lang-en">Shaw's Quiet Dominance: The Numbers Behind Denver's Shutdown Defenseman</span>
-                    <span class="lang-ru">Тихое доминирование Шоу: цифры за главным защитником Денвера</span>
+                    <span class="lang-en">The Ghost Who Wins Games: Inside Shaw's Quiet Dominance</span>
+                    <span class="lang-ru">Призрак, который выигрывает матчи: тихое доминирование Шоу</span>
                 </h1>
                 <div class="article-body">
                     <p>
-                        <span class="lang-en"> Miles Shaw doesn't give interviews. He doesn't have a social media presence. He barely celebrates his goals. But the 27-year-old defenseman might be the most valuable player on the Hellhounds roster—and the numbers prove it.</span>
-                        <span class="lang-ru"> Майлз Шоу не даёт интервью. У него нет соцсетей. Он едва празднует свои голы. Но 27-летний защитник может быть самым ценным игроком в составе Hellhounds — и цифры это доказывают.</span>
+                        <span class="lang-en">Miles Shaw doesn't give interviews. He doesn't have Instagram, Twitter, or TikTok. He barely celebrates his goals. When the cameras find him after a big win, he mumbles something modest and disappears before anyone can ask a follow-up question. He is, by all accounts, the least famous good player in the NHL.</span>
+                        <span class="lang-ru">Майлз Шоу не даёт интервью. У него нет Instagram, Twitter или TikTok. Он едва празднует свои голы. Когда камеры находят его после большой победы, он бормочет что-то скромное и исчезает прежде, чем кто-то успеет задать уточняющий вопрос. Он, по всем отзывам, наименее известный хороший игрок в НХЛ.</span>
                     </p>
 
                     <p>
-                        <span class="lang-en">Advanced analytics paint a picture of a player who does everything right, even when no one is watching. Shaw leads the team in blocked shots, ranks second in ice time, and has the best plus-minus among defensemen.</span>
-                        <span class="lang-ru">Продвинутая аналитика рисует картину игрока, который делает всё правильно, даже когда никто не смотрит. Шоу лидирует в команде по заблокированным броскам, занимает второе место по времени на льду и имеет лучший показатель плюс-минус среди защитников.</span>
+                        <span class="lang-en">He's also one of the most valuable.</span>
+                        <span class="lang-ru">Он также один из самых ценных.</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">Advanced analytics tell the story that highlight reels miss. Shaw leads the Hellhounds in blocked shots (187), ranks second in ice time (23:42 average), and has the best plus-minus among defensemen (+24). When he's on the ice, the team allows 1.8 fewer goals per 60 minutes. When he's not, things fall apart.</span>
+                        <span class="lang-ru">Продвинутая аналитика рассказывает историю, которую пропускают подборки лучших моментов. Шоу лидирует в Hellhounds по заблокированным броскам (187), занимает второе место по времени на льду (в среднем 23:42) и имеет лучший плюс-минус среди защитников (+24). Когда он на льду, команда пропускает на 1.8 гола меньше за 60 минут. Когда его нет — всё рушится.</span>
                     </p>
 
                     <blockquote>
-                        <span class="lang-en">"Milo is the guy you don't notice until he's not there. And when he's not there, everything falls apart."<br>— Hellhounds Assistant Coach</span>
-                        <span class="lang-ru">«Майло — тот парень, которого не замечаешь, пока он есть. А когда его нет — всё рушится.»<br>— Ассистент тренера Hellhounds</span>
+                        <span class="lang-en">"Milo is the guy you don't notice until he's not there. And when he's not there, you notice really fast. He's the reason I can take risks—because I know he's behind me, cleaning up my messes."<br>— Chase Sterling, Right Wing</span>
+                        <span class="lang-ru">«Майло — тот парень, которого не замечаешь, пока он есть. А когда его нет — замечаешь очень быстро. Он причина, по которой я могу рисковать — потому что знаю, что он за мной, убирает мои косяки.»<br>— Чейз Стерлинг, правый крайний</span>
                     </blockquote>
 
                     <p>
-                        <span class="lang-en">[PLACEHOLDER - Add more stats, teammate quotes, analysis of his playing style]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить больше статистики, цитат товарищей по команде, анализ его стиля игры]</span>
+                        <span class="lang-en">Teammates describe Shaw as "the soul of the team"—not because he gives speeches, but because he shows up. Every practice, every game, every film session. He brings tea to morning meetings (Earl Grey, specifically, which has become something of a locker room tradition). He remembers everyone's birthdays. He never complains, never makes excuses, never asks for credit.</span>
+                        <span class="lang-ru">Товарищи по команде описывают Шоу как «душу команды» — не потому что он произносит речи, а потому что он появляется. Каждая тренировка, каждая игра, каждый разбор видео. Он приносит чай на утренние собрания (конкретно Эрл Грей, что стало чем-то вроде традиции раздевалки). Он помнит дни рождения всех. Он никогда не жалуется, никогда не оправдывается, никогда не просит признания.</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">His off-ice life is equally understated. He lives with rookie Leo Carter in a modest apartment, frequents a local bakery called Crumb & Craft (where the owner knows his order by heart), and spends his free time reading books that teammates describe as "boring stuff about history and philosophy."</span>
+                        <span class="lang-ru">Его жизнь вне льда столь же скромна. Он живёт с новичком Лео Картером в скромной квартире, часто посещает местную пекарню Crumb & Craft (где владелец знает его заказ наизусть) и проводит свободное время за чтением книг, которые товарищи по команде описывают как «скучные штуки об истории и философии».</span>
+                    </p>
+
+                    <blockquote>
+                        <span class="lang-en">"Shaw is the best teammate I've ever had. He never says much, but when he does, everyone listens. There's something about quiet people—when they speak, it matters."<br>— Alexander Reed, Captain</span>
+                        <span class="lang-ru">«Шоу — лучший товарищ по команде, который у меня когда-либо был. Он редко говорит, но когда говорит — все слушают. В тихих людях есть что-то такое — когда они говорят, это важно.»<br>— Александр Рид, капитан</span>
+                    </blockquote>
+
+                    <p>
+                        <span class="lang-en">Head Coach Marcus Thornton makes a point of praising Shaw publicly whenever possible. "Milo reminds me of myself at that age," Thornton said recently. "Quiet, hardworking, overlooked. The difference is, I see him. This whole organization sees him. He's going to be wearing a letter on his jersey someday—mark my words."</span>
+                        <span class="lang-ru">Главный тренер Маркус Торнтон намеренно хвалит Шоу публично при каждой возможности. «Майло напоминает мне себя в том возрасте», — недавно сказал Торнтон. «Тихий, трудолюбивый, незамеченный. Разница в том, что я его вижу. Вся организация его видит. Однажды он будет носить букву на своей футболке — помяните мои слова.»</span>
                     </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag player">
-                        <span class="lang-en">Miles Shaw</span>
-                        <span class="lang-ru">Майлз Шоу</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Analysis</span>
-                        <span class="lang-ru">Анализ</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Defense</span>
-                        <span class="lang-ru">Защита</span>
-                    </span>
+                    <span class="news-tag player"><span class="lang-en">Miles Shaw</span><span class="lang-ru">Майлз Шоу</span></span>
+                    <span class="news-tag"><span class="lang-en">Analysis</span><span class="lang-ru">Анализ</span></span>
+                    <span class="news-tag"><span class="lang-en">Defense</span><span class="lang-ru">Защита</span></span>
                 </div>
             </div>
         </div>
@@ -1714,260 +1321,54 @@
     <!-- TRADE RUMORS ARTICLE -->
     <div class="article-overlay" id="article-trade-rumors">
         <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('trade-rumors')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
+            <button class="article-close" onclick="closeArticle('trade-rumors')"><i class="fas fa-times"></i></button>
             <div class="article-content">
                 <div class="article-meta">
                     <div class="article-source">
                         <div class="source-logo">PD</div>
                         <span class="source-name">Puck Daily</span>
                     </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 11, 2024 • 5 min read</span>
-                        <span class="lang-ru">11 декабря 2024 • 5 мин. чтения</span>
-                    </span>
+                    <span class="article-date"><span class="lang-en">December 11, 2024 • 5 min read</span><span class="lang-ru">11 декабря 2024 • 5 мин. чтения</span></span>
                 </div>
                 <h1 class="article-title">
-                    <span class="lang-en">Trade Deadline Approaching: Which Hellhounds Are On the Block?</span>
-                    <span class="lang-ru">Дедлайн обменов приближается: кого из Hellhounds могут обменять?</span>
+                    <span class="lang-en">Trade Deadline Chaos: Hellhounds Desperate for Goaltending Help</span>
+                    <span class="lang-ru">Хаос дедлайна обменов: Hellhounds отчаянно ищут вратаря</span>
                 </h1>
                 <div class="article-body">
                     <p>
-                        <span class="lang-en"> With the trade deadline looming, league insiders suggest the Denver Hellhounds front office is "open for business." But who might be on the move?</span>
-                        <span class="lang-ru"> С приближением дедлайна обменов инсайдеры лиги утверждают, что руководство Denver Hellhounds «открыто для бизнеса». Но кого могут обменять?</span>
+                        <span class="lang-en">With Caleb Murphy's third shoulder surgery creating an indefinite absence, the Denver Hellhounds find themselves in an uncomfortable position: contenders without a goaltender. And with the trade deadline approaching, sources say the front office is willing to pay "whatever it takes" to fix that problem.</span>
+                        <span class="lang-ru">Третья операция на плече Калеба Мёрфи создала неопределённое отсутствие, и Denver Hellhounds оказались в неудобной позиции: претенденты без вратаря. С приближением дедлайна обменов источники говорят, что руководство готово заплатить «любую цену», чтобы решить эту проблему.</span>
                     </p>
 
                     <p>
-                        <span class="lang-en">Sources indicate that while the core players—Sterling, Reed, Shaw—are considered untouchable, several depth pieces could be available for the right price.</span>
-                        <span class="lang-ru">Источники указывают, что хотя основные игроки — Стерлинг, Рид, Шоу — считаются неприкосновенными, несколько игроков глубины состава могут быть доступны за правильную цену.</span>
+                        <span class="lang-en">"Denver is calling everyone," one league insider revealed. "They've inquired about every available goaltender in the league. They're desperate, and other teams know it. The price is going to be high."</span>
+                        <span class="lang-ru">«Денвер звонит всем», — сообщил один инсайдер лиги. «Они спрашивали о каждом доступном вратаре в лиге. Они в отчаянии, и другие команды это знают. Цена будет высокой.»</span>
+                    </p>
+
+                    <p>
+                        <span class="lang-en">The core players—Reed, Sterling, Shaw, Carter—are considered untouchable. But several depth pieces and draft picks could be on the table. Most notably, sources suggest Denver is willing to part with their 2025 first-round pick and promising prospect Jake Morrison if it means securing a playoff-ready netminder.</span>
+                        <span class="lang-ru">Основные игроки — Рид, Стерлинг, Шоу, Картер — считаются неприкосновенными. Но несколько игроков глубины состава и драфт-пиков могут быть на столе. Примечательно, что источники предполагают, что Денвер готов расстаться с пиком первого раунда 2025 года и перспективным проспектом Джейком Моррисоном, если это означает получение готового к плей-офф вратаря.</span>
                     </p>
 
                     <blockquote>
-                        <span class="lang-en">"Denver is looking to add, not subtract. But they're willing to move pieces to make a bigger splash. They want to win now."<br>— NHL Insider</span>
-                        <span class="lang-ru">«Денвер хочет усилиться, а не ослабнуть. Но они готовы двигать фигуры ради большего приобретения. Они хотят победить сейчас.»<br>— Инсайдер НХЛ</span>
+                        <span class="lang-en">"This team is built to win now. We have a window, and we can't waste it waiting for Murphy to heal. The organization will do what needs to be done."<br>— Source close to Hellhounds management</span>
+                        <span class="lang-ru">«Эта команда построена, чтобы побеждать сейчас. У нас есть окно, и мы не можем тратить его, ждя, пока Мёрфи выздоровеет. Организация сделает то, что нужно.»<br>— Источник, близкий к руководству Hellhounds</span>
                     </blockquote>
 
                     <p>
-                        <span class="lang-en">The Murphy injury has complicated matters. With their starting goaltender out indefinitely, the Hellhounds may need to acquire netminding help—and that could require sacrificing future assets.</span>
-                        <span class="lang-ru">Травма Мёрфи усложнила ситуацию. С основным вратарём вне игры на неопределённый срок, Hellhounds, возможно, придётся приобрести помощь в воротах — а это может потребовать жертвы будущих активов.</span>
+                        <span class="lang-en">The situation puts additional pressure on an already stressed locker room. Murphy's injury has been devastating emotionally, and now players must face the possibility that management will mortgage the future to fill his spot. It's a painful reminder that in professional sports, even the most beloved teammates can be replaced.</span>
+                        <span class="lang-ru">Ситуация создаёт дополнительное давление на и без того напряжённую раздевалку. Травма Мёрфи была разрушительной эмоционально, и теперь игроки должны столкнуться с возможностью того, что руководство заложит будущее, чтобы заполнить его место. Это болезненное напоминание о том, что в профессиональном спорте даже самых любимых товарищей по команде можно заменить.</span>
                     </p>
 
                     <p>
-                        <span class="lang-en">[PLACEHOLDER - Add specific trade targets, salary cap implications, GM quotes]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить конкретные цели обменов, последствия для потолка зарплат, цитаты генменеджера]</span>
+                        <span class="lang-en">For Murphy himself, watching from the sidelines as the team scrambles to replace him must be excruciating. Sources say he's been spotted at his usual fishing spot at Miller's Dock at odd hours, alone with his thoughts and his rod. No one has had the courage to approach him.</span>
+                        <span class="lang-ru">Для самого Мёрфи наблюдать со стороны, как команда спешит его заменить, должно быть мучительно. Источники говорят, что его видели на его обычном месте для рыбалки на причале Миллера в странные часы, наедине со своими мыслями и удочкой. Ни у кого не хватило смелости подойти к нему.</span>
                     </p>
                 </div>
                 <div class="article-tags">
-                    <span class="news-tag">
-                        <span class="lang-en">Trade Rumors</span>
-                        <span class="lang-ru">Слухи об обменах</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Deadline</span>
-                        <span class="lang-ru">Дедлайн</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Insider</span>
-                        <span class="lang-ru">Инсайд</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CRYSTAL RIVALRY ARTICLE -->
-    <div class="article-overlay" id="article-crystal-rivalry">
-        <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('crystal-rivalry')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
-            <div class="article-content">
-                <div class="article-meta">
-                    <div class="article-source">
-                        <div class="source-logo">DP</div>
-                        <span class="source-name">Denver Post</span>
-                    </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 10, 2024 • 12 min read</span>
-                        <span class="lang-ru">10 декабря 2024 • 12 мин. чтения</span>
-                    </span>
-                </div>
-                <h1 class="article-title">
-                    <span class="lang-en">Fire and Ice: Inside the Tense Relationship Between Hellhounds and Crystal Collective</span>
-                    <span class="lang-ru">Огонь и лёд: внутри напряжённых отношений между Hellhounds и Crystal Collective</span>
-                </h1>
-                <div class="article-body">
-                    <p>
-                        <span class="lang-en"> They share the same arena, the same ice, and the same city. But the Denver Hellhounds and the Crystal Collective couldn't be more different—and their relationship reflects that divide.</span>
-                        <span class="lang-ru"> Они делят одну арену, один лёд и один город. Но Denver Hellhounds и Crystal Collective не могут быть более разными — и их отношения отражают этот раскол.</span>
-                    </p>
-
-                    <p>
-                        <span class="lang-en">Hockey players and figure skaters have coexisted at Ball Arena for three years now, but tensions have escalated recently. Scheduling conflicts, equipment disputes, and cultural clashes have created an atmosphere one insider describes as "a cold war on ice."</span>
-                        <span class="lang-ru">Хоккеисты и фигуристы сосуществуют на Болл Арене уже три года, но напряжённость недавно обострилась. Конфликты расписания, споры об оборудовании и культурные столкновения создали атмосферу, которую один инсайдер описывает как «холодную войну на льду».</span>
-                    </p>
-
-                    <blockquote>
-                        <span class="lang-en">"They look at us like we're not real athletes. Like what we do is just... pretty. They have no idea how hard we work."<br>— Crystal Collective skater (anonymous)</span>
-                        <span class="lang-ru">«Они смотрят на нас, будто мы не настоящие спортсмены. Будто то, что мы делаем — просто... красиво. Они понятия не имеют, как тяжело мы работаем.»<br>— Фигуристка Crystal Collective (анонимно)</span>
-                    </blockquote>
-
-                    <blockquote>
-                        <span class="lang-en">"I've got nothing against them. But this is a hockey arena. We were here first."<br>— Hellhounds player (anonymous)</span>
-                        <span class="lang-ru">«Я ничего не имею против них. Но это хоккейная арена. Мы были здесь первыми.»<br>— Игрок Hellhounds (анонимно)</span>
-                    </blockquote>
-
-                    <p>
-                        <span class="lang-en">[PLACEHOLDER - Add more about the history, specific incidents, both perspectives]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить больше об истории, конкретных инцидентах, обеих точках зрения]</span>
-                    </p>
-                </div>
-                <div class="article-tags">
-                    <span class="news-tag crystal">Crystal Collective</span>
-                    <span class="news-tag">Hellhounds</span>
-                    <span class="news-tag">
-                        <span class="lang-en">Feature</span>
-                        <span class="lang-ru">Репортаж</span>
-                    </span>
-                    <span class="news-tag">Ball Arena</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CRYSTAL GALA ARTICLE -->
-    <div class="article-overlay" id="article-crystal-gala">
-        <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('crystal-gala')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
-            <div class="article-content">
-                <div class="article-meta">
-                    <div class="article-source">
-                        <div class="source-logo">PD</div>
-                        <span class="source-name">Puck Daily</span>
-                    </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 9, 2024 • 4 min read</span>
-                        <span class="lang-ru">9 декабря 2024 • 4 мин. чтения</span>
-                    </span>
-                </div>
-                <h1 class="article-title">
-                    <span class="lang-en">Awkward Encounter: Sterling and Crystal Collective Star Spotted in Heated Exchange at Charity Gala</span>
-                    <span class="lang-ru">Неловкая встреча: Стерлинга и звезду Crystal Collective заметили в горячем споре на благотворительном гала</span>
-                </h1>
-                <div class="article-body">
-                    <p>
-                        <span class="lang-en"> The Denver Sports Foundation's annual charity gala is usually a night of smiles, handshakes, and oversized donation checks. But this year's event will be remembered for a very different reason.</span>
-                        <span class="lang-ru"> Ежегодный благотворительный гала Спортивного фонда Денвера обычно — вечер улыбок, рукопожатий и огромных чеков на пожертвования. Но этот год запомнится совсем по другой причине.</span>
-                    </p>
-
-                    <p>
-                        <span class="lang-en">Multiple witnesses report that Chase Sterling and a prominent Crystal Collective skater were seen in what one attendee described as "a very intense conversation" near the venue's bar area.</span>
-                        <span class="lang-ru">Несколько свидетелей сообщают, что Чейза Стерлинга и известную фигуристку Crystal Collective видели в том, что один из присутствующих описал как «очень напряжённый разговор» возле бара.</span>
-                    </p>
-
-                    <blockquote>
-                        <span class="lang-en">"It didn't look friendly. There was finger-pointing. She looked upset. He looked... I don't know, defensive? It went on for maybe five minutes before someone pulled him away."<br>— Gala Attendee</span>
-                        <span class="lang-ru">«Это не выглядело дружелюбно. Были указывающие жесты. Она выглядела расстроенной. Он выглядел... не знаю, защищающимся? Это продолжалось минут пять, прежде чем кто-то увёл его.»<br>— Гость гала</span>
-                    </blockquote>
-
-                    <p>
-                        <span class="lang-en">Neither Sterling nor the Crystal Collective have commented on the incident. The Hellhounds' PR team declined to address the matter, calling it "a private conversation at a social event."</span>
-                        <span class="lang-ru">Ни Стерлинг, ни Crystal Collective не прокомментировали инцидент. PR-команда Hellhounds отказалась обсуждать этот вопрос, назвав его «частным разговором на светском мероприятии».</span>
-                    </p>
-
-                    <p>
-                        <span class="lang-en">[PLACEHOLDER - Add more details, speculation about what was discussed, history between them]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить больше деталей, предположения о теме разговора, историю между ними]</span>
-                    </p>
-                </div>
-                <div class="article-tags">
-                    <span class="news-tag player">
-                        <span class="lang-en">Chase Sterling</span>
-                        <span class="lang-ru">Чейз Стерлинг</span>
-                    </span>
-                    <span class="news-tag crystal">Crystal Collective</span>
-                    <span class="news-tag">
-                        <span class="lang-en">Drama</span>
-                        <span class="lang-ru">Драма</span>
-                    </span>
-                    <span class="news-tag">
-                        <span class="lang-en">Gossip</span>
-                        <span class="lang-ru">Сплетни</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CRYSTAL SCHEDULE ARTICLE -->
-    <div class="article-overlay" id="article-crystal-schedule">
-        <div class="article-modal">
-            <button class="article-close" onclick="closeArticle('crystal-schedule')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="article-hero">
-                <i class="fas fa-image"></i>
-            </div>
-            <div class="article-content">
-                <div class="article-meta">
-                    <div class="article-source">
-                        <div class="source-logo" style="color: var(--crystal-blue);">MH</div>
-                        <span class="source-name">Mile High Sports</span>
-                    </div>
-                    <span class="article-date">
-                        <span class="lang-en">December 7, 2024 • 3 min read</span>
-                        <span class="lang-ru">7 декабря 2024 • 3 мин. чтения</span>
-                    </span>
-                </div>
-                <h1 class="article-title">
-                    <span class="lang-en">Crystal Collective Announces Winter Showcase at Ball Arena</span>
-                    <span class="lang-ru">Crystal Collective объявляет о зимнем шоу на Болл Арене</span>
-                </h1>
-                <div class="article-body">
-                    <p>
-                        <span class="lang-en"> The Crystal Collective has officially announced dates for their highly anticipated Winter Showcase, set to take place at Ball Arena during the Hellhounds' extended road trip in January.</span>
-                        <span class="lang-ru"> Crystal Collective официально объявил даты долгожданного зимнего шоу, которое пройдёт на Болл Арене во время длительной выездной серии Hellhounds в январе.</span>
-                    </p>
-
-                    <p>
-                        <span class="lang-en">The three-night event will feature the ensemble's full roster performing both classic and contemporary routines, including several world premieres choreographed specifically for the Denver audience.</span>
-                        <span class="lang-ru">Трёхдневное мероприятие представит полный состав ансамбля с классическими и современными номерами, включая несколько мировых премьер, поставленных специально для денверской публики.</span>
-                    </p>
-
-                    <blockquote>
-                        <span class="lang-en">"This is our chance to show Denver what we're capable of when we have the arena to ourselves. No compromises, no shortened practice times. Just pure artistry on ice."<br>— Crystal Collective Artistic Director</span>
-                        <span class="lang-ru">«Это наш шанс показать Денверу, на что мы способны, когда арена в нашем распоряжении. Никаких компромиссов, никаких сокращённых тренировок. Чистое искусство на льду.»<br>— Художественный руководитель Crystal Collective</span>
-                    </blockquote>
-
-                    <p>
-                        <span class="lang-en">Tickets go on sale next Monday and are expected to sell out quickly. VIP packages include a post-show meet-and-greet with the skaters.</span>
-                        <span class="lang-ru">Билеты поступят в продажу в следующий понедельник и, как ожидается, быстро раскупят. VIP-пакеты включают встречу с фигуристами после шоу.</span>
-                    </p>
-
-                    <p>
-                        <span class="lang-en">[PLACEHOLDER - Add performance details, ticket prices, featured skaters]</span>
-                        <span class="lang-ru">[PLACEHOLDER - Добавить детали выступлений, цены на билеты, главных фигуристов]</span>
-                    </p>
-                </div>
-                <div class="article-tags">
-                    <span class="news-tag crystal">Crystal Collective</span>
-                    <span class="news-tag">
-                        <span class="lang-en">Event</span>
-                        <span class="lang-ru">Событие</span>
-                    </span>
-                    <span class="news-tag">Winter Showcase</span>
+                    <span class="news-tag"><span class="lang-en">Trade Rumors</span><span class="lang-ru">Слухи об обменах</span></span>
+                    <span class="news-tag"><span class="lang-en">Deadline</span><span class="lang-ru">Дедлайн</span></span>
+                    <span class="news-tag"><span class="lang-en">Insider</span><span class="lang-ru">Инсайд</span></span>
                 </div>
             </div>
         </div>
@@ -1976,23 +1377,15 @@
     <!-- FOOTER -->
     <footer>
         <p class="footer-logo">DENVER HELLHOUNDS</p>
-        <p class="footer-text">
-            <span class="lang-en">Cards for SillyTavern • Est. 2024</span>
-            <span class="lang-ru">Карточки для SillyTavern • 2024</span>
-        </p>
+        <p class="footer-text"><span class="lang-en">Cards for SillyTavern • Est. 2024</span><span class="lang-ru">Карточки для SillyTavern • 2024</span></p>
     </footer>
 
     <script>
-        // Filter functionality
         function filterNews(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            console.log('Filtering by:', category);
         }
 
-        // Article modal functions
         function openArticle(articleId) {
             document.getElementById('article-' + articleId).classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -2003,7 +1396,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close on overlay click
         document.querySelectorAll('.article-overlay').forEach(overlay => {
             overlay.addEventListener('click', function(e) {
                 if (e.target === this) {
@@ -2013,17 +1405,13 @@
             });
         });
 
-        // Close on Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                document.querySelectorAll('.article-overlay').forEach(overlay => {
-                    overlay.classList.remove('active');
-                });
+                document.querySelectorAll('.article-overlay').forEach(overlay => overlay.classList.remove('active'));
                 document.body.style.overflow = 'auto';
             }
         });
 
-        // Language toggle
         function toggleLanguage() {
             const body = document.body;
             if (body.classList.contains('lang-en')) {
@@ -2037,7 +1425,6 @@
             }
         }
 
-        // Load saved language
         document.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('hellhounds-lang');
             if (savedLang === 'ru') {
