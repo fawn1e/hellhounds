@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caleb Murphy | Denver Hellhounds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --accent: #722F37;
+            --accent-light: #8B3D48;
+            --accent-glow: rgba(114, 47, 55, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #5a5a5a;
+            --border: #2a2a2a;
+            --gold: #C9A962;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        body.lang-en .lang-ru { display: none; }
+        body.lang-ru .lang-en { display: none; }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-switch {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .player-page {
+            display: flex;
+            padding-top: 60px;
+            min-height: 100vh;
+        }
+
+        .player-sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            padding: 25px;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            height: calc(100vh - 60px);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .player-image i {
+            font-size: 3.5rem;
+            color: var(--text-muted);
+        }
+
+        .player-number-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .injury-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: #8B0000;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .injury-badge i {
+            font-size: 0.6rem;
+            color: white;
+        }
+
+        .physical-stats {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        .physical-stats-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .appearance-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .appearance-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .appearance-item i {
+            color: var(--accent-light);
+            font-size: 0.7rem;
+        }
+
+        .rp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .rp-tag {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rp-tag i {
+            font-size: 0.6rem;
+        }
+
+        .player-content {
+            flex: 1;
+            padding: 30px 50px;
+            margin-left: 340px;
+            max-width: calc(100% - 340px);
+        }
+
+        .player-header {
+            margin-bottom: 40px;
+        }
+
+        .player-position {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 8px;
+        }
+
+        .player-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .player-nickname {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-title i {
+            font-size: 0.9rem;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .section-text p {
+            margin-bottom: 12px;
+        }
+
+        .section-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .trait-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trait-item i {
+            color: var(--accent-light);
+            font-size: 1rem;
+        }
+
+        .trait-text {
+            font-size: 0.85rem;
+        }
+
+        .hockey-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .hockey-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .hockey-stat:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hockey-stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        .hockey-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .place-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .place-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .place-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .place-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .place-icon i {
+            color: var(--accent-light);
+            font-size: 1rem;
+        }
+
+        .place-icon.home {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        }
+
+        .place-icon.home i {
+            color: white;
+        }
+
+        .place-info h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .place-type {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .place-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .scenario-box {
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(114, 47, 55, 0.05));
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+
+        .scenario-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scenario-title i {
+            color: var(--accent-light);
+        }
+
+        .scenario-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        .role-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+
+        .role-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .role-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .role-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        .role-note {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border-left: 3px solid var(--gold);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .role-note i {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+
+        .download-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--accent);
+            border: none;
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .download-note {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1100px) {
+            .player-sidebar {
+                width: 300px;
+                padding: 20px;
+            }
+
+            .player-content {
+                margin-left: 300px;
+                max-width: calc(100% - 300px);
+                padding: 25px 35px;
+            }
+
+            .player-name {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .player-page {
+                flex-direction: column;
+            }
+
+            .player-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .player-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 25px 20px;
+            }
+
+            .hockey-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .traits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .player-name {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="lang-en">
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hockey-puck"></i>
+                </div>
+                HELLHOUNDS
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html">
+                        <span class="lang-en">Roster</span>
+                        <span class="lang-ru">Состав</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../lore.html">
+                        <span class="lang-en">World</span>
+                        <span class="lang-ru">Мир</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../news.html">
+                        <span class="lang-en">News</span>
+                        <span class="lang-ru">Новости</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <button class="lang-switch" onclick="toggleLanguage()">EN / RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="player-page">
+
+        <!-- LEFT SIDEBAR - FIXED -->
+        <aside class="player-sidebar">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span class="lang-en">Back to Roster</span>
+                <span class="lang-ru">Назад к составу</span>
+            </a>
+
+            <!-- PLAYER IMAGE -->
+            <div class="player-image">
+                <i class="fas fa-user"></i>
+                <span class="player-number-badge">35</span>
+                <span class="injury-badge">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span class="lang-en">INJURED</span>
+                    <span class="lang-ru">ТРАВМА</span>
+                </span>
+            </div>
+
+            <!-- PHYSICAL STATS -->
+            <div class="physical-stats">
+                <h3 class="physical-stats-title">
+                    <span class="lang-en">Physical</span>
+                    <span class="lang-ru">Физические данные</span>
+                </h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Age</span>
+                            <span class="lang-ru">Возраст</span>
+                        </span>
+                        <span class="stat-value">29</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Height</span>
+                            <span class="lang-ru">Рост</span>
+                        </span>
+                        <span class="stat-value">6'3"</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Weight</span>
+                            <span class="lang-ru">Вес</span>
+                        </span>
+                        <span class="stat-value">215 lbs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Born</span>
+                            <span class="lang-ru">Родился</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Nov 2</span>
+                            <span class="lang-ru">2 ноя</span>
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">From</span>
+                            <span class="lang-ru">Откуда</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Boston</span>
+                            <span class="lang-ru">Бостон</span>
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Catches</span>
+                            <span class="lang-ru">Ловит</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Left</span>
+                            <span class="lang-ru">Левой</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- APPEARANCE -->
+                <div class="appearance-row">
+                    <div class="appearance-item">
+                        <i class="fas fa-eye"></i>
+                        <span class="lang-en">Grey eyes</span>
+                        <span class="lang-ru">Серые глаза</span>
+                    </div>
+                    <div class="appearance-item">
+                        <i class="fas fa-user"></i>
+                        <span class="lang-en">Black hair</span>
+                        <span class="lang-ru">Чёрные волосы</span>
+                    </div>
+                    <div class="appearance-item">
+                        <i class="fas fa-band-aid"></i>
+                        <span class="lang-en">Surgical scars</span>
+                        <span class="lang-ru">Шрамы от операций</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RP TAGS -->
+            <div class="rp-tags">
+                <div class="rp-tag">
+                    <i class="fas fa-user-md"></i>
+                    Doctor x Patient
+                </div>
+                <div class="rp-tag">
+                    <i class="fas fa-hourglass-half"></i>
+                    Slow Burn Trust
+                </div>
+                <div class="rp-tag">
+                    <i class="fas fa-heart"></i>
+                    Healing Journey
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <div class="player-content">
+
+            <!-- HEADER -->
+            <header class="player-header">
+                <p class="player-position">
+                    <span class="lang-en">Goaltender</span>
+                    <span class="lang-ru">Вратарь</span>
+                </p>
+                <h1 class="player-name">
+                    <span class="lang-en">Caleb Murphy</span>
+                    <span class="lang-ru">Калеб Мёрфи</span>
+                </h1>
+                <p class="player-nickname">
+                    <span class="lang-en">"Doc" / "Doctor Doom"</span>
+                    <span class="lang-ru">«Док» / «Доктор Дум»</span>
+                </p>
+            </header>
+
+            <!-- BIOGRAPHY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-book"></i>
+                    <span class="lang-en">Biography</span>
+                    <span class="lang-ru">Биография</span>
+                </h2>
+                <div class="section-text">
+                    <p>
+                        <span class="lang-en">Caleb Murphy was supposed to be one of the greats. A first-round draft pick out of Boston, he had the reflexes, the instincts, the ice-cold composure that makes a legendary goaltender. For five years, he was untouchable. Then his shoulder gave out.</span>
+                        <span class="lang-ru">Калеб Мёрфи должен был стать одним из великих. Выбранный в первом раунде драфта из Бостона, он обладал рефлексами, инстинктами и ледяным хладнокровием, которые создают легендарного вратаря. Пять лет он был неприкасаем. А потом его плечо сдало.</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">Three surgeries. Eighteen months of rehab. Countless doctors who promised they could fix him. They couldn't. On the outside, his shoulder looks fine. But certain movements—a quick reach, a sudden twist—and it dislocates. Just like that. No warning. Just pain, and the sickening pop of bone leaving socket.</span>
+                        <span class="lang-ru">Три операции. Восемнадцать месяцев реабилитации. Бесчисленные врачи, которые обещали, что смогут его вылечить. Не смогли. Внешне его плечо выглядит нормально. Но определённые движения — резкий рывок, внезапный поворот — и оно вылетает. Просто так. Без предупреждения. Только боль и тошнотворный щелчок кости, покидающей сустав.</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">He doesn't talk to his parents anymore. Doesn't talk to most people, actually. He lives alone, fishes when he can't sleep, and has perfected the art of pushing everyone away before they can disappoint him. The team's newest physical therapist thinks she can help. She's wrong. They're all wrong.</span>
+                        <span class="lang-ru">Он больше не разговаривает с родителями. Вообще мало с кем разговаривает. Живёт один, рыбачит, когда не может уснуть, и довёл до совершенства искусство отталкивать всех, прежде чем они успеют его разочаровать. Новый физиотерапевт команды думает, что сможет помочь. Она ошибается. Они все ошибаются.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- PERSONALITY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Personality</span>
+                    <span class="lang-ru">Характер</span>
+                </h2>
+                <div class="section-text">
+                    <p>
+                        <span class="lang-en">Caleb is a grumpy cat in human form. He's sarcastic, guarded, and has a glare that could freeze hell itself. He doesn't trust doctors—not anymore. He doesn't trust promises. He doesn't trust hope. But underneath all that armor, there's someone who's just tired of hurting. Someone who used to love this game more than anything. Someone who's terrified that he'll never play again.</span>
+                        <span class="lang-ru">Калеб — злой кот в человеческой форме. Он саркастичный, закрытый, и у него взгляд, способный заморозить сам ад. Он не доверяет врачам — больше нет. Не доверяет обещаниям. Не доверяет надежде. Но под всей этой бронёй скрывается кто-то, кто просто устал от боли. Кто-то, кто когда-то любил эту игру больше всего на свете. Кто-то, кто до смерти боится, что никогда больше не сыграет.</span>
+                    </p>
+                </div>
+                <div class="traits-grid">
+                    <div class="trait-item">
+                        <i class="fas fa-cloud-rain"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Grumpy & Guarded</span>
+                            <span class="lang-ru">Угрюмый и закрытый</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Pushes People Away</span>
+                            <span class="lang-ru">Отталкивает людей</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-comment-slash"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Master of Sarcasm</span>
+                            <span class="lang-ru">Мастер сарказма</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-heart-broken"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Secretly Scared</span>
+                            <span class="lang-ru">Тайно напуган</span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PLACES -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="lang-en">His Places</span>
+                    <span class="lang-ru">Его места</span>
+                </h2>
+                <div class="places-grid">
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon home">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">Lakeside Cabin</span>
+                                    <span class="lang-ru">Домик у озера</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Home — Isolated</span>
+                                    <span class="lang-ru">Дом — уединённый</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">Thirty minutes outside Denver. No neighbors. No noise. Just the lake, the trees, and the silence he needs to not lose his mind.</span>
+                            <span class="lang-ru">Тридцать минут от Денвера. Никаких соседей. Никакого шума. Только озеро, деревья и тишина, которая нужна, чтобы не сойти с ума.</span>
+                        </p>
+                    </a>
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">Miller's Dock</span>
+                                    <span class="lang-ru">Причал Миллера</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Fishing Spot</span>
+                                    <span class="lang-ru">Место для рыбалки</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">Where he goes at 4 AM when the nightmares get bad. The fish don't ask questions. The fish don't promise to fix him.</span>
+                            <span class="lang-ru">Куда он приходит в 4 утра, когда кошмары становятся невыносимыми. Рыбы не задают вопросов. Рыбы не обещают его вылечить.</span>
+                        </p>
+                    </a>
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">Summit Sports Medicine</span>
+                                    <span class="lang-ru">Саммит Спортивная Медицина</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Physio Center</span>
+                                    <span class="lang-ru">Физио-центр</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">The place he hates most in the world. Fluorescent lights, false hope, and doctors who look at him like a puzzle to solve.</span>
+                            <span class="lang-ru">Место, которое он ненавидит больше всего в мире. Люминесцентные лампы, ложная надежда и врачи, которые смотрят на него как на головоломку.</span>
+                        </p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- HOCKEY STATS -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="lang-en">Career Stats (Pre-Injury)</span>
+                    <span class="lang-ru">Статистика карьеры (до травмы)</span>
+                </h2>
+                <div class="hockey-stats">
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">187</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">Games</span>
+                            <span class="lang-ru">Игр</span>
+                        </div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">.918</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">SV%</span>
+                            <span class="lang-ru">%ОБ</span>
+                        </div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">2.41</div>
+                        <div class="hockey-stat-label">GAA</div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">14</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">Shutouts</span>
+                            <span class="lang-ru">Сухари</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RP SCENARIO -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-theater-masks"></i>
+                    <span class="lang-en">Roleplay Scenario</span>
+                    <span class="lang-ru">Сценарий РП</span>
+                </h2>
+                <div class="scenario-box">
+                    <h3 class="scenario-title">
+                        <i class="fas fa-quote-left"></i>
+                        <span class="lang-en">"I Don't Need Fixing"</span>
+                        <span class="lang-ru">«Мне не нужна починка»</span>
+                    </h3>
+                    <p class="scenario-text">
+                        <span class="lang-en">Caleb Murphy has been through three surgeries, seven physical therapists, and exactly zero reasons to believe this time will be different. So when the Hellhounds hire yet another specialist—some fresh-faced girl who just finished medical school and looks at him with those annoyingly hopeful eyes—he's ready to make her quit by the end of the week. He doesn't need her optimism. He doesn't need her gentle hands or her careful exercises or the way she refuses to give up on him. He definitely doesn't need to notice how she's the first person in two years who doesn't flinch when he snaps at her.</span>
+                        <span class="lang-ru">Калеб Мёрфи прошёл через три операции, семь физиотерапевтов и ровно ноль причин верить, что в этот раз будет иначе. Поэтому когда Hellhounds нанимают очередного специалиста — какую-то свежеиспечённую девчонку, только закончившую медицинский, которая смотрит на него этими раздражающе надеющимися глазами — он готов заставить её уволиться к концу недели. Ему не нужен её оптимизм. Не нужны её нежные руки, её осторожные упражнения или то, как она отказывается сдаваться. Ему точно не нужно замечать, что она первый человек за два года, который не вздрагивает, когда он огрызается.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- YOUR ROLE -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-edit"></i>
+                    <span class="lang-en">Your Role</span>
+                    <span class="lang-ru">Твоя роль</span>
+                </h2>
+                <div class="role-box">
+                    <p class="role-label">
+                        <span class="lang-en">You Play As</span>
+                        <span class="lang-ru">Ты играешь за</span>
+                    </p>
+                    <h3 class="role-title">
+                        <span class="lang-en">The New Physical Therapist</span>
+                        <span class="lang-ru">Нового физиотерапевта</span>
+                    </h3>
+                    <p class="role-text">
+                        <span class="lang-en">You just graduated. This is your first real job—working with professional athletes at one of the best sports medicine facilities in Colorado. Your first patient? Caleb Murphy. The Caleb Murphy. The one everyone says is impossible. The one who's driven away every therapist before you. But you've studied his case. You have ideas. You're not going to give up just because he glares at you like you're the enemy. You're going to help him, whether he likes it or not. Even if it means showing up at his cabin at 6 AM. Even if it means learning to fish. Even if it means slowly, painfully, earning the trust of a man who's forgotten how to hope.</span>
+                        <span class="lang-ru">Ты только что закончила учёбу. Это твоя первая настоящая работа — с профессиональными спортсменами в одном из лучших центров спортивной медицины в Колорадо. Твой первый пациент? Калеб Мёрфи. Тот самый Калеб Мёрфи. Тот, о ком все говорят, что он невозможен. Тот, кто прогнал всех терапевтов до тебя. Но ты изучила его случай. У тебя есть идеи. Ты не собираешься сдаваться только потому, что он смотрит на тебя как на врага. Ты собираешься помочь ему, нравится ему это или нет. Даже если придётся появляться у его домика в 6 утра. Даже если придётся научиться рыбачить. Даже если придётся медленно, мучительно заслуживать доверие человека, который забыл, как надеяться.</span>
+                    </p>
+                    <div class="role-note">
+                        <i class="fas fa-lightbulb"></i>
+                        <span class="lang-en"><strong>This is a slow burn:</strong> Caleb won't trust you for a long time. He'll push back, snap at you, try to make you leave. But if you stay—if you keep showing up—you might just be the one who finally helps him heal. Body and soul.</span>
+                        <span class="lang-ru"><strong>Это медленное развитие:</strong> Калеб не будет доверять тебе долго. Он будет сопротивляться, огрызаться, пытаться заставить тебя уйти. Но если ты останешься — если будешь продолжать приходить — возможно, именно ты наконец поможешь ему исцелиться. Телом и душой.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DOWNLOAD -->
+            <section class="download-section">
+                <a href="#" class="download-btn">
+                    <i class="fas fa-download"></i>
+                    <span class="lang-en">Download Character Card</span>
+                    <span class="lang-ru">Скачать карточку персонажа</span>
+                </a>
+                <p class="download-note">
+                    <span class="lang-en">PNG format for SillyTavern, Agnai, and other frontends</span>
+                    <span class="lang-ru">PNG формат для SillyTavern, Agnai и других фронтендов</span>
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-ru');
+                localStorage.setItem('hellhounds-lang', 'ru');
+            } else {
+                body.classList.remove('lang-ru');
+                body.classList.add('lang-en');
+                localStorage.setItem('hellhounds-lang', 'en');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('hellhounds-lang');
+            if (savedLang === 'ru') {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-ru');
+            }
+        });
+    </script>
+
+</body>
+</html>
