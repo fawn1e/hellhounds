@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chase Sterling | Denver Hellhounds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --accent: #722F37;
+            --accent-light: #8B3D48;
+            --accent-glow: rgba(114, 47, 55, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #5a5a5a;
+            --border: #2a2a2a;
+            --gold: #C9A962;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* LANGUAGE SWITCH */
+        body.lang-en .lang-ru { display: none; }
+        body.lang-ru .lang-en { display: none; }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-switch {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* MAIN LAYOUT */
+        .player-page {
+            display: flex;
+            padding-top: 60px;
+            min-height: 100vh;
+        }
+
+        /* LEFT SIDEBAR - FIXED */
+        .player-sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            padding: 25px;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            height: calc(100vh - 60px);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .player-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .player-image i {
+            font-size: 3.5rem;
+            color: var(--text-muted);
+        }
+
+        .player-number-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* PHYSICAL STATS - COMPACT */
+        .physical-stats {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        .physical-stats-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* APPEARANCE ROW */
+        .appearance-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .appearance-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .appearance-item i {
+            color: var(--accent-light);
+            font-size: 0.7rem;
+        }
+
+        /* RP TAGS - COMPACT */
+        .rp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .rp-tag {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rp-tag i {
+            font-size: 0.6rem;
+        }
+
+        /* RIGHT CONTENT - SCROLLABLE */
+        .player-content {
+            flex: 1;
+            padding: 30px 50px;
+            margin-left: 340px;
+            max-width: calc(100% - 340px);
+        }
+
+        /* PLAYER HEADER */
+        .player-header {
+            margin-bottom: 40px;
+        }
+
+        .player-position {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 8px;
+        }
+
+        .player-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .player-nickname {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-title i {
+            font-size: 0.9rem;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .section-text p {
+            margin-bottom: 12px;
+        }
+
+        .section-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* PERSONALITY TRAITS */
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .trait-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trait-item i {
+            color: var(--accent-light);
+            font-size: 1rem;
+        }
+
+        .trait-text {
+            font-size: 0.85rem;
+        }
+
+        /* HOCKEY STATS */
+        .hockey-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .hockey-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .hockey-stat:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hockey-stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        .hockey-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        /* PLACES SECTION */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .place-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .place-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .place-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .place-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .place-icon i {
+            color: var(--accent-light);
+            font-size: 1rem;
+        }
+
+        .place-icon.home {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        }
+
+        .place-icon.home i {
+            color: white;
+        }
+
+        .place-info h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .place-type {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .place-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* RP SCENARIO */
+        .scenario-box {
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(114, 47, 55, 0.05));
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+
+        .scenario-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scenario-title i {
+            color: var(--accent-light);
+        }
+
+        .scenario-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        /* YOUR ROLE */
+        .role-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+
+        .role-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .role-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .role-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        .role-note {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border-left: 3px solid var(--gold);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .role-note i {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+
+        /* DOWNLOAD BUTTON */
+        .download-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--accent);
+            border: none;
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .download-note {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .player-sidebar {
+                width: 300px;
+                padding: 20px;
+            }
+
+            .player-content {
+                margin-left: 300px;
+                max-width: calc(100% - 300px);
+                padding: 25px 35px;
+            }
+
+            .player-name {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .player-page {
+                flex-direction: column;
+            }
+
+            .player-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .player-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 25px 20px;
+            }
+
+            .hockey-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .traits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .player-name {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="lang-en">
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hockey-puck"></i>
+                </div>
+                HELLHOUNDS
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html">
+                        <span class="lang-en">Roster</span>
+                        <span class="lang-ru">Состав</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../lore.html">
+                        <span class="lang-en">World</span>
+                        <span class="lang-ru">Мир</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../news.html">
+                        <span class="lang-en">News</span>
+                        <span class="lang-ru">Новости</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <button class="lang-switch" onclick="toggleLanguage()">EN / RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="player-page">
+
+        <!-- LEFT SIDEBAR - FIXED -->
+        <aside class="player-sidebar">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span class="lang-en">Back to Roster</span>
+                <span class="lang-ru">Назад к составу</span>
+            </a>
+
+            <!-- PLAYER IMAGE -->
+            <div class="player-image">
+                <i class="fas fa-user"></i>
+                <span class="player-number-badge">19</span>
+            </div>
+
+            <!-- PHYSICAL STATS -->
+            <div class="physical-stats">
+                <h3 class="physical-stats-title">
+                    <span class="lang-en">Physical</span>
+                    <span class="lang-ru">Физические данные</span>
+                </h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Age</span>
+                            <span class="lang-ru">Возраст</span>
+                        </span>
+                        <span class="stat-value">27</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Height</span>
+                            <span class="lang-ru">Рост</span>
+                        </span>
+                        <span class="stat-value">6'0"</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Weight</span>
+                            <span class="lang-ru">Вес</span>
+                        </span>
+                        <span class="stat-value">190 lbs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Born</span>
+                            <span class="lang-ru">Родился</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Jul 4</span>
+                            <span class="lang-ru">4 июля</span>
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">From</span>
+                            <span class="lang-ru">Откуда</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Detroit</span>
+                            <span class="lang-ru">Детройт</span>
+                        </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <span class="lang-en">Shoots</span>
+                            <span class="lang-ru">Хват</span>
+                        </span>
+                        <span class="stat-value">
+                            <span class="lang-en">Right</span>
+                            <span class="lang-ru">Правый</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- APPEARANCE -->
+                <div class="appearance-row">
+                    <div class="appearance-item">
+                        <i class="fas fa-eye"></i>
+                        <span class="lang-en">Light brown eyes</span>
+                        <span class="lang-ru">Светло-карие глаза</span>
+                    </div>
+                    <div class="appearance-item">
+                        <i class="fas fa-user"></i>
+                        <span class="lang-en">Brown hair</span>
+                        <span class="lang-ru">Шатен</span>
+                    </div>
+                    <div class="appearance-item">
+                        <i class="fas fa-pen"></i>
+                        <span class="lang-en">Full body tattoos</span>
+                        <span class="lang-ru">Тату по всему телу</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RP TAGS -->
+            <div class="rp-tags">
+                <div class="rp-tag">
+                    <i class="fas fa-moon"></i>
+                    The One That Got Away
+                </div>
+                <div class="rp-tag">
+                    <i class="fas fa-heart-crack"></i>
+                    Hurt/Comfort
+                </div>
+                <div class="rp-tag">
+                    <i class="fas fa-crown"></i>
+                    Playboy Falls Hard
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <div class="player-content">
+
+            <!-- HEADER -->
+            <header class="player-header">
+                <p class="player-position">
+                    <span class="lang-en">Right Wing</span>
+                    <span class="lang-ru">Правый крайний</span>
+                </p>
+                <h1 class="player-name">
+                    <span class="lang-en">Chase Sterling</span>
+                    <span class="lang-ru">Чейз Стерлинг</span>
+                </h1>
+                <p class="player-nickname">
+                    <span class="lang-en">"Golden Boy"</span>
+                    <span class="lang-ru">«Золотой мальчик»</span>
+                </p>
+            </header>
+
+            <!-- BIOGRAPHY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-book"></i>
+                    <span class="lang-en">Biography</span>
+                    <span class="lang-ru">Биография</span>
+                </h2>
+                <div class="section-text">
+                    <p>
+                        <span class="lang-en">Chase Sterling grew up in a cramped Detroit suburb, the son of a mechanic and a night-shift nurse. He learned to skate on frozen ponds and dreamed of something bigger. Now he has it all—millions of followers, sponsorship deals, magazine covers, and a reputation as the league's most eligible bachelor.</span>
+                        <span class="lang-ru">Чейз Стерлинг вырос в тесном пригороде Детройта, сын механика и медсестры ночной смены. Он научился кататься на замёрзших прудах и мечтал о чём-то большем. Теперь у него есть всё — миллионы подписчиков, рекламные контракты, обложки журналов и репутация самого завидного холостяка лиги.</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">Women come and go. That's how it's always been. One-night stands, no strings attached, everyone knows the rules. Until one night two years ago in Vegas, when a girl with a sharp tongue and zero interest in his fame left before he woke up. She didn't leave a number. She didn't leave a name. And Chase Sterling, for the first time in his life, couldn't stop thinking about someone.</span>
+                        <span class="lang-ru">Женщины приходят и уходят. Так было всегда. Ночь без обязательств, все знают правила. Пока однажды ночью, два года назад в Вегасе, девушка с острым языком и нулевым интересом к его славе не ушла до того, как он проснулся. Она не оставила номер. Она не оставила имя. И Чейз Стерлинг впервые в жизни не мог перестать думать о ком-то.</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">Two years later, at a charity gala, he sees her across the room. And everything he thought he knew about himself starts to unravel.</span>
+                        <span class="lang-ru">Два года спустя, на благотворительном гала, он видит её через весь зал. И всё, что он думал, что знает о себе, начинает рушиться.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- PERSONALITY -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Personality</span>
+                    <span class="lang-ru">Характер</span>
+                </h2>
+                <div class="section-text">
+                    <p>
+                        <span class="lang-en">On the surface, Chase is all charm—easy smile, quick wit, the kind of confidence that fills a room. He's the team's social butterfly, the one who drags everyone to parties, who always knows the right thing to say. But underneath the golden boy image, there's a hunger that never quite goes away. A need to prove he belongs. A fear that one day everyone will see he's still just that kid from Detroit pretending to be something more.</span>
+                        <span class="lang-ru">На поверхности Чейз — сплошное обаяние: лёгкая улыбка, острый ум, уверенность, которая заполняет комнату. Он социальная бабочка команды, тот, кто тащит всех на вечеринки, кто всегда знает, что сказать. Но под образом золотого мальчика скрывается голод, который никогда не утихает. Потребность доказать, что он здесь по праву. Страх, что однажды все увидят — он всё ещё тот пацан из Детройта, притворяющийся кем-то большим.</span>
+                    </p>
+                </div>
+                <div class="traits-grid">
+                    <div class="trait-item">
+                        <i class="fas fa-star"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Effortlessly Charming</span>
+                            <span class="lang-ru">Естественно обаятельный</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-mask"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Hides Insecurities Deep</span>
+                            <span class="lang-ru">Прячет неуверенность глубоко</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-fire"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Fiercely Ambitious</span>
+                            <span class="lang-ru">Яростно амбициозен</span>
+                        </span>
+                    </div>
+                    <div class="trait-item">
+                        <i class="fas fa-heart"></i>
+                        <span class="trait-text">
+                            <span class="lang-en">Loyal to His Core</span>
+                            <span class="lang-ru">Верен до глубины души</span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PLACES -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="lang-en">His Places</span>
+                    <span class="lang-ru">Его места</span>
+                </h2>
+                <div class="places-grid">
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon home">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">The Apex Tower</span>
+                                    <span class="lang-ru">Башня «Апекс»</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Home — Penthouse</span>
+                                    <span class="lang-ru">Дом — Пентхаус</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">Flashy, modern, Instagram-ready. Designer furniture, a bar that's always stocked, and a view that screams "I made it."</span>
+                            <span class="lang-ru">Яркий, современный, готовый для Instagram. Дизайнерская мебель, бар, который всегда полон, и вид, кричащий «Я добился успеха».</span>
+                        </p>
+                    </a>
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon">
+                                <i class="fas fa-glass-martini-alt"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">The Pit</span>
+                                    <span class="lang-ru">Яма</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Nightclub — VIP Regular</span>
+                                    <span class="lang-ru">Ночной клуб — VIP-завсегдатай</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">His kingdom after dark. VIP booth in the back, bottle service, and a reputation that precedes him.</span>
+                            <span class="lang-ru">Его королевство после заката. VIP-кабинка в глубине, бутылочный сервис и репутация, которая идёт впереди него.</span>
+                        </p>
+                    </a>
+                    <a href="../lore.html" class="place-card">
+                        <div class="place-header">
+                            <div class="place-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="place-info">
+                                <h4>
+                                    <span class="lang-en">Prime Cut</span>
+                                    <span class="lang-ru">Прайм Кат</span>
+                                </h4>
+                                <span class="place-type">
+                                    <span class="lang-en">Steakhouse</span>
+                                    <span class="lang-ru">Стейкхаус</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="place-description">
+                            <span class="lang-en">Where he brings dates he actually wants to impress. Which is rare. Very rare.</span>
+                            <span class="lang-ru">Куда он приводит свидания, которые реально хочет впечатлить. Что бывает редко. Очень редко.</span>
+                        </p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- HOCKEY STATS -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="lang-en">Season Stats 2024-25</span>
+                    <span class="lang-ru">Статистика сезона 2024-25</span>
+                </h2>
+                <div class="hockey-stats">
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">29</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">Goals</span>
+                            <span class="lang-ru">Голы</span>
+                        </div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">41</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">Assists</span>
+                            <span class="lang-ru">Передачи</span>
+                        </div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">70</div>
+                        <div class="hockey-stat-label">
+                            <span class="lang-en">Points</span>
+                            <span class="lang-ru">Очки</span>
+                        </div>
+                    </div>
+                    <div class="hockey-stat">
+                        <div class="hockey-stat-value">+18</div>
+                        <div class="hockey-stat-label">+/-</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RP SCENARIO -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-theater-masks"></i>
+                    <span class="lang-en">Roleplay Scenario</span>
+                    <span class="lang-ru">Сценарий РП</span>
+                </h2>
+                <div class="scenario-box">
+                    <h3 class="scenario-title">
+                        <i class="fas fa-quote-left"></i>
+                        <span class="lang-en">"The One That Got Away"</span>
+                        <span class="lang-ru">«Та, что ушла»</span>
+                    </h3>
+                    <p class="scenario-text">
+                        <span class="lang-en">Two years ago, a speed date in Vegas turned into something more. One night. No names. No expectations. She was different—didn't care about his fame, challenged him, made him laugh. When he woke up, she was gone. No note. No number. Nothing. He told himself it didn't matter. He told himself he forgot her. He lied. Now she's standing across the room at a charity gala, and Chase Sterling is about to find out that some people you can't forget—no matter how hard you try.</span>
+                        <span class="lang-ru">Два года назад быстрое свидание в Вегасе превратилось в нечто большее. Одна ночь. Без имён. Без ожиданий. Она была другой — ей было плевать на его славу, она бросала ему вызов, заставляла смеяться. Когда он проснулся, она исчезла. Ни записки. Ни номера. Ничего. Он говорил себе, что это неважно. Говорил, что забыл её. Врал. Теперь она стоит через весь зал на благотворительном гала, и Чейз Стерлинг вот-вот узнает, что некоторых людей невозможно забыть — как бы ты ни старался.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- YOUR ROLE -->
+            <section class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-edit"></i>
+                    <span class="lang-en">Your Role</span>
+                    <span class="lang-ru">Твоя роль</span>
+                </h2>
+                <div class="role-box">
+                    <p class="role-label">
+                        <span class="lang-en">You Play As</span>
+                        <span class="lang-ru">Ты играешь за</span>
+                    </p>
+                    <h3 class="role-title">
+                        <span class="lang-en">The Girl Who Disappeared</span>
+                        <span class="lang-ru">Девушку, которая исчезла</span>
+                    </h3>
+                    <p class="role-text">
+                        <span class="lang-en">Two years ago, you left before sunrise. You had your reasons—maybe you were scared, maybe you were protecting yourself, maybe life just got complicated. You never expected to see him again. But here you are, at a charity gala in Denver, and he's staring at you like he's seen a ghost. What happens now is up to you. Why did you leave? Why are you back? And what do you do when the playboy who's had everyone... only ever wanted you?</span>
+                        <span class="lang-ru">Два года назад ты ушла до рассвета. У тебя были причины — может, ты испугалась, может, защищала себя, может, жизнь просто стала сложной. Ты никогда не думала, что увидишь его снова. Но вот ты здесь, на благотворительном гала в Денвере, и он смотрит на тебя так, будто увидел призрак. Что будет дальше — решать тебе. Почему ты ушла? Почему вернулась? И что делать, когда плейбой, у которого были все... всегда хотел только тебя?</span>
+                    </p>
+                    <div class="role-note">
+                        <i class="fas fa-lightbulb"></i>
+                        <span class="lang-en"><strong>Flexible backstory:</strong> You can be anyone—a new figure skater from the Crystal Collective, a journalist, a rival team's PR manager, or someone with a completely different story. Your past and your reasons are yours to decide.</span>
+                        <span class="lang-ru"><strong>Гибкая предыстория:</strong> Ты можешь быть кем угодно — новой фигуристкой из Crystal Collective, журналисткой, PR-менеджером команды-соперника или кем-то с совершенно другой историей. Твоё прошлое и причины — решать тебе.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DOWNLOAD -->
+            <section class="download-section">
+                <a href="#" class="download-btn">
+                    <i class="fas fa-download"></i>
+                    <span class="lang-en">Download Character Card</span>
+                    <span class="lang-ru">Скачать карточку персонажа</span>
+                </a>
+                <p class="download-note">
+                    <span class="lang-en">PNG format for SillyTavern, Agnai, and other frontends</span>
+                    <span class="lang-ru">PNG формат для SillyTavern, Agnai и других фронтендов</span>
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-ru');
+                localStorage.setItem('hellhounds-lang', 'ru');
+            } else {
+                body.classList.remove('lang-ru');
+                body.classList.add('lang-en');
+                localStorage.setItem('hellhounds-lang', 'en');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('hellhounds-lang');
+            if (savedLang === 'ru') {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-ru');
+            }
+        });
+    </script>
+
+</body>
+</html>
